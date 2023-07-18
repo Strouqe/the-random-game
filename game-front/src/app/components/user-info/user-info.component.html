@@ -1,0 +1,23 @@
+<mat-card class="user-info" >
+  <mat-list>
+    <mat-list-item>
+      Missions compleated: {{ user.missionsCompleated.length }}
+    </mat-list-item>
+    <mat-divider></mat-divider>
+    <mat-list-item>
+      Currency: {{ user.currencyBalance }}
+    </mat-list-item>
+    <mat-divider></mat-divider>
+    <mat-list-item>
+      Income: {{ user.currencyIncome }}/min
+    </mat-list-item>
+    <mat-divider></mat-divider>
+    <!-- <mat-list-item>
+      Party: {{ user.charecters.length}}/8
+    </mat-list-item> -->
+    <mat-list-item *ngFor="let charecter of user.charecters">
+      Name: {{ charecter.name }}
+    </mat-list-item>
+  </mat-list>
+
+</mat-card>

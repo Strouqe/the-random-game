@@ -1,0 +1,15 @@
+.board{
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  column-gap: auto;
+
+  height: 100%;
+  max-width: 100%;
+
+  margin: 0;
+
+
+
+  background-color: #bebbbb;
+}

@@ -1,0 +1,44 @@
+.charecters {
+  height: 30%;
+  max-height: 300px;
+  width: 50%;
+  min-width: 700px;
+
+
+  &__list{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 10px;
+
+
+    &__item{
+      display: flex;
+      flex-direction: row;
+      justify-content: space-around;
+      align-items: center;
+
+      min-width: 250px;
+
+      padding: 5px 10px;
+      border: 1px solid black;
+
+      &-image{
+        width: 125px;
+        height: 125px;
+        object-fit: cover;
+
+      }
+
+      &-characteristics{
+
+        h4{
+          margin: 0;
+        }
+
+        p{
+          margin: 0;
+        }
+      }
+    }
+  }
+}
