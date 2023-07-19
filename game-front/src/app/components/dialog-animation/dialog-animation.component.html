@@ -1,5 +1,37 @@
 <div class="dialog">
   <h1 mat-dialog-title>{{this.data.mission.name}}</h1>
+  <div class="dialog__character-select">
+
+    <div class="example-container">
+      <h2>Your Party</h2>
+
+      <div
+        cdkDropList
+        #partyList="cdkDropList"
+        [cdkDropListData]="party"
+        [cdkDropListConnectedTo]="[characterList]"
+        class="example-list"
+        (cdkDropListDropped)="drop($event)">
+        <div class="example-box" *ngFor="let item of party" cdkDrag>{{item.name}}</div>
+      </div>
+    </div>
+
+    <div class="example-container">
+      <h2>Available Characters</h2>
+
+      <div
+        cdkDropList
+        #characterList="cdkDropList"
+        [cdkDropListData]="characters"
+        [cdkDropListConnectedTo]="[partyList]"
+        class="example-list"
+        (cdkDropListDropped)="drop($event)">
+        <div class="example-box" *ngFor="let item of characters" cdkDrag>{{item.name}}</div>
+      </div>
+    </div>
+  </div>
+
+
   <div mat-dialog-content>
     Start the mission?
   </div>

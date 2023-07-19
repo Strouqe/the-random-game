@@ -17,13 +17,13 @@ import {
 } from 'rxjs';
 import { map, scan, startWith, switchMap } from 'rxjs/operators';
 import { User } from '../models/user.model';
-import { Charecter } from '../models/charecter.model';
+import { Character } from '../models/character.model';
 
 const sampleUser: User = {
   name: 'John Doe',
   currencyBalance: 101,
-  currencyIncome: 40, // should remove and calculate from charecters
-  charecters: [
+  currencyIncome: 40, // should remove and calculate from characters
+  characters: [
     {
       id: 1,
       name: 'Morty',
@@ -104,7 +104,8 @@ export class UserService {
     this.userChanged = new Subject<User>();
 
     this.initialCounterState = {
-      count: sampleUser.currencyBalance,
+      // count: sampleUser.currencyBalance,
+      count: 0,
       isTicking: true,
     };
 
@@ -173,16 +174,28 @@ export class UserService {
     this.user.currencyIncome = this.getUserIncome();
     this.userChanged.next(this.user);
   }
-  addCharecter(cherecter: Charecter): void {
+
+  setUser(userName: string): void {
+    this.user = sampleUser;
+    this.user.name = userName;
+
+    this.user.currencyIncome = this.getUserIncome();
+    this.userChanged.next(this.user);
+  }
+  addcharacter(cherecter: Character): void {
     this.user.currencyBalance -= cherecter.price;
-    this.user.charecters.push(cherecter);
+    this.user.characters.push(cherecter);
     this.user.currencyIncome = this.getUserIncome();
     this.userChanged.next(this.user);
   }
 
+  getCharacters(): Character[] {
+    return this.user.characters;
+  }
+
   private getUserIncome(): number {
-    return this.user.charecters.reduce((acc, charecter) => {
-      return acc + charecter.income;
+    return this.user.characters.reduce((acc, character) => {
+      return acc + character.income;
     }, 0);
   }
 }

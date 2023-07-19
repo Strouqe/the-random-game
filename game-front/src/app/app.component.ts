@@ -8,7 +8,7 @@ import { UserService } from './services/user.service';
 })
 export class AppComponent {
   title = 'game';
-  constructor(private userService: UserService) {
-    this.userService.fetchUser();
-  }
+  // constructor(private userService: UserService) {
+  //   // this.userService.fetchUser();
+  // }
 }

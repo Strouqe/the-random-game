@@ -65,7 +65,7 @@ wss.on("connection", (ws) => {
 function generateData() {
     let serverData = {
         missions: (0, missions_1.createMissions)(),
-        charecters: (0, charecters_1.createCharacters)(),
+        characters: (0, charecters_1.createCharacters)(),
     };
     return { serverData };
 }

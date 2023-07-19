@@ -51,7 +51,7 @@ wss.on("connection", (ws: WebSocket) => {
 function generateData(){
   let serverData = {
     missions: createMissions(),
-    charecters: createCharacters(),
+    characters: createCharacters(),
   }
   return {serverData}
 }

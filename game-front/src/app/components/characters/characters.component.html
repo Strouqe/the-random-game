@@ -1,0 +1,23 @@
+<mat-card class="characters">
+  <div class="characters__list">
+    <!--insted of the letter in front stats have a 50% border and a background color of their stat (s-red, d-green, i-blue)-->
+    <mat-card
+      *ngFor="let character of characters"
+      class="characters__list__item"
+      (click)="onAddcharacter(character)"
+    >
+      <img
+        src="{{ character.image }}"
+        alt="character-image"
+        class="characters__list__item-image"
+      />
+      <div matLine class="characters__list__item-characteristics">
+        <h4 matLine>{{ character.name }}</h4>
+        <p>Strength: {{ character.characteristics.strength }}</p>
+        <p>Dexterity: {{ character.characteristics.dexterity }}</p>
+        <p>Intelect: {{ character.characteristics.intelect }}</p>
+        <p>Income: {{ character.income }}</p>
+      </div>
+    </mat-card>
+  </div>
+</mat-card>

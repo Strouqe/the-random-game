@@ -1,4 +1,4 @@
-import { Characteristics } from "./charecter.model";
+import { Characteristics } from "./character.model";
 
 export class Mission {
   constructor(

@@ -1,0 +1,13 @@
+<form class="form" [formGroup]="userForm" (ngSubmit)="onSubmit()">
+  <mat-card>
+    <mat-form-field appearance="outline">
+      <mat-label>Name</mat-label>
+      <input formControlName="userName" matInput />
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Password</mat-label>
+      <input formControlName="password" matInput />
+    </mat-form-field>
+    <button type="submit" mat-raised-button color="primary">Submit</button>
+  </mat-card>
+</form>
