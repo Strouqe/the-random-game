@@ -4,6 +4,8 @@ import { UserService } from './user.service';
 import { User } from '../models/user.model';
 import { Subscription } from 'rxjs';
 import { Mission } from '../models/mission.model';
+import { ServerDataService } from './server-data.service';
+import { WebsocketService } from './websocket.service';
 
 @Injectable({
   providedIn: 'root',
@@ -12,7 +14,10 @@ export class MissionsService {
   userSubscription: Subscription;
   private user: User
 
-  constructor(private userService: UserService) {
+  constructor(
+    private userService: UserService,
+    private wsService: WebsocketService
+    ) {
 
     this.userSubscription = this.userService.userChanged.subscribe(
       (user: User) => {
@@ -35,6 +40,11 @@ export class MissionsService {
     this.user.characters = [...this.user.characters, ...party]
     this.user.currencyBalance += mission.reward;
     this.userService.userChanged.next(this.user);
+    let message = {
+      type: 'mission result',
+      data:  this.user
+    }
+    this.wsService.sendToServer(message);
     return true;
   }
 

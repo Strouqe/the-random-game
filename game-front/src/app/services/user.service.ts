@@ -175,6 +175,10 @@ export class UserService {
     this.userChanged.next(this.user);
   }
 
+  getUser(): User {
+    return this.user;
+  }
+
   setUser(userName: string): void {
     this.user = sampleUser;
     this.user.name = userName;

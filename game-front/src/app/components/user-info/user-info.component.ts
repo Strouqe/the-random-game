@@ -22,9 +22,12 @@ export class UserInfoComponent implements OnInit, OnDestroy {
 
   user: User;
 
+  message = {}
+
 
   constructor(
     private userService: UserService,
+    private wsService: WebsocketService,
   ) {
   }
 
@@ -41,10 +44,21 @@ export class UserInfoComponent implements OnInit, OnDestroy {
     //   console.log('income', income);
     // }
     // );
+    this.message = {
+      type: 'login',
+      data: this.user.name
+    }
+
+    this.wsService.sendToServer(this.message);
   }
 
   ngOnDestroy(): void {
     this.userSubscription.unsubscribe();
+    this.message = {
+      type: 'logout',
+      data: this.user.name
+    }
+    this.wsService.sendToServer(this.message);
   }
 
 }

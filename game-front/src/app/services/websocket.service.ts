@@ -15,9 +15,8 @@ interface MessageData {
   providedIn: 'root',
 })
 export class WebsocketService {
-
   wsSubscription: Subscription;
-  dataChanged = new Subject<ServerData>()
+  dataChanged = new Subject<ServerData>();
 
   private subject: WebSocketSubject<MessageEvent>;
 
@@ -33,24 +32,27 @@ export class WebsocketService {
     return this.subject;
   }
 
-  private create(url: string): WebSocketSubject<MessageEvent> {
-    let ws = new WebSocket(url);
-
-    let observable = new Observable((obs: Observer<MessageEvent>) => {
-      ws.onmessage = obs.next.bind(obs);
-      ws.onerror = obs.error.bind(obs);
-      ws.onclose = obs.error.bind(obs);
-      return ws.close.bind(ws);
-    });
-
-    let observer = {
-      next: (data: Object) => {
-        if (ws.readyState === WebSocket.OPEN) {
-          ws.send(JSON.stringify(data));
-        }
-      },
-    };
-    return WebSocketSubject.create(observer, observable);
+  sendToServer(data: any) {
+    this.subject.next(data);
   }
 
+  // private create(url: string): WebSocketSubject<MessageEvent> {
+  //   let ws = new WebSocket(url);
+
+  //   let observable = new Observable((obs: Observer<MessageEvent>) => {
+  //     ws.onmessage = obs.next.bind(obs);
+  //     ws.onerror = obs.error.bind(obs);
+  //     ws.onclose = obs.error.bind(obs);
+  //     return ws.close.bind(ws);
+  //   });
+
+  //   let observer = {
+  //     next: (data: Object) => {
+  //       if (ws.readyState === WebSocket.OPEN) {
+  //         ws.send(JSON.stringify(data));
+  //       }
+  //     },
+  //   };
+  //   return WebSocketSubject.create(observer, observable);
+  // }
 }

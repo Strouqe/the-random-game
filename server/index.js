@@ -25,10 +25,12 @@ var __importStar = (this && this.__importStar) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const WebSocket = __importStar(require("ws"));
 const http = __importStar(require("http"));
+const db = __importStar(require("./db"));
 const charecters_1 = require("./charecters");
 const missions_1 = require("./missions");
 let characters = (0, charecters_1.createCharacters)();
 let missions = (0, missions_1.createMissions)();
+let connectedUsers = [];
 let serverData = {
     missions,
     characters,
@@ -39,12 +41,32 @@ const server = http.createServer((req, res) => {
 });
 const wss = new WebSocket.Server({ server });
 wss.on("connection", (ws) => {
-    ws.on("message", (message) => {
-        // ws.send(JSON.stringify(`Hello, you sent -> ${message}`));
-        console.log("received: %s", message);
+    ws.on("message", (data) => {
+        const message = JSON.parse(data.toString());
+        switch (message.type) {
+            case "login":
+                connectedUsers.push(message.data);
+                // wss.clients.forEach((client) => {
+                //   if (client !== ws && client.readyState === WebSocket.OPEN) {
+                //     client.send(connectedUsers);
+                //   }
+                // });
+                console.log('Conected users =======>', connectedUsers);
+                break;
+            case "logout":
+                connectedUsers = connectedUsers.filter((user) => user !== message.data);
+                break;
+            case "mission result":
+                db.addEntry(message.data.name, message.data.currencyBalance, message.data.currencyIncome);
+        }
+        // let user = JSON.parse(data.toString())
+        // db.addEntry(user.name, user.currencyBalance, user.currencyIncome)
+        ws.send(JSON.stringify(`Hello, you sent -> ${data}`));
+        console.log("received: %s", data);
         wss.clients.forEach((client) => {
             if (client !== ws && client.readyState === WebSocket.OPEN) {
-                client.send(JSON.stringify({ message: `Hello, you sent -> ${message}` }));
+                client.send(connectedUsers);
+                // client.send(JSON.stringify({ data: `Hello, you sent -> ${data}` }));
             }
         });
     });

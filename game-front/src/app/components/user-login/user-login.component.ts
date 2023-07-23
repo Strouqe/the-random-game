@@ -25,7 +25,7 @@ constructor(private userService: UserService, private router: Router) {}
   private initForm(): void {
     this.userForm = new FormGroup({
       userName: new FormControl(null, Validators.required),
-      password: new FormControl(null)
+      // password: new FormControl(null)
 
     });
   }
