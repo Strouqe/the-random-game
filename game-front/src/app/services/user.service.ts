@@ -23,47 +23,9 @@ const sampleUser: User = {
   name: 'John Doe',
   currencyBalance: 0,
   currencyIncome: 40, // should remove and calculate from characters
-  characters: [
-    // {
-    //   id: 1,
-    //   name: 'Morty',
-    //   price: 100,
-    //   income: 11,
-    //   image: 'https://res.cloudinary.com/demo/image/twitter/1330457336.jpg',
-    //   fatigue: 0,
-    //   characteristics: {
-    //     intelect: 25,
-    //     strength: 25,
-    //     dexterity: 25,
-    //   },
-    // },
-    // {
-    //   id: 2,
-    //   name: 'Doc',
-    //   price: 100,
-    //   income: 12,
-    //   image: 'https://res.cloudinary.com/demo/image/twitter/1330457336.jpg',
-    //   fatigue: 0,
-    //   characteristics: {
-    //     intelect: 25,
-    //     strength: 25,
-    //     dexterity: 25,
-    //   },
-    // },
-  ],
-  missionsCompleated: [
-    // {
-    //   id: 1,
-    //   name: 'Dungeon Exploration',
-    //   dificulty: 100,
-    //   reward: 100,
-    //   requirements: {
-    //     intelect: 15,
-    //     strength: 15,
-    //     dexterity: 15,
-    //   },
-    // },
-  ],
+  characters: [],
+  missionsCompleated: [],
+  timePlayed: 0,
 };
 
 export interface CounterStateModel {
@@ -77,11 +39,12 @@ export interface CounterStateModel {
 export class UserService {
   userChanged: Subject<User>;
   incomeChanged: Subject<number>;
+  timePlayedChanged: Subject<number>;
   userIncomeSubscription: Subscription;
   incomeGeneratorSubscription: Subscription;
 
   initialCounterState: CounterStateModel;
-  patchCounterState:  BehaviorSubject<Partial<CounterStateModel>>;
+  patchCounterState: BehaviorSubject<Partial<CounterStateModel>>;
   counterCommands$: any;
   commandFromTick$: Observable<Partial<CounterStateModel>>;
   commandFromReset$: Observable<Partial<CounterStateModel>>;
@@ -90,12 +53,6 @@ export class UserService {
 
   trigerStartEvent: EventEmitter<void> = new EventEmitter();
   trigerPauseEvent: EventEmitter<void> = new EventEmitter();
-  // stopBtn = document.querySelector('#stopBtn') as HTMLButtonElement;
-  // pauseBtn = document.querySelector('#pauseBtn') as HTMLButtonElement;
-
-  // startClick$ = fromEvent(this.trigerStart, 'click');
-  // stopClick$ = fromEvent(this.stopBtn, 'click');
-  // pauseBtn$ = fromEvent(this.pauseBtn, 'click');
 
   private user: User;
 
@@ -108,7 +65,9 @@ export class UserService {
       isTicking: false,
     };
 
-    this.patchCounterState = new BehaviorSubject<Partial<CounterStateModel>>(this.isTicking$);
+    this.patchCounterState = new BehaviorSubject<Partial<CounterStateModel>>(
+      this.isTicking$
+    );
 
     this.counterCommands$ = merge(
       this.trigerStartEvent.pipe(mapTo({ isTicking: true })),
@@ -141,23 +100,26 @@ export class UserService {
       tap(({ count }) => {
         console.log('count', count);
 
-        this.patchCounterState.next({ count: count + this.user.currencyIncome });
-
+        this.patchCounterState.next({
+          count: count + this.user.currencyIncome,
+        });
       })
     );
 
-    // this.commandFromReset$ = this.stopClick$.pipe(mapTo({ ...this.initialCounterState }));
-
-    this.incomeGeneratorSubscription =
-      this.commandFromTick$.pipe(startWith(this.initialCounterState))
+    this.incomeGeneratorSubscription = this.commandFromTick$
+      .pipe(startWith(this.initialCounterState))
       .subscribe((state) => {
         console.log('state', state);
-        if(state.count) {
-
+        if (state.count) {
           this.user.currencyBalance = state.count;
         }
         this.userChanged.next(this.user);
       });
+
+    setInterval(() => {
+      this.user.timePlayed += 15;
+      this.userChanged.next(this.user);
+    }, 15000);
   }
 
   trigerPause(): void {

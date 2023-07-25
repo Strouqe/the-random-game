@@ -1,9 +1,7 @@
-<mat-card>
-  <div class="players-online">
-    <div class="players-online__list">
-      <mat-card *ngFor="let player of players" class="players-online__list__item">
-        <h4 matLine>{{ player }}</h4>
-      </mat-card>
-    </div>
+<mat-card class="players-online">
+  <div class="players-online__list">
+    <mat-card *ngFor="let player of players" class="players-online__list__item">
+      <h4 matLine>{{ player }}</h4>
+    </mat-card>
   </div>
 </mat-card>

@@ -76,7 +76,7 @@ wss.on("connection", (ws: WebSocket) => {
         );
     }
 
-    ws.send(JSON.stringify(`Hello, you sent -> ${data}`));
+    ws.send(JSON.stringify(`Hello, you sent --> ${data}`));
     console.log("received: %s", data);
   });
 
