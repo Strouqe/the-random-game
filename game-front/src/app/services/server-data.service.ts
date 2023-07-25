@@ -18,11 +18,14 @@ export class ServerDataService {
   subject = webSocket(WS_ENDPOINT)
   charactersChanged: Subject<Character[]>
   missionsChanged: Subject<Mission[]>
+  playersChanged: Subject<string[]>
   // missions: Subject<Mission[]>
 
   constructor(private wsService: WebsocketService) {
     this.charactersChanged = new Subject<Character[]>()
     this.missionsChanged = new Subject<Mission[]>()
+    this.playersChanged = new Subject<string[]>()
+
     // this.wsService.connect();
     // this.wsSubscription = this.subject.subscribe((response: any) => {
     //   console.log('test', response);
@@ -36,9 +39,11 @@ export class ServerDataService {
       console.log('test', response);
       this.charactersChanged.next(response.serverData.characters);
       this.missionsChanged.next(response.serverData.missions);
+      this.playersChanged.next(response.serverData.currentConnectedUsers);
       console.log("charactersChanged in server data service",this.charactersChanged)
       console.log("missionsChanged in server data service",this.missionsChanged)
-      console.log('data service data ', response.serverData.missions);
+      console.log("playersChanged in server data service",this.playersChanged)
+      console.log('data service data ', response.serverData);
     });
 
     // this.wsSubscription = this.wsService.connect().pipe(

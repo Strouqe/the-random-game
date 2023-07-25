@@ -21,48 +21,48 @@ import { Character } from '../models/character.model';
 
 const sampleUser: User = {
   name: 'John Doe',
-  currencyBalance: 101,
+  currencyBalance: 0,
   currencyIncome: 40, // should remove and calculate from characters
   characters: [
-    {
-      id: 1,
-      name: 'Morty',
-      price: 100,
-      income: 11,
-      image: 'https://res.cloudinary.com/demo/image/twitter/1330457336.jpg',
-      fatigue: 0,
-      characteristics: {
-        intelect: 25,
-        strength: 25,
-        dexterity: 25,
-      },
-    },
-    {
-      id: 2,
-      name: 'Doc',
-      price: 100,
-      income: 12,
-      image: 'https://res.cloudinary.com/demo/image/twitter/1330457336.jpg',
-      fatigue: 0,
-      characteristics: {
-        intelect: 25,
-        strength: 25,
-        dexterity: 25,
-      },
-    },
+    // {
+    //   id: 1,
+    //   name: 'Morty',
+    //   price: 100,
+    //   income: 11,
+    //   image: 'https://res.cloudinary.com/demo/image/twitter/1330457336.jpg',
+    //   fatigue: 0,
+    //   characteristics: {
+    //     intelect: 25,
+    //     strength: 25,
+    //     dexterity: 25,
+    //   },
+    // },
+    // {
+    //   id: 2,
+    //   name: 'Doc',
+    //   price: 100,
+    //   income: 12,
+    //   image: 'https://res.cloudinary.com/demo/image/twitter/1330457336.jpg',
+    //   fatigue: 0,
+    //   characteristics: {
+    //     intelect: 25,
+    //     strength: 25,
+    //     dexterity: 25,
+    //   },
+    // },
   ],
   missionsCompleated: [
-    {
-      id: 1,
-      name: 'Dungeon Exploration',
-      dificulty: 100,
-      reward: 100,
-      requirements: {
-        intelect: 15,
-        strength: 15,
-        dexterity: 15,
-      },
-    },
+    // {
+    //   id: 1,
+    //   name: 'Dungeon Exploration',
+    //   dificulty: 100,
+    //   reward: 100,
+    //   requirements: {
+    //     intelect: 15,
+    //     strength: 15,
+    //     dexterity: 15,
+    //   },
+    // },
   ],
 };
 
@@ -104,9 +104,8 @@ export class UserService {
     this.userChanged = new Subject<User>();
 
     this.initialCounterState = {
-      // count: sampleUser.currencyBalance,
-      count: 0,
-      isTicking: true,
+      count: 400,
+      isTicking: false,
     };
 
     this.patchCounterState = new BehaviorSubject<Partial<CounterStateModel>>(this.isTicking$);
@@ -170,7 +169,7 @@ export class UserService {
   }
 
   fetchUser(): void {
-    this.user = sampleUser;
+    // this.user = sampleUser;
     this.user.currencyIncome = this.getUserIncome();
     this.userChanged.next(this.user);
   }

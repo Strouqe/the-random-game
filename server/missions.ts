@@ -26,7 +26,7 @@ export function createMissions(): Mission[] {
     characteristics = generateCharacteristics(dificulty)
     missions.push(new Mission(i, `Mission ${i}`, dificulty, dificulty, characteristics))
   }
-  console.log(missions)
+  // console.log(missions)
   return missions
 }
 

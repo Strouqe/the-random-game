@@ -19,6 +19,7 @@ import { MissionsComponent } from './components/missions/missions.component';
 import { UserInfoComponent } from './components/user-info/user-info.component';
 import { UserLoginComponent } from './components/user-login/user-login.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { PlayersOnlineComponent } from './components/players-online/players-online.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -27,7 +28,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     BoardComponent,
     MissionsComponent,
     DialogAnimationComponent,
-    UserLoginComponent
+    UserLoginComponent,
+    PlayersOnlineComponent
   ],
   imports: [
     BrowserModule,

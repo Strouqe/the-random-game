@@ -15,6 +15,10 @@ let serverData: any = {
   characters,
 };
 
+function getConneccedUsers() {
+  return connectedUsers;
+}
+
 const PORT = 8080;
 
 const server = http.createServer((req, res) => {
@@ -23,23 +27,46 @@ const server = http.createServer((req, res) => {
 
 const wss = new WebSocket.Server({ server });
 
+let interval: any;
+
+function startSendingData() {
+  interval = setInterval(() => {
+    wss.clients.forEach((client) => {
+      characters = createCharacters();
+      missions = createMissions();
+      let currentConnectedUsers = getConneccedUsers();
+      serverData = {
+        missions,
+        characters,
+        currentConnectedUsers,
+      };
+      if (client.readyState === WebSocket.OPEN) {
+        client.send(JSON.stringify({ serverData }));
+      }
+    });
+  }, 10000);
+  return interval;
+}
+
+function stopSendingData() {
+  clearInterval(interval);
+}
+
 wss.on("connection", (ws: WebSocket) => {
   ws.on("message", (data: WebSocket.Data) => {
     const message = JSON.parse(data.toString());
     switch (message.type) {
       case "login":
         connectedUsers.push(message.data);
-        // wss.clients.forEach((client) => {
-        //   if (client !== ws && client.readyState === WebSocket.OPEN) {
-        //     client.send(connectedUsers);
-        //   }
-        // });
-        console.log('Conected users =======>',connectedUsers);
+        stopSendingData();
+        startSendingData();
+        console.log("Conected users ======>", connectedUsers);
         break;
       case "logout":
         connectedUsers = connectedUsers.filter(
           (user: any) => user !== message.data
         );
+        console.log("connected users", connectedUsers);
         break;
       case "mission result":
         db.addEntry(
@@ -48,39 +75,13 @@ wss.on("connection", (ws: WebSocket) => {
           message.data.currencyIncome
         );
     }
-    // let user = JSON.parse(data.toString())
-    // db.addEntry(user.name, user.currencyBalance, user.currencyIncome)
+
     ws.send(JSON.stringify(`Hello, you sent -> ${data}`));
     console.log("received: %s", data);
-    wss.clients.forEach((client) => {
-      if (client !== ws && client.readyState === WebSocket.OPEN) {
-        client.send(connectedUsers);
-        // client.send(JSON.stringify({ data: `Hello, you sent -> ${data}` }));
-      }
-    });
   });
-  ws.send(JSON.stringify({ serverData }));
-  setInterval(() => {
-    characters = createCharacters();
-    serverData = {
-      missions,
-      characters,
-    };
-    ws.send(JSON.stringify({ serverData }));
-  }, 10000);
-});
 
-// wss.on('message', (message: WebSocket.Data) => {
-//   console.log('received: %s', message);
-//   ws.send(`Hello, you sent -> ${message}`);
-// });
-function generateData() {
-  let serverData = {
-    missions: createMissions(),
-    characters: createCharacters(),
-  };
-  return { serverData };
-}
+  ws.send(JSON.stringify({ serverData }));
+});
 
 server.listen(PORT, () => {
   console.log(`Server started on port ${PORT}`);

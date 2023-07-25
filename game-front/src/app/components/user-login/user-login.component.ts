@@ -19,6 +19,7 @@ constructor(private userService: UserService, private router: Router) {}
 
   onSubmit() {
     this.userService.setUser(this.userForm.value.userName);
+    this.userService.trigerStart();
     this.router.navigate(['/board']);
   }
 
