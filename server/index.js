@@ -47,8 +47,8 @@ let interval;
 function startSendingData() {
     interval = setInterval(() => {
         wss.clients.forEach((client) => {
-            characters = (0, charecters_1.createCharacters)();
-            missions = (0, missions_1.createMissions)();
+            // characters = createCharacters();
+            // missions = createMissions();
             let currentConnectedUsers = getConneccedUsers();
             serverData = {
                 missions,
@@ -65,19 +65,43 @@ function startSendingData() {
 function stopSendingData() {
     clearInterval(interval);
 }
+function getData() {
+    characters = (0, charecters_1.createCharacters)();
+    missions = (0, missions_1.createMissions)();
+    let currentConnectedUsers = getConneccedUsers();
+    serverData = {
+        missions,
+        characters,
+        currentConnectedUsers,
+    };
+    return JSON.stringify({ serverData });
+}
 wss.on("connection", (ws) => {
     ws.on("message", (data) => {
         const message = JSON.parse(data.toString());
         switch (message.type) {
             case "login":
                 connectedUsers.push(message.data);
-                stopSendingData();
-                startSendingData();
+                // stopSendingData();
+                // startSendingData();
+                ws.send(getData());
                 console.log("Conected users ======>", connectedUsers);
                 break;
             case "logout":
                 connectedUsers = connectedUsers.filter((user) => user !== message.data);
                 console.log("connected users", connectedUsers);
+                break;
+            case "data request":
+                // characters = createCharacters();
+                // missions = createMissions();
+                // let currentConnectedUsers = getConneccedUsers();
+                // serverData = {
+                //   missions,
+                //   characters,
+                //   currentConnectedUsers,
+                // };
+                console.log("data request", serverData);
+                ws.send(getData());
                 break;
             case "mission result":
                 db.addEntry(message.data.name, message.data.currencyBalance, message.data.currencyIncome);
@@ -85,7 +109,7 @@ wss.on("connection", (ws) => {
         ws.send(JSON.stringify(`Hello, you sent --> ${data}`));
         console.log("received: %s", data);
     });
-    ws.send(JSON.stringify({ serverData }));
+    // ws.send(JSON.stringify({ serverData }));
 });
 server.listen(PORT, () => {
     console.log(`Server started on port ${PORT}`);

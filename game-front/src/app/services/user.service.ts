@@ -18,6 +18,7 @@ import {
 import { map, scan, startWith, switchMap } from 'rxjs/operators';
 import { User } from '../models/user.model';
 import { Character } from '../models/character.model';
+import { WebsocketService } from './websocket.service';
 
 const sampleUser: User = {
   name: 'John Doe',
@@ -56,7 +57,7 @@ export class UserService {
 
   private user: User;
 
-  constructor() {
+  constructor(wsService: WebsocketService) {
     // this.fetchUser();
     this.userChanged = new Subject<User>();
 
@@ -99,7 +100,7 @@ export class UserService {
       })),
       tap(({ count }) => {
         console.log('count', count);
-
+        wsService.sendToServer({ type: 'data request'})
         this.patchCounterState.next({
           count: count + this.user.currencyIncome,
         });
@@ -150,6 +151,15 @@ export class UserService {
   addcharacter(cherecter: Character): void {
     this.user.currencyBalance -= cherecter.price;
     this.user.characters.push(cherecter);
+    this.user.currencyIncome = this.getUserIncome();
+    this.userChanged.next(this.user);
+  }
+
+  deleteCharacter(cherecter: Character): void {
+    this.user.currencyBalance -= cherecter.price;
+    this.user.characters = this.user.characters.filter(
+      (character) => character !== cherecter
+    );
     this.user.currencyIncome = this.getUserIncome();
     this.userChanged.next(this.user);
   }

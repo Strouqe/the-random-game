@@ -4,7 +4,6 @@
     <mat-card
       *ngFor="let character of characters"
       class="characters__list__item"
-      (click)="onAddcharacter(character)"
     >
       <img
         src="{{ character.image }}"
@@ -17,6 +16,15 @@
         <p>Dexterity: {{ character.characteristics.dexterity }}</p>
         <p>Intelect: {{ character.characteristics.intelect }}</p>
         <p>Income: {{ character.income }}</p>
+        <button
+        type="button"
+        mat-raised-button
+        color="primary"
+        [disabled]="fullParty"
+        (click)="onAddcharacter(character)"
+      >
+        Add
+      </button>
       </div>
     </mat-card>
   </div>

@@ -3,7 +3,7 @@
   <div class="dialog__character-select">
 
     <div class="example-container">
-      <h2>Your Party</h2>
+      <h2>Choose {{this.data.mission.partySize}} characters</h2>
 
       <div
         cdkDropList
@@ -37,7 +37,7 @@
   </div>
   <div mat-dialog-actions>
     <button id="startBtn" mat-button mat-dialog-close>No</button>
-    <button mat-button mat-dialog-close cdkFocusInitial (click)="triggerResumeIncomeGeneration()">Ok</button>
+    <button mat-button mat-dialog-close cdkFocusInitial [disabled]="party.length != this.data.mission.partySize" color="primary" (click)="triggerResumeIncomeGeneration()">Ok</button>
   </div>
 
 </div>

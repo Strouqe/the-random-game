@@ -32,8 +32,8 @@ let interval: any;
 function startSendingData() {
   interval = setInterval(() => {
     wss.clients.forEach((client) => {
-      characters = createCharacters();
-      missions = createMissions();
+      // characters = createCharacters();
+      // missions = createMissions();
       let currentConnectedUsers = getConneccedUsers();
       serverData = {
         missions,
@@ -52,14 +52,27 @@ function stopSendingData() {
   clearInterval(interval);
 }
 
+function getData() {
+  characters = createCharacters();
+  missions = createMissions();
+  let currentConnectedUsers = getConneccedUsers();
+  serverData = {
+    missions,
+    characters,
+    currentConnectedUsers,
+  };
+  return JSON.stringify({serverData});
+}
+
 wss.on("connection", (ws: WebSocket) => {
   ws.on("message", (data: WebSocket.Data) => {
     const message = JSON.parse(data.toString());
     switch (message.type) {
       case "login":
         connectedUsers.push(message.data);
-        stopSendingData();
-        startSendingData();
+        // stopSendingData();
+        // startSendingData();
+        ws.send( getData() );
         console.log("Conected users ======>", connectedUsers);
         break;
       case "logout":
@@ -68,6 +81,18 @@ wss.on("connection", (ws: WebSocket) => {
         );
         console.log("connected users", connectedUsers);
         break;
+      case "data request":
+        // characters = createCharacters();
+        // missions = createMissions();
+        // let currentConnectedUsers = getConneccedUsers();
+        // serverData = {
+        //   missions,
+        //   characters,
+        //   currentConnectedUsers,
+        // };
+        console.log("data request", serverData);
+        ws.send(getData());
+        break
       case "mission result":
         db.addEntry(
           message.data.name,
@@ -80,7 +105,7 @@ wss.on("connection", (ws: WebSocket) => {
     console.log("received: %s", data);
   });
 
-  ws.send(JSON.stringify({ serverData }));
+  // ws.send(JSON.stringify({ serverData }));
 });
 
 server.listen(PORT, () => {

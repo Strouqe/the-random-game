@@ -19,7 +19,7 @@
     <!-- <mat-list-item>
       Party: {{ user.characters.length}}/8
     </mat-list-item> -->
-    <mat-list-item *ngFor="let character of user.characters">
+    <mat-list-item *ngFor="let character of user.characters" (click)="onDeleteCharacter(character)">
       Name: {{ character.name }}
     </mat-list-item>
   </mat-list>

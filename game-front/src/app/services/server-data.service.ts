@@ -35,6 +35,7 @@ export class ServerDataService {
 
     // });
 
+
     this.wsSubscription = this.wsService.connect().subscribe((response: any) => {
       console.log('test', response);
       this.charactersChanged.next(response.serverData.characters);
@@ -45,6 +46,7 @@ export class ServerDataService {
       console.log("playersChanged in server data service",this.playersChanged)
       console.log('data service data ', response.serverData);
     });
+
 
     // this.wsSubscription = this.wsService.connect().pipe(
     //   map((response: MessageEvent): character[] => {

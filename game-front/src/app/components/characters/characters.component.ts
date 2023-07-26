@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { Character } from 'src/app/models/character.model';
+import { User } from 'src/app/models/user.model';
 import { ServerDataService } from 'src/app/services/server-data.service';
 import { UserService } from 'src/app/services/user.service';
 
@@ -10,9 +11,11 @@ import { UserService } from 'src/app/services/user.service';
   styleUrls: ['./characters.component.scss'],
 })
 export class charactersComponent implements OnInit, OnDestroy {
+  user: User;
+  userSubscription: Subscription;
+  fullParty: boolean = false;
 
   characters: Character[];
-
   charactersSubscription: Subscription;
 
   constructor(
@@ -31,6 +34,13 @@ export class charactersComponent implements OnInit, OnDestroy {
       console.log('Response from websocket: ', characters);
     });
     console.log('characters in characters component ====>', this.characters);
+
+    this.userSubscription = this.userService.userChanged.subscribe((user) => {
+      this.user = user;
+      this.user.characters.length <= 5 ? this.fullParty = false : this.fullParty = true;
+      console.log('User in characters component ====>', this.user);
+    }
+    );
   }
 
   ngOnDestroy(): void {

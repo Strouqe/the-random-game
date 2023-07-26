@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Subscription } from 'rxjs';
+import { Subscription, TimeInterval } from 'rxjs';
 import { webSocket } from 'rxjs/webSocket';
 import { environment } from 'src/app/environments/environment';
 import { User } from 'src/app/models/user.model';
@@ -8,6 +8,7 @@ import { WebsocketService } from 'src/app/services/websocket.service';
 import { Buffer } from 'buffer';
 import { ChatService } from 'src/app/services/chat.service';
 import { ServerDataService } from 'src/app/services/server-data.service';
+import { Character } from 'src/app/models/character.model';
 
 
 export const WS_ENDPOINT = environment.URL;
@@ -18,6 +19,7 @@ export const WS_ENDPOINT = environment.URL;
   styleUrls: ['./user-info.component.scss']
 })
 export class UserInfoComponent implements OnInit, OnDestroy {
+  interval: TimeInterval<any>;
   userSubscription: Subscription;
 
   user: User;
@@ -44,6 +46,7 @@ export class UserInfoComponent implements OnInit, OnDestroy {
     //   console.log('income', income);
     // }
     // );
+  //
 
     // this.message = {
     //   type: 'login',
@@ -54,12 +57,17 @@ export class UserInfoComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.userSubscription.unsubscribe();
+    this.userSubscription.unsubscribe()
+
     // this.message = {
     //   type: 'logout',
     //   data: this.user.name
     // }
     // this.wsService.sendToServer(this.message);
+  }
+
+  onDeleteCharacter(character: Character){
+    this.userService.deleteCharacter(character);
   }
 
 }
