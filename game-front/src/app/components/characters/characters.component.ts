@@ -49,6 +49,7 @@ export class charactersComponent implements OnInit, OnDestroy {
 
   onAddcharacter(character: Character): void {
     console.log('character clicked: ', character);
+    this.characters = this.characters.filter((char) => char.id !== character.id);
     this.userService.addcharacter(character);
   }
 }

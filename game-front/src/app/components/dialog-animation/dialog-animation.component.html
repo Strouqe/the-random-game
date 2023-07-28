@@ -36,8 +36,8 @@
     Start the mission?
   </div>
   <div mat-dialog-actions>
-    <button id="startBtn" mat-button mat-dialog-close>No</button>
-    <button mat-button mat-dialog-close cdkFocusInitial [disabled]="party.length != this.data.mission.partySize" color="primary" (click)="triggerResumeIncomeGeneration()">Ok</button>
+    <button id="startBtn" mat-button mat-dialog-close (click)="resumeGeneration()">No</button>
+    <button mat-button mat-dialog-close mat-raised-button cdkFocusInitial [disabled]="party.length != this.data.mission.partySize" color="primary" (click)="onStartMission()">Ok</button>
   </div>
 
 </div>

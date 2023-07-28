@@ -1,4 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { User } from 'src/app/models/user.model';
 import { UserService } from 'src/app/services/user.service';
@@ -16,6 +17,7 @@ export class BoardComponent implements OnInit, OnDestroy{
   constructor(private userService: UserService) {}
 
   ngOnInit(): void {
+
     this.userSubscription = this.userService.userChanged.subscribe(
       (user: User) => {
         this.user = user;

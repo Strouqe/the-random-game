@@ -27,8 +27,8 @@ export class MissionsService {
     );
   }
 
-  startMission(mission: Mission, party: Character[]): boolean {  //  Should I ad min characters?
-    const req = this.getReq(mission.dificulty); // Won't be needed when I will get req from the server
+  startMission(mission: Mission, party: Character[]): boolean {
+    const req = mission.requirements;
     console.log('req', req);
     for(const character in party){
       if(party[character].characteristics.strength < req.strength && party[character].characteristics.dexterity < req.dexterity && party[character].characteristics.intelect < req.intelect){

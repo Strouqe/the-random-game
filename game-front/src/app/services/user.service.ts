@@ -57,9 +57,11 @@ export class UserService {
 
   private user: User;
 
-  constructor(wsService: WebsocketService) {
-    // this.fetchUser();
+  constructor(private wsService: WebsocketService) {
     this.userChanged = new Subject<User>();
+  }
+
+  initService(): void {
 
     this.initialCounterState = {
       count: 400,
@@ -100,7 +102,7 @@ export class UserService {
       })),
       tap(({ count }) => {
         console.log('count', count);
-        wsService.sendToServer({ type: 'data request'})
+        this.wsService.sendToServer({ type: 'data request'})
         this.patchCounterState.next({
           count: count + this.user.currencyIncome,
         });

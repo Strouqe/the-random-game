@@ -22,6 +22,7 @@ import { Character } from 'src/app/models/character.model';
   styleUrls: ['./dialog-animation.component.scss']
 })
 export class DialogAnimationComponent{
+  user: User;
   party: Character[] = []
   characters: Character[]
 
@@ -31,12 +32,17 @@ export class DialogAnimationComponent{
     @Inject(MAT_DIALOG_DATA) public data: {mission: Mission, user: User}
     ) {
       console.log('data in dialog ====>', data);
+      this.user = data.user
       this.characters = data.user.characters
 
     }
 
+    resumeGeneration(): void {
+      this.userService.trigerStart();
+      this.user.characters = [...this.party, ...this.user.characters]
+    }
 
-    triggerResumeIncomeGeneration(): void {
+    onStartMission(): void {
       this.userService.trigerStart();
       console.log("Party when mission is started", this.party)
       if(this.missionService.startMission(this.data.mission, this.party)) {
@@ -45,6 +51,7 @@ export class DialogAnimationComponent{
         console.log("mission failed")
       }
     }
+
     drop(event: CdkDragDrop<Character[]>) {
       if (event.previousContainer === event.container) {
         moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);

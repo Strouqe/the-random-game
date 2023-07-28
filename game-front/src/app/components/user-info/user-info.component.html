@@ -1,4 +1,4 @@
-<mat-card class="user-info" >
+<mat-card class="user-info" *ngIf="user">
   <mat-list>
     <mat-list-item>
       Name: {{ user.name}}
@@ -16,12 +16,31 @@
       Income: {{ user.currencyIncome }}/min
     </mat-list-item>
     <mat-divider></mat-divider>
-    <!-- <mat-list-item>
-      Party: {{ user.characters.length}}/8
-    </mat-list-item> -->
-    <mat-list-item *ngFor="let character of user.characters" (click)="onDeleteCharacter(character)">
-      Name: {{ character.name }}
-    </mat-list-item>
+    <mat-card
+      *ngFor="let character of user.characters"
+      class="user-info__character"
+    >
+      <img
+        src="{{ character.image }}"
+        alt="user-info__character-image"
+        class="user-info__character-image"
+      />
+      <div matLine class="user-info__character-characteristics">
+        <h4 matLine>{{ character.name }}</h4>
+        <p>Strength: {{ character.characteristics.strength }}</p>
+        <p>Dexterity: {{ character.characteristics.dexterity }}</p>
+        <p>Intelect: {{ character.characteristics.intelect }}</p>
+        <p>Income: {{ character.income }}</p>
+        <button
+        type="button"
+        mat-raised-button
+        color="primary"
+        (click)="onDeleteCharacter(character)"
+      >
+        X
+      </button>
+      </div>
+    </mat-card>
   </mat-list>
 
 </mat-card>

@@ -101,7 +101,7 @@ wss.on("connection", (ws: WebSocket) => {
         );
     }
 
-    ws.send(JSON.stringify(`Hello, you sent --> ${data}`));
+    // ws.send(JSON.stringify(`Hello, you sent --> ${data}`));
     console.log("received: %s", data);
   });
 
@@ -109,5 +109,5 @@ wss.on("connection", (ws: WebSocket) => {
 });
 
 server.listen(PORT, () => {
-  console.log(`Server started on port ${PORT}`);
+  console.log(`Server started on port  ${PORT}`);
 });

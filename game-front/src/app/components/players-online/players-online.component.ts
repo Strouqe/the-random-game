@@ -1,4 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { User } from 'src/app/models/user.model';
 import { ServerDataService } from 'src/app/services/server-data.service';
@@ -24,7 +25,7 @@ export class PlayersOnlineComponent implements OnInit, OnDestroy {
   constructor(
     private dataService: ServerDataService,
     private userService: UserService,
-    private wsService: WebsocketService
+    private wsService: WebsocketService,
   ) {}
 
   ngOnInit(): void {

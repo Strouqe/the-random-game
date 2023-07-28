@@ -5,5 +5,6 @@ export class ServerData {
   constructor(
     public missions: Mission[],
     public characters: Character[],
+    public currentConnectedUsers: string[],
   ){}
 }

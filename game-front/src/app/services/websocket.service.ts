@@ -20,7 +20,7 @@ export class WebsocketService {
 
   private subject: WebSocketSubject<MessageEvent>;
 
-  message = 'Hello from Client';
+  message = {};
 
   constructor() {}
 
@@ -34,6 +34,14 @@ export class WebsocketService {
 
   sendToServer(data: any) {
     this.subject.next(data);
+  }
+
+  login(name: string) {
+    this.message = {
+      type: 'login',
+      data: name
+    }
+    this.sendToServer(this.message);
   }
 
   // private create(url: string): WebSocketSubject<MessageEvent> {

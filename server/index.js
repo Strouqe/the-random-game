@@ -106,11 +106,11 @@ wss.on("connection", (ws) => {
             case "mission result":
                 db.addEntry(message.data.name, message.data.currencyBalance, message.data.currencyIncome);
         }
-        ws.send(JSON.stringify(`Hello, you sent --> ${data}`));
+        // ws.send(JSON.stringify(`Hello, you sent --> ${data}`));
         console.log("received: %s", data);
     });
     // ws.send(JSON.stringify({ serverData }));
 });
 server.listen(PORT, () => {
-    console.log(`Server started on port ${PORT}`);
+    console.log(`Server started on port  ${PORT}`);
 });

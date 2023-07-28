@@ -19,13 +19,14 @@ constructor(private userService: UserService, private router: Router) {}
 
   onSubmit() {
     this.userService.setUser(this.userForm.value.userName);
+    this.userService.initService();
     this.userService.trigerStart();
     this.router.navigate(['/board']);
   }
 
   private initForm(): void {
     this.userForm = new FormGroup({
-      userName: new FormControl(null, Validators.required),
+      userName: new FormControl(null, [Validators.minLength(4), Validators.required]),
       // password: new FormControl(null)
 
     });

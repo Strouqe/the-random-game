@@ -1,5 +1,5 @@
-<mat-card class="characters">
-  <div class="characters__list">
+<mat-card class="characters"  *ngIf="characters">
+  <div class="characters__list" *ngIf="characters.length != 0">
     <!--insted of the letter in front stats have a 50% border and a background color of their stat (s-red, d-green, i-blue)-->
     <mat-card
       *ngFor="let character of characters"
@@ -28,4 +28,10 @@
       </div>
     </mat-card>
   </div>
+  <div  *ngIf="characters.length == 0">
+    Please wait for  new charecters to arrive
+   </div>
 </mat-card>
+
+
+
