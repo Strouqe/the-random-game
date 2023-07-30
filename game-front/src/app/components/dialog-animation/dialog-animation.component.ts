@@ -35,6 +35,11 @@ export class DialogAnimationComponent{
       this.user = data.user
       this.characters = data.user.characters
 
+      dialogRef.afterClosed().subscribe(result => {
+        console.log('The dialog was closed');
+        this.resumeGeneration()
+      });
+
     }
 
     resumeGeneration(): void {

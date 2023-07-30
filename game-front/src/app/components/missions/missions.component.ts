@@ -63,7 +63,7 @@ export class MissionsComponent implements OnInit, OnDestroy {
   ): void {
     this.triggerPauseIncomeGeneration();
     this.dialog.open(DialogAnimationComponent, {
-      width: '600px',
+      width: '95%',
       enterAnimationDuration,
       exitAnimationDuration,
       data: { mission: mission, user: this.user },

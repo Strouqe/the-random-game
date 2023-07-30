@@ -10,6 +10,14 @@
     grid-template-columns: repeat(3, 1fr);
     grid-gap: 10px;
 
+    &--card{
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      align-items: center;
+
+
+    }
 
     &__item{
       display: flex;
@@ -17,26 +25,42 @@
       justify-content: space-around;
       align-items: center;
 
-      min-width: 250px;
+      width: 100%;
 
-      padding: 5px 10px;
-      border: 1px solid black;
+      padding: 0 10px;
+      padding-top: 8px;
+
 
       &-image{
         width: 125px;
         height: 125px;
         object-fit: cover;
 
+        border-radius: 50%;
+
       }
 
       &-characteristics{
+        align-items: center;
 
+        & > *{
+          margin: 4px auto;
+          text-align: center;
+        }
         h4{
-          margin: 0;
+          // margin: 4px auto;
         }
 
         p{
-          margin: 0;
+          // margin: 4px auto;
+
+
+        }
+
+        &--button{
+          // align-self: center;
+
+          margin: 8px auto;
         }
       }
     }

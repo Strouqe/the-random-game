@@ -3,20 +3,19 @@
     <mat-list-item>
       Name: {{ user.name}}
     </mat-list-item>
-    <mat-divider></mat-divider>
     <mat-list-item>
       Missions compleated: {{ user.missionsCompleated.length }}
     </mat-list-item>
-    <mat-divider></mat-divider>
     <mat-list-item>
       Currency: {{ user.currencyBalance }}
     </mat-list-item>
-    <mat-divider></mat-divider>
     <mat-list-item>
       Income: {{ user.currencyIncome }}/min
     </mat-list-item>
-    <mat-divider></mat-divider>
-    <mat-card
+  </mat-list>
+</mat-card>
+<h4 *ngIf="user.characters.length == 0 || !user">You dont have any characters</h4>
+<mat-card
       *ngFor="let character of user.characters"
       class="user-info__character"
     >
@@ -41,6 +40,3 @@
       </button>
       </div>
     </mat-card>
-  </mat-list>
-
-</mat-card>

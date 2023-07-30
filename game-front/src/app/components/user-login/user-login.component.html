@@ -1,9 +1,9 @@
 <form class="form" [formGroup]="userForm" (ngSubmit)="onSubmit()">
-  <mat-card>
+
     <mat-form-field appearance="outline">
       <mat-label>Name</mat-label>
       <input formControlName="userName" matInput minlength="3"/>
     </mat-form-field>
     <button type="submit" mat-raised-button color="primary" [disabled]="!userForm.valid">Submit</button>
-  </mat-card>
+
 </form>

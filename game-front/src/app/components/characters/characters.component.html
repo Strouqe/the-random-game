@@ -1,10 +1,10 @@
-<mat-card class="characters"  *ngIf="characters">
+<div class="characters"  *ngIf="characters">
   <div class="characters__list" *ngIf="characters.length != 0">
-    <!--insted of the letter in front stats have a 50% border and a background color of their stat (s-red, d-green, i-blue)-->
     <mat-card
       *ngFor="let character of characters"
-      class="characters__list__item"
+      class="characters__list--card"
     >
+    <div class="characters__list__item">
       <img
         src="{{ character.image }}"
         alt="character-image"
@@ -16,22 +16,26 @@
         <p>Dexterity: {{ character.characteristics.dexterity }}</p>
         <p>Intelect: {{ character.characteristics.intelect }}</p>
         <p>Income: {{ character.income }}</p>
-        <button
-        type="button"
-        mat-raised-button
-        color="primary"
-        [disabled]="fullParty"
-        (click)="onAddcharacter(character)"
-      >
-        Add
-      </button>
       </div>
+    </div>
+
+
+      <button
+      class="characters__list__item-characteristics--button"
+      type="button"
+      mat-raised-button
+      color="primary"
+      [disabled]="fullParty"
+      (click)="onAddcharacter(character)"
+    >
+      Add
+    </button>
     </mat-card>
   </div>
   <div  *ngIf="characters.length == 0">
     Please wait for  new charecters to arrive
    </div>
-</mat-card>
+</div>
 
 
 
