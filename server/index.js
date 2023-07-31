@@ -22,15 +22,15 @@ var __importStar = (this && this.__importStar) || function (mod) {
     __setModuleDefault(result, mod);
     return result;
 };
-// Object.defineProperty(exports, "__esModule", { value: true });
+Object.defineProperty(exports, "__esModule", { value: true });
 const WebSocket = __importStar(require("ws"));
 const http = __importStar(require("http"));
 const db = __importStar(require("./db"));
-const characters_1 = require("./characters");
-const missions_1 = require("./missions");
+import { createCharacters } from "./characters";
+import { createMissions } from "./missions";
 // import * as firebaseFunctions from "firebase-functions";
-let characters = (0, characters_1.createCharacters)();
-let missions = (0, missions_1.createMissions)();
+let characters = (0, createCharacters)();
+let missions = (0, createMissions)();
 let connectedUsers = [];
 let serverData = {
     missions,
@@ -67,8 +67,8 @@ let interval;
 //   clearInterval(interval);
 // }
 function getData() {
-    characters = (0, characters_1.createCharacters)();
-    missions = (0, missions_1.createMissions)();
+    characters = (0, createCharacters)();
+    missions = (0, createMissions)();
     let currentConnectedUsers = getConneccedUsers();
     serverData = {
         missions,
