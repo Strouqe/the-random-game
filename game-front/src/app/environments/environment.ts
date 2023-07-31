@@ -1,4 +1,4 @@
 export const environment = {
     production: false,
-    URL: 'ws://rndm-srvr.vercel.app:8080',
+    URL: 'ws://game-srvr.vercel.app:8080',
 }
