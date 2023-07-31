@@ -1,4 +1,4 @@
-import { Charecter } from "./charecter.model";
+import { Character } from "./character.model";
 import { Mission } from "./mission.model";
 
 export class User {
@@ -6,7 +6,8 @@ export class User {
     public name: string,
     public currencyBalance: number,
     public currencyIncome: number,
-    public charecters: Charecter[],
+    public characters: Character[],
     public missionsCompleated: Mission[],
+    public timePlayed: number,
   ){}
 }

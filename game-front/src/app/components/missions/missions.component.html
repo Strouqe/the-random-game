@@ -1,6 +1,5 @@
-<mat-card class="missions">
+<div class="missions">
   <div class="missions__list">
-    <!--insted of the letter in front stats have a 50% border and a background color of their stat (s-red, d-green, i-blue)-->
     <mat-card
       *ngFor="let mission of missions"
       class="missions__list__item"
@@ -10,7 +9,7 @@
         <p>Dexterity: {{ mission.requirements.dexterity }}</p>
         <p>Intelect: {{ mission.requirements.intelect }}</p>
         <p>reward: {{ mission.reward }}</p>
-        <button mat-raised-button id="stopBtn" (click)="openDialog('500ms', '500ms', mission)">View</button>
+        <button mat-raised-button color="primary" id="stopBtn" (click)="openDialog('500ms', '500ms', mission)">View</button>
     </mat-card>
   </div>
-</mat-card>
+</div>

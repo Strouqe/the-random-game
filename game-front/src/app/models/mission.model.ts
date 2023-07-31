@@ -1,4 +1,4 @@
-import { Characteristics } from "./charecter.model";
+import { Characteristics } from "./character.model";
 
 export class Mission {
   constructor(
@@ -6,6 +6,7 @@ export class Mission {
     public name: string,
     public dificulty: number,
     public reward: number,
-    public requirements: Characteristics
+    public requirements: Characteristics,
+    public partySize: number,
   ){}
 }

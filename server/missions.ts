@@ -1,4 +1,5 @@
-import { Characteristics } from "./charecters";
+import { Characteristics } from "./characters";
+import { generateMissionName } from "./names";
 
 export class Mission {
   constructor(
@@ -6,7 +7,8 @@ export class Mission {
     public name: string,
     public dificulty: number,
     public reward: number,
-    public requirements: Characteristics
+    public requirements: Characteristics,
+    public partySize: number,
   ){}
 }
 
@@ -24,9 +26,9 @@ export function createMissions(): Mission[] {
   for (let i = 0; i < 6; i++) {
     let dificulty = (i % 3 + 1) * 100
     characteristics = generateCharacteristics(dificulty)
-    missions.push(new Mission(i, `Mission ${i}`, dificulty, dificulty, characteristics))
+    missions.push(new Mission(i, generateMissionName(), dificulty, dificulty, characteristics, 4))
   }
-  console.log(missions)
+  // console.log(missions)
   return missions
 }
 

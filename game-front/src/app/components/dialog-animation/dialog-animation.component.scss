@@ -1,7 +1,97 @@
 .dialog {
-  // z-index: 100;
-  // position: absolute;
-  // top: 50%;
-  // left: 50%;
-  // transform: translate(-50%, -50%);
+  width: 100%;
+  margin: 0 auto;
+
+  &__character-select {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+  }
+}
+
+.example-container {
+  min-height: 85%;
+  width: 40%;
+  padding: 10px;
+  margin: 0 auto;
+  vertical-align: top;
+
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.example-list {
+  display: flex !important;
+  flex-flow: row wrap;
+  min-height: 80%;
+  min-width: 100%;
+
+  border-radius: 4px;
+  overflow: hidden;
+  display: block;
+}
+
+.cdk-drag-preview {
+  box-sizing: border-box;
+  border-radius: 4px;
+  box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2),
+    0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12);
+}
+
+.cdk-drag-placeholder {
+  opacity: 0;
+}
+
+.cdk-drag-animating {
+  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.example-box:last-child {
+  border: none;
+}
+
+.example-list.cdk-drop-list-dragging .example-box:not(.cdk-drag-placeholder) {
+  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.characters {
+  &__list {
+    &--card {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      align-items: center;
+
+      width: 280px;
+      height: 160px;
+
+      padding: 0 10px;
+      margin: 10px auto;
+    }
+    &__item {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-around;
+      align-items: center;
+
+      padding: 0 10px;
+      padding-top: 8px;
+
+      &-image {
+        width: 125px;
+        height: 125px;
+        object-fit: cover;
+
+        border-radius: 50%;
+      }
+
+      &-characteristics {
+        align-items: center;
+        & > * {
+          margin: 4px auto;
+          text-align: center;
+        }
+      }
+    }
+  }
 }

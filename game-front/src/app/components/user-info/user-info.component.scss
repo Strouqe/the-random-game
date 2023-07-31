@@ -1,4 +1,32 @@
-.user-info{
-  width: 300px;
-  height: 25%;
+.user-info {
+  width: 320px;
+
+  &__character {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+
+    width: 250px;
+
+    padding: 5px 10px;
+    margin: 10px auto;
+
+    &-image {
+      width: 125px;
+      height: 125px;
+      object-fit: cover;
+    }
+
+    &-characteristics {
+      width: 40%;
+      h4 {
+        margin: 0;
+      }
+
+      p {
+        margin: 0;
+      }
+    }
+  }
 }

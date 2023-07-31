@@ -1,11 +1,81 @@
 <div class="dialog">
   <h1 mat-dialog-title>{{this.data.mission.name}}</h1>
+  <div class="dialog__character-select">
+
+    <div class="example-container">
+      <h2>Choose {{this.data.mission.partySize}} characters</h2>
+      <div *ngIf="party.length == 0">Deop selected character here</div>
+      <div
+        cdkDropList
+        #partyList="cdkDropList"
+        [cdkDropListData]="party"
+        [cdkDropListConnectedTo]="[characterList]"
+        class="example-list"
+        (cdkDropListDropped)="drop($event)">
+        <mat-card
+        cdkDrag
+        *ngFor="let character of party"
+        class="characters__list--card"
+      >
+      <div class="characters__list__item">
+        <img
+          src="{{ character.image }}"
+          alt="character-image"
+          class="characters__list__item-image"
+        />
+        <div matLine class="characters__list__item-characteristics">
+          <h4 matLine>{{ character.name }}</h4>
+          <p>Strength: {{ character.characteristics.strength }}</p>
+          <p>Dexterity: {{ character.characteristics.dexterity }}</p>
+          <p>Intelect: {{ character.characteristics.intelect }}</p>
+          <p>Income: {{ character.income }}</p>
+        </div>
+      </div>
+      </mat-card>
+      </div>
+    </div>
+
+    <div class="example-container">
+      <h2>Available Characters</h2>
+
+      <div
+        cdkDropList
+        #characterList="cdkDropList"
+        [cdkDropListData]="characters"
+        [cdkDropListConnectedTo]="[partyList]"
+        class="example-list"
+        (cdkDropListDropped)="drop($event)">
+          <mat-card
+            cdkDrag
+            *ngFor="let character of characters"
+            class="characters__list--card"
+          >
+          <div class="characters__list__item">
+            <img
+              src="{{ character.image }}"
+              alt="character-image"
+              class="characters__list__item-image"
+            />
+            <div matLine class="characters__list__item-characteristics">
+              <h4 matLine>{{ character.name }}</h4>
+              <p>Strength: {{ character.characteristics.strength }}</p>
+              <p>Dexterity: {{ character.characteristics.dexterity }}</p>
+              <p>Intelect: {{ character.characteristics.intelect }}</p>
+              <p>Income: {{ character.income }}</p>
+            </div>
+          </div>
+          </mat-card>
+      </div>
+    </div>
+  </div>
+
+
   <div mat-dialog-content>
     Start the mission?
   </div>
   <div mat-dialog-actions>
-    <button id="startBtn" mat-button mat-dialog-close>No</button>
-    <button mat-button mat-dialog-close cdkFocusInitial (click)="triggerResumeIncomeGeneration()">Ok</button>
+    <button id="startBtn" mat-button mat-dialog-close (click)="resumeGeneration()">No</button>
+    <button mat-button mat-dialog-close mat-raised-button cdkFocusInitial [disabled]="party.length != this.data.mission.partySize" color="primary" (click)="onStartMission()">Ok</button>
   </div>
 
 </div>

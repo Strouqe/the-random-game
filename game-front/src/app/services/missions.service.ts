@@ -1,9 +1,11 @@
 import { Injectable } from '@angular/core';
-import { Characteristics } from '../models/charecter.model';
+import { Character, Characteristics } from '../models/character.model';
 import { UserService } from './user.service';
 import { User } from '../models/user.model';
 import { Subscription } from 'rxjs';
 import { Mission } from '../models/mission.model';
+import { ServerDataService } from './server-data.service';
+import { WebsocketService } from './websocket.service';
 
 @Injectable({
   providedIn: 'root',
@@ -12,7 +14,10 @@ export class MissionsService {
   userSubscription: Subscription;
   private user: User
 
-  constructor(private userService: UserService) {
+  constructor(
+    private userService: UserService,
+    private wsService: WebsocketService
+    ) {
 
     this.userSubscription = this.userService.userChanged.subscribe(
       (user: User) => {
@@ -22,18 +27,24 @@ export class MissionsService {
     );
   }
 
-  startMission(mission: Mission): boolean {  //  Should I ad min charecters?
-    const req = this.getReq(mission.dificulty); // Won't be needed when I will get req from the server
+  startMission(mission: Mission, party: Character[]): boolean {
+    const req = mission.requirements;
     console.log('req', req);
-    for(const charecter in this.user.charecters){
-      if(this.user.charecters[charecter].characteristics.strength < req.strength && this.user.charecters[charecter].characteristics.dexterity < req.dexterity && this.user.charecters[charecter].characteristics.intelect < req.intelect){
-        this.user.charecters = []
+    for(const character in party){
+      if(party[character].characteristics.strength < req.strength && party[character].characteristics.dexterity < req.dexterity && party[character].characteristics.intelect < req.intelect){
+
         this.userService.userChanged.next(this.user);
         return false;
       }
     }
+    this.user.characters = [...this.user.characters, ...party]
     this.user.currencyBalance += mission.reward;
     this.userService.userChanged.next(this.user);
+    let message = {
+      type: 'mission result',
+      data:  this.user
+    }
+    this.wsService.sendToServer(message);
     return true;
   }
 
