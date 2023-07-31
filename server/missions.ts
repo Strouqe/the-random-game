@@ -1,4 +1,4 @@
-import { Characteristics } from "./charecters";
+import { Characteristics } from "./characters";
 import { generateMissionName } from "./names";
 
 export class Mission {

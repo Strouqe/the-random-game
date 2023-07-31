@@ -26,9 +26,10 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const WebSocket = __importStar(require("ws"));
 const http = __importStar(require("http"));
 const db = __importStar(require("./db"));
-const charecters_1 = require("./charecters");
+const characters_1 = require("./characters");
 const missions_1 = require("./missions");
-let characters = (0, charecters_1.createCharacters)();
+// import * as firebaseFunctions from "firebase-functions";
+let characters = (0, characters_1.createCharacters)();
 let missions = (0, missions_1.createMissions)();
 let connectedUsers = [];
 let serverData = {
@@ -44,29 +45,29 @@ const server = http.createServer((req, res) => {
 });
 const wss = new WebSocket.Server({ server });
 let interval;
-function startSendingData() {
-    interval = setInterval(() => {
-        wss.clients.forEach((client) => {
-            // characters = createCharacters();
-            // missions = createMissions();
-            let currentConnectedUsers = getConneccedUsers();
-            serverData = {
-                missions,
-                characters,
-                currentConnectedUsers,
-            };
-            if (client.readyState === WebSocket.OPEN) {
-                client.send(JSON.stringify({ serverData }));
-            }
-        });
-    }, 10000);
-    return interval;
-}
-function stopSendingData() {
-    clearInterval(interval);
-}
+// function startSendingData() {
+//   interval = setInterval(() => {
+//     wss.clients.forEach((client) => {
+//       // characters = createCharacters();
+//       // missions = createMissions();
+//       let currentConnectedUsers = getConneccedUsers();
+//       serverData = {
+//         missions,
+//         characters,
+//         currentConnectedUsers,
+//       };
+//       if (client.readyState === WebSocket.OPEN) {
+//         client.send(JSON.stringify({ serverData }));
+//       }
+//     });
+//   }, 10000);
+//   return interval;
+// }
+// function stopSendingData() {
+//   clearInterval(interval);
+// }
 function getData() {
-    characters = (0, charecters_1.createCharacters)();
+    characters = (0, characters_1.createCharacters)();
     missions = (0, missions_1.createMissions)();
     let currentConnectedUsers = getConneccedUsers();
     serverData = {

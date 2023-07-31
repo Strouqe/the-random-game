@@ -1,8 +1,9 @@
 import * as WebSocket from "ws";
 import * as http from "http";
 import * as db from "./db";
-import { createCharacters } from "./charecters";
+import { createCharacters } from "./characters";
 import { createMissions } from "./missions";
+// import * as firebaseFunctions from "firebase-functions";
 
 let characters = createCharacters();
 
@@ -29,28 +30,28 @@ const wss = new WebSocket.Server({ server });
 
 let interval: any;
 
-function startSendingData() {
-  interval = setInterval(() => {
-    wss.clients.forEach((client) => {
-      // characters = createCharacters();
-      // missions = createMissions();
-      let currentConnectedUsers = getConneccedUsers();
-      serverData = {
-        missions,
-        characters,
-        currentConnectedUsers,
-      };
-      if (client.readyState === WebSocket.OPEN) {
-        client.send(JSON.stringify({ serverData }));
-      }
-    });
-  }, 10000);
-  return interval;
-}
+// function startSendingData() {
+//   interval = setInterval(() => {
+//     wss.clients.forEach((client) => {
+//       // characters = createCharacters();
+//       // missions = createMissions();
+//       let currentConnectedUsers = getConneccedUsers();
+//       serverData = {
+//         missions,
+//         characters,
+//         currentConnectedUsers,
+//       };
+//       if (client.readyState === WebSocket.OPEN) {
+//         client.send(JSON.stringify({ serverData }));
+//       }
+//     });
+//   }, 10000);
+//   return interval;
+// }
 
-function stopSendingData() {
-  clearInterval(interval);
-}
+// function stopSendingData() {
+//   clearInterval(interval);
+// }
 
 function getData() {
   characters = createCharacters();
