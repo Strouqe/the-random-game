@@ -64,7 +64,7 @@ export class UserService {
   initService(): void {
 
     this.initialCounterState = {
-      count: 400,
+      count: 0,
       isTicking: false,
     };
 
