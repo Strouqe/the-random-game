@@ -1,23 +1,42 @@
-<mat-card class="user-info" >
+<mat-card class="user-info" *ngIf="user">
   <mat-list>
+    <mat-list-item>
+      Name: {{ user.name}}
+    </mat-list-item>
     <mat-list-item>
       Missions compleated: {{ user.missionsCompleated.length }}
     </mat-list-item>
-    <mat-divider></mat-divider>
     <mat-list-item>
       Currency: {{ user.currencyBalance }}
     </mat-list-item>
-    <mat-divider></mat-divider>
     <mat-list-item>
       Income: {{ user.currencyIncome }}/min
     </mat-list-item>
-    <mat-divider></mat-divider>
-    <!-- <mat-list-item>
-      Party: {{ user.charecters.length}}/8
-    </mat-list-item> -->
-    <mat-list-item *ngFor="let charecter of user.charecters">
-      Name: {{ charecter.name }}
-    </mat-list-item>
   </mat-list>
-
 </mat-card>
+<h4 *ngIf="user.characters.length == 0 || !user">You dont have any characters</h4>
+<mat-card
+      *ngFor="let character of user.characters"
+      class="user-info__character"
+    >
+      <img
+        src="{{ character.image }}"
+        alt="user-info__character-image"
+        class="user-info__character-image"
+      />
+      <div matLine class="user-info__character-characteristics">
+        <h4 matLine>{{ character.name }}</h4>
+        <p>Strength: {{ character.characteristics.strength }}</p>
+        <p>Dexterity: {{ character.characteristics.dexterity }}</p>
+        <p>Intelect: {{ character.characteristics.intelect }}</p>
+        <p>Income: {{ character.income }}</p>
+        <button
+        type="button"
+        mat-raised-button
+        color="primary"
+        (click)="onDeleteCharacter(character)"
+      >
+        X
+      </button>
+      </div>
+    </mat-card>

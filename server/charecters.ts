@@ -1,4 +1,6 @@
-export class Charecter {
+import { generateName } from "./names"
+
+export class Character {
   constructor(
     public id: number,
     public name: string,
@@ -17,13 +19,15 @@ export interface Characteristics {
 
 
 
-export function createCharacters(): Charecter[] {
+export function createCharacters(): Character[] {
   let characters = []
   for (let i = 0; i < 6; i++) {
-    let intelect = Math.floor(Math.random() * 10) + 10
-    let strength = Math.floor(Math.random() * 10) + 10
-    let dexterity = Math.floor(Math.random() * 10) + 10
-    characters.push(new Charecter(i, `Charecter ${i}`, 100, 10, "https://res.cloudinary.com/demo/image/twitter/1330457336.jpg", 0, {intelect, strength, dexterity}))
+    //generate rendom id
+    let id = Math.floor(Math.random() * 1000000)
+    let intelect = Math.floor(Math.random() * 10) + 20
+    let strength = Math.floor(Math.random() * 10) + 20
+    let dexterity = Math.floor(Math.random() * 10) + 20
+    characters.push(new Character(id, generateName(), 100, 10, "https://res.cloudinary.com/demo/image/twitter/1330457336.jpg", 0, {intelect, strength, dexterity}))
   }
   return characters
 }

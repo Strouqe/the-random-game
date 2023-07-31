@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { UserService } from './services/user.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -8,7 +9,9 @@ import { UserService } from './services/user.service';
 })
 export class AppComponent {
   title = 'game';
-  constructor(private userService: UserService) {
-    this.userService.fetchUser();
+  constructor(private userService: UserService, private router: Router) {
+    if (!this.userService.getUser()) {
+      this.router.navigate(['/']);
+    }
   }
 }

@@ -1,13 +1,15 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.createMissions = exports.Mission = void 0;
+const names_1 = require("./names");
 class Mission {
-    constructor(id, name, dificulty, reward, requirements) {
+    constructor(id, name, dificulty, reward, requirements, partySize) {
         this.id = id;
         this.name = name;
         this.dificulty = dificulty;
         this.reward = reward;
         this.requirements = requirements;
+        this.partySize = partySize;
     }
 }
 exports.Mission = Mission;
@@ -23,9 +25,9 @@ function createMissions() {
     for (let i = 0; i < 6; i++) {
         let dificulty = (i % 3 + 1) * 100;
         characteristics = generateCharacteristics(dificulty);
-        missions.push(new Mission(i, `Mission ${i}`, dificulty, dificulty, characteristics));
+        missions.push(new Mission(i, (0, names_1.generateMissionName)(), dificulty, dificulty, characteristics, 4));
     }
-    console.log(missions);
+    // console.log(missions)
     return missions;
 }
 exports.createMissions = createMissions;

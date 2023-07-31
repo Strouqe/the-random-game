@@ -1,9 +1,10 @@
-import { Charecter } from "./charecter.model";
+import { Character } from "./character.model";
 import { Mission } from "./mission.model";
 
 export class ServerData {
   constructor(
     public missions: Mission[],
-    public charecters: Charecter[],
+    public characters: Character[],
+    public currentConnectedUsers: string[],
   ){}
 }

@@ -1,17 +1,41 @@
-<div class="board">
+<!-- <div class="board">
   <div>
     <h3>User Info</h3>
     <app-user-info></app-user-info>
   </div>
   <div>
     <h3>Companion Shop</h3>
-    <app-charecters></app-charecters>
+    <app-characters></app-characters>
   </div>
-  <div></div>
+  <div>
+    <h3>Players Online</h3>
+    <app-players-online></app-players-online>
+  </div>
 
   <div></div>
   <div>
     <h3>Currently Available Missions</h3>
     <app-missions></app-missions>
+  </div>
+</div> -->
+
+<div class="board">
+  <div class="board__player-info">
+    <h3>User Info</h3>
+    <app-user-info></app-user-info>
+  </div>
+  <div class="board__server-data">
+    <div class="board__server-data__charecters">
+      <h3>Companion Shop</h3>
+      <app-characters></app-characters>
+    </div>
+    <div class="board__server-data__missions">
+      <h3>Currently Available Missions</h3>
+      <app-missions></app-missions>
+    </div>
+  </div>
+  <div class="board__players-online">
+    <h3>Players Online</h3>
+    <app-players-online></app-players-online>
   </div>
 </div>
