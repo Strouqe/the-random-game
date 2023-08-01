@@ -26,14 +26,18 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = __importDefault(require("express"));
 const ws_1 = __importDefault(require("ws"));
-// const WebSocket = require("ws");
-const http_1 = __importDefault(require("http"));
 // const http = require("http");
 const db = __importStar(require("./db.js"));
 const characters_js_1 = __importDefault(require("./characters.js"));
 const missions_js_1 = __importDefault(require("./missions.js"));
 // import * as firebaseFunctions from "firebase-functions";
+const app = (0, express_1.default)();
+const port = process.env.PORT || 10000;
+const server = app.listen(port, () => {
+    console.log(`Server started on port ${port}`);
+});
 let characters = (0, characters_js_1.default)();
 let missions = (0, missions_js_1.default)();
 let connectedUsers = [];
@@ -44,10 +48,10 @@ let serverData = {
 function getConneccedUsers() {
     return connectedUsers;
 }
-const PORT = 10000;
-const server = http_1.default.createServer((req, res) => {
-    console.log('Received request for ' + req + 'Responce' + res);
-});
+const PORT = 8080;
+// const server = http.createServer((req: any, res: any) => {
+//   console.log('Received request for ' + req + 'Responce' + res);
+// });
 const wss = new ws_1.default.Server({ server });
 let interval;
 // function startSendingData() {
@@ -107,6 +111,6 @@ wss.on("connection", (ws) => {
     });
     // ws.send(JSON.stringify({ serverData }));
 });
-server.listen(PORT, () => {
-    console.log(`Server started on port  ${PORT}`);
-});
+// server.listen(PORT, () => {
+//   console.log(`Server started on port  ${PORT}`);
+// });

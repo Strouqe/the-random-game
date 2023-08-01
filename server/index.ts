@@ -1,3 +1,4 @@
+import express from "express";
 import WebSocket from "ws";
 // const WebSocket = require("ws");
 import http from "http";
@@ -6,6 +7,13 @@ import * as db from "./db.js";
 import  createCharacters  from "./characters.js";
 import  createMissions  from "./missions.js";
 // import * as firebaseFunctions from "firebase-functions";
+const app = express();
+
+const port = process.env.PORT || 10000;
+
+const server = app.listen(port, () => {
+  console.log(`Server started on port ${port}`);
+});
 
 let characters = createCharacters();
 
@@ -22,11 +30,11 @@ function getConneccedUsers() {
   return connectedUsers;
 }
 
-const PORT = 10000;
+const PORT = 8080;
 
-const server = http.createServer((req: any, res: any) => {
-  console.log('Received request for ' + req + 'Responce' + res);
-});
+// const server = http.createServer((req: any, res: any) => {
+//   console.log('Received request for ' + req + 'Responce' + res);
+// });
 
 const wss = new WebSocket.Server({ server });
 
@@ -101,6 +109,6 @@ wss.on("connection", (ws: WebSocket) => {
   // ws.send(JSON.stringify({ serverData }));
 });
 
-server.listen(PORT, () => {
-  console.log(`Server started on port  ${PORT}`);
-});
+// server.listen(PORT, () => {
+//   console.log(`Server started on port  ${PORT}`);
+// });
