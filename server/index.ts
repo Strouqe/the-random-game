@@ -1,5 +1,7 @@
 import * as WebSocket from "ws";
-import * as http from "http";
+// const WebSocket = require("ws");
+// import * as http from "http";
+const http = require("http");
 import * as db from "./db";
 import { createCharacters } from "./characters";
 import { createMissions } from "./missions";
@@ -22,8 +24,8 @@ function getConneccedUsers() {
 
 const PORT = 8080;
 
-const server = http.createServer((req, res) => {
-  // console.log('Received request for ' + req);
+const server = http.createServer((req: any, res: any) => {
+  console.log('Received request for ' + req + 'Responce' + res);
 });
 
 const wss = new WebSocket.Server({ server });
@@ -66,7 +68,7 @@ function getData() {
 }
 
 wss.on("connection", (ws: WebSocket) => {
-  ws.on("message", (data: WebSocket.Data) => {
+  ws.on("message", (data: any) => {
     const message = JSON.parse(data.toString());
     switch (message.type) {
       case "login":
@@ -83,14 +85,6 @@ wss.on("connection", (ws: WebSocket) => {
         console.log("connected users", connectedUsers);
         break;
       case "data request":
-        // characters = createCharacters();
-        // missions = createMissions();
-        // let currentConnectedUsers = getConneccedUsers();
-        // serverData = {
-        //   missions,
-        //   characters,
-        //   currentConnectedUsers,
-        // };
         console.log("data request", serverData);
         ws.send(getData());
         break

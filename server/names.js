@@ -1,6 +1,3 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.generateMissionName = exports.generateName = void 0;
 const characterAdjectives = [
     "Brave",
     "Valiant",
@@ -140,11 +137,9 @@ const missionNouns = [
 function getRandomElement(array) {
     return array[Math.floor(Math.random() * array.length)];
 }
-function generateName() {
+export function generateName() {
     return getRandomElement(characterAdjectives) + " " + getRandomElement(characterNames);
 }
-exports.generateName = generateName;
-function generateMissionName() {
+export function generateMissionName() {
     return getRandomElement(missionAdjectives) + " " + getRandomElement(missionNouns);
 }
-exports.generateMissionName = generateMissionName;
