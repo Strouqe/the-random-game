@@ -1,6 +1,6 @@
 export const environment = {
     production: false,
-    URL: 'ws://localhost:10000',
+    URL: 'ws://rndm-srvr.onrender.com:10000',
 }
 
 
