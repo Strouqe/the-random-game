@@ -1,4 +1,4 @@
-import { generateName } from "./names"
+import { generateName } from "./names.js"
 
 export class Character {
   constructor(
@@ -19,7 +19,7 @@ export interface Characteristics {
 
 
 
-export function createCharacters(): Character[] {
+export default function createCharacters(): Character[] {
   let characters = []
   for (let i = 0; i < 6; i++) {
     //generate rendom id

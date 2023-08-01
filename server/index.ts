@@ -1,10 +1,10 @@
-import * as WebSocket from "ws";
+import WebSocket from "ws";
 // const WebSocket = require("ws");
-// import * as http from "http";
-const http = require("http");
-import * as db from "./db";
-import { createCharacters } from "./characters";
-import { createMissions } from "./missions";
+import http from "http";
+// const http = require("http");
+import * as db from "./db.js";
+import  createCharacters  from "./characters.js";
+import  createMissions  from "./missions.js";
 // import * as firebaseFunctions from "firebase-functions";
 
 let characters = createCharacters();
@@ -73,8 +73,6 @@ wss.on("connection", (ws: WebSocket) => {
     switch (message.type) {
       case "login":
         connectedUsers.push(message.data);
-        // stopSendingData();
-        // startSendingData();
         ws.send( getData() );
         console.log("Conected users ======>", connectedUsers);
         break;

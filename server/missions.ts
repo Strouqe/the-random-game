@@ -1,5 +1,5 @@
-import { Characteristics } from "./characters";
-import { generateMissionName } from "./names";
+import { Characteristics } from "./characters.js";
+import { generateMissionName } from "./names.js";
 
 export class Mission {
   constructor(
@@ -20,7 +20,7 @@ function generateCharacteristics(dificulty: number): Characteristics {
   return {intelect, strength, dexterity}
 }
 
-export function createMissions(): Mission[] {
+export default function createMissions(): Mission[] {
   let missions = []
   let characteristics 
   for (let i = 0; i < 6; i++) {

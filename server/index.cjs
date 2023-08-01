@@ -28,8 +28,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const ws_1 = __importDefault(require("ws"));
 // const WebSocket = require("ws");
-const http_1 = __importDefault(require("http"));
-// const http = require("http");
+// import http from "http";
+const http = require("http");
 const db = __importStar(require("./db.js"));
 const characters_js_1 = __importDefault(require("./characters.js"));
 const missions_js_1 = __importDefault(require("./missions.js"));
@@ -45,7 +45,7 @@ function getConneccedUsers() {
     return connectedUsers;
 }
 const PORT = 8080;
-const server = http_1.default.createServer((req, res) => {
+const server = http.createServer((req, res) => {
     console.log('Received request for ' + req + 'Responce' + res);
 });
 const wss = new ws_1.default.Server({ server });
