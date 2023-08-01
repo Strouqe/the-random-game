@@ -44,7 +44,7 @@ export class DialogAnimationComponent{
 
     resumeGeneration(): void {
       this.userService.trigerStart();
-      this.user.characters = [...this.party, ...this.user.characters]
+      this.user.characters = [...this.party, ...this.characters]
     }
 
     onStartMission(): void {
