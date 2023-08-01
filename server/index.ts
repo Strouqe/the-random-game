@@ -22,7 +22,7 @@ function getConneccedUsers() {
   return connectedUsers;
 }
 
-const PORT = 8080;
+const PORT = 10000;
 
 const server = http.createServer((req: any, res: any) => {
   console.log('Received request for ' + req + 'Responce' + res);
