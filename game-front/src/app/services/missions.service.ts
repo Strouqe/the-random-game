@@ -43,6 +43,7 @@ export class MissionsService {
       }
     }
     this.user.characters = [...this.user.characters, ...party]
+    this.user.missionsCompleated.push(mission);
     this.user.currencyBalance += mission.reward;
     this.userService.userChanged.next(this.user);
     let message = {

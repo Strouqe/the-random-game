@@ -34,6 +34,7 @@
         type="button"
         mat-raised-button
         color="primary"
+        [disabled]="user.currencyBalance < character.price"
         (click)="onDeleteCharacter(character)"
       >
         X
