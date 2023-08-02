@@ -96,7 +96,7 @@ export class UserService {
     );
 
     this.commandFromTick$ = this.isTicking$.pipe(
-      switchMap((isTicking) => (isTicking ? timer(0, 15000) : NEVER)),
+      switchMap((isTicking) => (isTicking ? timer(0, 60000) : NEVER)),
       withLatestFrom(this.counterState$, (_, counterState) => ({
         count: counterState.count,
       })),
