@@ -20,6 +20,7 @@ import { UserInfoComponent } from './components/user-info/user-info.component';
 import { UserLoginComponent } from './components/user-login/user-login.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { PlayersOnlineComponent } from './components/players-online/players-online.component';
+import { MissionResultComponent } from './components/mission-result/mission-result.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,7 +30,8 @@ import { PlayersOnlineComponent } from './components/players-online/players-onli
     MissionsComponent,
     DialogAnimationComponent,
     UserLoginComponent,
-    PlayersOnlineComponent
+    PlayersOnlineComponent,
+    MissionResultComponent
   ],
   imports: [
     BrowserModule,
