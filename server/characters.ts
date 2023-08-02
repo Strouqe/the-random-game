@@ -1,5 +1,8 @@
 import { generateName } from "./names.js"
 
+
+
+
 export class Character {
   constructor(
     public id: number,
@@ -18,16 +21,16 @@ export interface Characteristics {
 }
 
 
-
 export default function createCharacters(): Character[] {
   let characters = []
   for (let i = 0; i < 6; i++) {
     //generate rendom id
     let id = Math.floor(Math.random() * 1000000)
+    let name = generateName()
     let intelect = Math.floor(Math.random() * 10) + 20
     let strength = Math.floor(Math.random() * 10) + 20
     let dexterity = Math.floor(Math.random() * 10) + 20
-    characters.push(new Character(id, generateName(), 100, 10, "https://res.cloudinary.com/demo/image/twitter/1330457336.jpg", 0, {intelect, strength, dexterity}))
+    characters.push(new Character(id, name, 100, 10, `https://robohash.org/${name}.png`, 0, {intelect, strength, dexterity}))
   }
   return characters
 }
