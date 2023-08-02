@@ -1,0 +1,44 @@
+<div class="dialog" *ngIf="result">
+  <h1 mat-dialog-title>{{this.data.mission.name}}</h1>
+  <div class="dialog__results">
+    <h1>{{result ? "You have passed the mission!" : "You have failed the mission"}}</h1>
+    <h1>Congradulations!</h1>
+    <h3>You have passed the mission!</h3>
+    <!-- animation -->
+    <div class="animation-container">
+      <div class="y-axis-container">
+        <div class="container">
+          <div class="flash"></div>
+          <div class="coin side">
+            <div class="shine" style="transform:rotate(-30deg);"></div>
+          </div>
+          <div class="side-coin"></div>
+          <div class="coin">
+            <div class="dai">
+              <div class="inner-dai">
+                <div class="inner-inner-dai">
+
+                </div>
+              </div>
+              <div class="cutout"></div>
+              <div class="dai-shadow"></div>
+            </div>
+            <div class="shine"></div>
+          </div>
+        </div>
+      </div>
+      <div class="shadow"></div>
+    </div>
+    <!-- animation end -->
+    <p>Your revard is {{data.mission.reward}}</p>
+  </div>
+</div>
+<div class="dialog" *ngIf="!result">
+  <h1 mat-dialog-title>{{this.data.mission.name}}</h1>
+  <div class="dialog__results">
+
+    <h1>Congradulations!</h1>
+    <h3>You have lost you'r party!</h3>
+    <p>You failed!</p>
+  </div>
+</div>

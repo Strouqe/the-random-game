@@ -27,17 +27,23 @@ export class MissionsService {
     );
   }
 
-  startMission(mission: Mission, party: Character[]): boolean {
+  startMission(mission: Mission, party: Character[], charectersLeft: Character[]): boolean {
     const req = mission.requirements;
     console.log('req', req);
     for(const character in party){
       if(party[character].characteristics.strength < req.strength && party[character].characteristics.dexterity < req.dexterity && party[character].characteristics.intelect < req.intelect){
-
+        this.user.characters = [...this.user.characters]
         this.userService.userChanged.next(this.user);
+        let message = {
+          type: 'mission result',
+          data:  this.user
+        }
+        this.wsService.sendToServer(message);
         return false;
       }
     }
     this.user.characters = [...this.user.characters, ...party]
+    this.user.missionsCompleated.push(mission);
     this.user.currencyBalance += mission.reward;
     this.userService.userChanged.next(this.user);
     let message = {
