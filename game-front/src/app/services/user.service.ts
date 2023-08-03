@@ -23,7 +23,7 @@ import { WebsocketService } from './websocket.service';
 const sampleUser: User = {
   name: 'John Doe',
   currencyBalance: 0,
-  currencyIncome: 40, // should remove and calculate from characters
+  currencyIncome: 0, // should remove and calculate from characters
   characters: [],
   missionsCompleated: [],
   timePlayed: 0,
@@ -32,6 +32,7 @@ const sampleUser: User = {
 export interface CounterStateModel {
   count: number;
   isTicking: boolean;
+  income: number;
 }
 
 @Injectable({
@@ -54,6 +55,8 @@ export class UserService {
 
   trigerStartEvent: EventEmitter<void> = new EventEmitter();
   trigerPauseEvent: EventEmitter<void> = new EventEmitter();
+  trigerUpdateCountStateEvent: EventEmitter<void> = new EventEmitter();
+  triggerUpdateIncomeEvent: EventEmitter<void> = new EventEmitter();
 
   private user: User;
 
@@ -62,10 +65,15 @@ export class UserService {
   }
 
   initService(): void {
+    this.userChanged.subscribe((user: User) => {
+      this.user = user;
+      console.log('User in user component ====>', this.user);
+    });
 
     this.initialCounterState = {
-      count: 400,
+      count: 200,
       isTicking: false,
+      income: 0,
     };
 
     this.patchCounterState = new BehaviorSubject<Partial<CounterStateModel>>(
@@ -75,6 +83,8 @@ export class UserService {
     this.counterCommands$ = merge(
       this.trigerStartEvent.pipe(mapTo({ isTicking: true })),
       this.trigerPauseEvent.pipe(mapTo({ isTicking: false })),
+      this.trigerUpdateCountStateEvent.pipe(mapTo({count: this.getUser().currencyBalance, income: this.getUserIncome()})),
+      // this.triggerUpdateIncomeEvent.pipe(mapTo({income: this.getUserIncome()})),
       // this.stopClick$.pipe(mapTo({ ...this.initialCounterState })),
       this.patchCounterState.asObservable()
     );
@@ -87,7 +97,7 @@ export class UserService {
           ...command,
         })
       ),
-      shareReplay(1)
+      // shareReplay(1)
     );
 
     this.isTicking$ = this.counterState$.pipe(
@@ -96,16 +106,20 @@ export class UserService {
     );
 
     this.commandFromTick$ = this.isTicking$.pipe(
-      switchMap((isTicking) => (isTicking ? timer(0, 60000) : NEVER)),
+      switchMap((isTicking) => (isTicking ? timer(100, 15000) : NEVER)),
       withLatestFrom(this.counterState$, (_, counterState) => ({
         count: counterState.count,
+        income: counterState.income,
       })),
-      tap(({ count }) => {
-        console.log('count', count);
+      tap(({ count, income }) => {
+        console.log('count', count );
+        console.log('income', income );
         this.wsService.sendToServer({ type: 'data request'})
         this.patchCounterState.next({
-          count: count + this.user.currencyIncome,
+          count: count + (this.user.currencyIncome/4),
+          income: (this.getUserIncome()/4),
         });
+
       })
     );
 
@@ -114,7 +128,8 @@ export class UserService {
       .subscribe((state) => {
         console.log('state', state);
         if (state.count) {
-          this.user.currencyBalance = state.count;
+          this.user.currencyBalance += state.count;
+          // this.trigerUpdateState();
         }
         this.userChanged.next(this.user);
       });
@@ -131,6 +146,9 @@ export class UserService {
 
   trigerStart(): void {
     this.trigerStartEvent.emit();
+  }
+  trigerUpdateState(): void {
+    this.trigerUpdateCountStateEvent.emit();
   }
 
   fetchUser(): void {
@@ -155,6 +173,7 @@ export class UserService {
     this.user.characters.push(cherecter);
     this.user.currencyIncome = this.getUserIncome();
     this.userChanged.next(this.user);
+    this.trigerUpdateState();
   }
 
   deleteCharacter(cherecter: Character): void {
@@ -164,6 +183,7 @@ export class UserService {
     );
     this.user.currencyIncome = this.getUserIncome();
     this.userChanged.next(this.user);
+    this.trigerUpdateState();
   }
 
   getCharacters(): Character[] {

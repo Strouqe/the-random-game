@@ -46,6 +46,7 @@ export class MissionsService {
     this.user.missionsCompleated.push(mission);
     this.user.currencyBalance += mission.reward;
     this.userService.userChanged.next(this.user);
+    this.userService.trigerUpdateState();
     let message = {
       type: 'mission result',
       data:  this.user
