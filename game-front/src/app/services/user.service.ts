@@ -83,7 +83,12 @@ export class UserService {
     this.counterCommands$ = merge(
       this.trigerStartEvent.pipe(mapTo({ isTicking: true })),
       this.trigerPauseEvent.pipe(mapTo({ isTicking: false })),
-      this.trigerUpdateCountStateEvent.pipe(mapTo({count: this.getUser().currencyBalance, income: this.getUserIncome()})),
+      this.trigerUpdateCountStateEvent.pipe(
+        mapTo({
+          count: this.getUser().currencyBalance,
+          income: this.getUserIncome(),
+        })
+      ),
       // this.triggerUpdateIncomeEvent.pipe(mapTo({income: this.getUserIncome()})),
       // this.stopClick$.pipe(mapTo({ ...this.initialCounterState })),
       this.patchCounterState.asObservable()
@@ -96,7 +101,7 @@ export class UserService {
           ...counterState,
           ...command,
         })
-      ),
+      )
       // shareReplay(1)
     );
 
@@ -112,14 +117,22 @@ export class UserService {
         income: counterState.income,
       })),
       tap(({ count, income }) => {
-        console.log('count', count );
-        console.log('income', income );
-        this.wsService.sendToServer({ type: 'data request'})
-        this.patchCounterState.next({
-          count: count + (this.user.currencyIncome/4),
-          income: (this.getUserIncome()/4),
+        console.log('count', count);
+        console.log('income', income);
+        this.wsService.sendToServer({
+          type: 'logout',
+          data: this.getUser()
+        });
+        this.wsService.sendToServer({
+          type: 'login',
+          data: this.getUser()
         });
 
+        this.wsService.sendToServer({ type: 'data request' });
+        this.patchCounterState.next({
+          count: count + this.user.currencyIncome / 4,
+          income: this.getUserIncome() / 4,
+        });
       })
     );
 

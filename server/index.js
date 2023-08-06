@@ -96,7 +96,7 @@ wss.on("connection", (ws) => {
                 console.log("Conected users ======>", connectedUsers);
                 break;
             case "logout":
-                connectedUsers = connectedUsers.filter((user) => user !== message.data);
+                connectedUsers = connectedUsers.filter((user) => user.name != message.data.name);
                 console.log("connected users", connectedUsers);
                 break;
             case "data request":

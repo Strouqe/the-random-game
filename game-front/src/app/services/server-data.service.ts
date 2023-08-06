@@ -7,6 +7,7 @@ import { Mission } from '../models/mission.model';
 import { ServerData } from '../models/serverData.model';
 import { webSocket } from 'rxjs/webSocket';
 import { environment } from '../environments/environment';
+import { User } from '../models/user.model';
 
 export const WS_ENDPOINT = environment.URL;
 
@@ -18,13 +19,13 @@ export class ServerDataService {
   subject = webSocket(WS_ENDPOINT)
   charactersChanged: Subject<Character[]>
   missionsChanged: Subject<Mission[]>
-  playersChanged: Subject<string[]>
+  playersChanged: Subject<User[]>
   // missions: Subject<Mission[]>
 
   constructor(private wsService: WebsocketService) {
     this.charactersChanged = new Subject<Character[]>()
     this.missionsChanged = new Subject<Mission[]>()
-    this.playersChanged = new Subject<string[]>()
+    this.playersChanged = new Subject<User[]>()
 
     // this.wsService.connect();
     // this.wsSubscription = this.subject.subscribe((response: any) => {

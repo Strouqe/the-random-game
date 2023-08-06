@@ -12,7 +12,7 @@ import { WebsocketService } from 'src/app/services/websocket.service';
   styleUrls: ['./players-online.component.scss'],
 })
 export class PlayersOnlineComponent implements OnInit, OnDestroy {
-  players: string[];
+  players: User[];
   playersSubscription: Subscription;
 
   userSubscription: Subscription;
@@ -45,7 +45,7 @@ export class PlayersOnlineComponent implements OnInit, OnDestroy {
 
     this.message = {
       type: 'login',
-      data: this.userService.getUser().name
+      data: this.userService.getUser()
     }
 
     this.wsService.sendToServer(this.message);
