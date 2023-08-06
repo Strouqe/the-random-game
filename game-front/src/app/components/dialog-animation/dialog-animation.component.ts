@@ -89,7 +89,7 @@ export class DialogAnimationComponent {
     // this.triggerPauseIncomeGeneration();
     this.user.characters = [ ...this.characters];
     this.dialog.open(MissionResultComponent, {
-      width: '95%',
+      width: '40%',
       enterAnimationDuration,
       exitAnimationDuration,
       data: { mission: this.data.mission, charectersLeft: this.characters, party: this.party },
