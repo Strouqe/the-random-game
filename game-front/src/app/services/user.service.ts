@@ -32,7 +32,7 @@ const sampleUser: User = {
 export interface CounterStateModel {
   count: number;
   isTicking: boolean;
-  income: number;
+  // income: number;
 }
 
 @Injectable({
@@ -67,13 +67,13 @@ export class UserService {
   initService(): void {
     this.userChanged.subscribe((user: User) => {
       this.user = user;
-      console.log('User in user component ====>', this.user);
+      console.log('Balance of the User in user component ====>', this.user);
     });
 
     this.initialCounterState = {
       count: 400,
       isTicking: false,
-      income: 0,
+      // income: 0,
     };
 
     this.patchCounterState = new BehaviorSubject<Partial<CounterStateModel>>(
@@ -86,7 +86,7 @@ export class UserService {
       this.trigerUpdateCountStateEvent.pipe(
         mapTo({
           count: this.user.currencyBalance,
-          income: this.user.currencyIncome,
+          // income: this.user.currencyIncome,
         })
       ),
       // this.triggerUpdateIncomeEvent.pipe(mapTo({income: this.getUserIncome()})),
@@ -111,14 +111,14 @@ export class UserService {
     );
 
     this.commandFromTick$ = this.isTicking$.pipe(
-      switchMap((isTicking) => (isTicking ? timer(0, 15000) : NEVER)),
+      switchMap((isTicking) => (isTicking ? timer(100, 15000) : NEVER)),
       withLatestFrom(this.counterState$, (_, counterState) => ({
-        count: counterState.count,
-        income: counterState.income,
+        count: this.user.currencyBalance + (this.user.currencyIncome / 4),
+        // income: counterState.income,
       })),
-      tap(({ count, income }) => {
+      tap(({ count }) => {
         console.log('count', count);
-        console.log('income', income);
+        // console.log('income', income);
         this.wsService.sendToServer({
           type: 'logout',
           data: this.getUser()
@@ -131,7 +131,7 @@ export class UserService {
 
         this.patchCounterState.next({
           count: count + this.user.currencyIncome / 4,
-          income: this.getUserIncome() / 4,
+          // income: this.getUserIncome() / 4,
         });
       })
     );
@@ -143,8 +143,9 @@ export class UserService {
         if (state.count) {
           this.user.currencyBalance = state.count;
           // this.trigerUpdateState();
+          this.userChanged.next(this.user);
+          console.log('user balance in income generation sub =====>', this.getUser().currencyBalance);
         }
-        this.userChanged.next(this.user);
       });
 
     setInterval(() => {
@@ -178,7 +179,8 @@ export class UserService {
     this.user = sampleUser;
     this.user.name = userName;
 
-    this.user.currencyIncome = this.getUserIncome();
+    // this.user.currencyIncome = this.getUserIncome();
+    // this.trigerUpdateCountStateEvent.emit();
     this.userChanged.next(this.user);
   }
   addcharacter(cherecter: Character): void {
@@ -187,6 +189,7 @@ export class UserService {
     this.user.currencyIncome = this.getUserIncome();
     this.userChanged.next(this.user);
     this.trigerUpdateState();
+    // this.trigerUpdateCountStateEvent.emit();
   }
 
   deleteCharacter(cherecter: Character): void {
@@ -196,7 +199,8 @@ export class UserService {
     );
     this.user.currencyIncome = this.getUserIncome();
     this.userChanged.next(this.user);
-    this.trigerUpdateState();
+    // this.trigerUpdateState();
+    this.trigerUpdateCountStateEvent.emit();
   }
 
   getCharacters(): Character[] {
