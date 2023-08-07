@@ -71,7 +71,7 @@ export class UserService {
     });
 
     this.initialCounterState = {
-      count: 200,
+      count: 400,
       isTicking: false,
       income: 0,
     };
@@ -85,8 +85,8 @@ export class UserService {
       this.trigerPauseEvent.pipe(mapTo({ isTicking: false })),
       this.trigerUpdateCountStateEvent.pipe(
         mapTo({
-          count: this.getUser().currencyBalance,
-          income: this.getUserIncome(),
+          count: this.user.currencyBalance,
+          income: this.user.currencyIncome,
         })
       ),
       // this.triggerUpdateIncomeEvent.pipe(mapTo({income: this.getUserIncome()})),
@@ -101,8 +101,8 @@ export class UserService {
           ...counterState,
           ...command,
         })
-      )
-      // shareReplay(1)
+      ),
+      shareReplay(1)
     );
 
     this.isTicking$ = this.counterState$.pipe(
@@ -111,7 +111,7 @@ export class UserService {
     );
 
     this.commandFromTick$ = this.isTicking$.pipe(
-      switchMap((isTicking) => (isTicking ? timer(100, 15000) : NEVER)),
+      switchMap((isTicking) => (isTicking ? timer(0, 15000) : NEVER)),
       withLatestFrom(this.counterState$, (_, counterState) => ({
         count: counterState.count,
         income: counterState.income,
@@ -127,8 +127,8 @@ export class UserService {
           type: 'login',
           data: this.getUser()
         });
-
         this.wsService.sendToServer({ type: 'data request' });
+
         this.patchCounterState.next({
           count: count + this.user.currencyIncome / 4,
           income: this.getUserIncome() / 4,
@@ -141,7 +141,7 @@ export class UserService {
       .subscribe((state) => {
         console.log('state', state);
         if (state.count) {
-          this.user.currencyBalance += state.count;
+          this.user.currencyBalance = state.count;
           // this.trigerUpdateState();
         }
         this.userChanged.next(this.user);

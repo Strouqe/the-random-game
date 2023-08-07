@@ -40,12 +40,12 @@ export class UserInfoComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.userSubscription.unsubscribe()
 
     this.message = {
       type: 'logout',
-      data: this.user.name
+      data: this.userService.getUser()
     }
+    this.userSubscription.unsubscribe()
     this.wsService.sendToServer(this.message);
   }
 

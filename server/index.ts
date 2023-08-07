@@ -86,7 +86,7 @@ wss.on("connection", (ws: WebSocket) => {
         break;
       case "logout":
         connectedUsers = connectedUsers.filter(
-          (user: any) => user.name != message.data.name
+          (user: any) => user.name !== message.data.name
         );
         console.log("connected users", connectedUsers);
         break;
