@@ -206,6 +206,11 @@ export class UserService {
   getCharacters(): Character[] {
     return this.user.characters;
   }
+  updateIncome(): void {
+    this.user.currencyIncome = this.getUserIncome();
+    this.userChanged.next(this.user);
+    // this.trigerUpdateState();
+  }
 
   private getUserIncome(): number {
     return this.user.characters.reduce((acc, character) => {

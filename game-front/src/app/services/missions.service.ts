@@ -34,6 +34,7 @@ export class MissionsService {
       if(party[character].characteristics.strength < req.strength && party[character].characteristics.dexterity < req.dexterity && party[character].characteristics.intelect < req.intelect){
         this.user.characters = [...this.user.characters]
         this.userService.userChanged.next(this.user);
+        this.userService.updateIncome();
         let message = {
           type: 'mission result',
           data:  this.user
