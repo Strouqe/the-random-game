@@ -1,65 +1,44 @@
-
-
 .characters {
   min-width: 700px;
   padding: 10px;
 
-
-  &__list{
+  &__list {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-gap: 10px;
 
-    &--card{
+    &--card {
       display: flex;
       flex-direction: column;
       justify-content: space-around;
       align-items: center;
-
-
     }
 
-    &__item{
+    &__item {
       display: flex;
       flex-direction: row;
       justify-content: space-around;
       align-items: center;
-
       width: 100%;
 
       padding: 0 10px;
-      padding-top: 8px;
 
-
-      &-image{
+      &-image {
         width: 125px;
         height: 125px;
+        margin: 0 auto 0 10px;
         object-fit: cover;
-
-        border-radius: 50%;
-
       }
 
-      &-characteristics{
+      &-characteristics {
         align-items: center;
-
-        & > *{
+        margin: 0 auto;
+        & > * {
           margin: 4px auto;
           text-align: center;
         }
-        h4{
-          // margin: 4px auto;
-        }
 
-        p{
-          // margin: 4px auto;
-
-
-        }
-
-        &--button{
-          // align-self: center;
-
+        &--button {
           margin: 8px auto;
         }
       }
