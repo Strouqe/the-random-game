@@ -93,6 +93,11 @@ export class UserService {
     this.trigerUpdateState();
   }
 
+  updateIncome(): void {
+    this.user.currencyIncome = this.getUserIncome();
+    this.userChanged.next(this.user);
+  }
+
   initService(): void {
     this.userChanged.subscribe((user: User) => {
       this.user = user;
@@ -142,12 +147,16 @@ export class UserService {
       tap(({ count }) => {
         this.wsService.sendToServer({
           type: 'logout',
-          data: this.getUser,
+          data: this.getUser(),
         });
         this.wsService.sendToServer({
           type: 'login',
-          data: this.getUser,
+          data: this.getUser(),
         });
+        // this.wsService.sendToServer({
+        //   type: 'update user data',
+        //   data: this.getUser(),
+        // });
         this.wsService.sendToServer({ type: 'data request' });
         this.patchCounterState.next({
           count: count + this.user.currencyIncome / 4,
@@ -179,11 +188,6 @@ export class UserService {
   }
   trigerUpdateState(): void {
     this.trigerUpdateCountStateEvent.emit();
-  }
-
-  updateIncome(): void {
-    this.user.currencyIncome = this.getUserIncome();
-    this.userChanged.next(this.user);
   }
 
   private getUserIncome(): number {

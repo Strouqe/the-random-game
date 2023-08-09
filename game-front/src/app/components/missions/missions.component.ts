@@ -17,7 +17,7 @@ export class MissionsComponent implements OnInit, OnDestroy {
   user: User;
   userSubscription: Subscription;
   missions: Mission[];
-  currentMission: Mission; // For easier access to the current mission
+  currentMission: Mission;
 
   missionsSubscription: Subscription;
 
@@ -32,24 +32,16 @@ export class MissionsComponent implements OnInit, OnDestroy {
     this.missionsSubscription = this.dataService.missionsChanged.subscribe(
       (missions) => {
         this.missions = missions;
-        console.log('Response from websocket: ', missions);
       }
     );
     this.userSubscription = this.userService.userChanged.subscribe((user) => {
       this.user = user;
-      console.log('User in mission component ====>', this.user);
     });
-    console.log('missions in missions component ====>', this.missions);
   }
 
   ngOnDestroy(): void {
     this.missionsSubscription.unsubscribe();
     this.userSubscription.unsubscribe();
-  }
-
-  onMissionClick(mission: Mission): void {
-    console.log('Mission clicked: ', mission);
-    // this.missionService.startMission(mission);
   }
 
   triggerPauseIncomeGeneration(): void {
@@ -70,5 +62,4 @@ export class MissionsComponent implements OnInit, OnDestroy {
     });
   }
 
-  //generate a randome whole number from 10 to 25
 }

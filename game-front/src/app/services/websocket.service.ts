@@ -27,7 +27,6 @@ export class WebsocketService {
   public connect() {
     if (!this.subject) {
       this.subject = webSocket(WS_ENDPOINT);
-      console.log('this.subject', this.subject);
     }
     return this.subject;
   }
@@ -43,24 +42,4 @@ export class WebsocketService {
     }
     this.sendToServer(this.message);
   }
-
-  // private create(url: string): WebSocketSubject<MessageEvent> {
-  //   let ws = new WebSocket(url);
-
-  //   let observable = new Observable((obs: Observer<MessageEvent>) => {
-  //     ws.onmessage = obs.next.bind(obs);
-  //     ws.onerror = obs.error.bind(obs);
-  //     ws.onclose = obs.error.bind(obs);
-  //     return ws.close.bind(ws);
-  //   });
-
-  //   let observer = {
-  //     next: (data: Object) => {
-  //       if (ws.readyState === WebSocket.OPEN) {
-  //         ws.send(JSON.stringify(data));
-  //       }
-  //     },
-  //   };
-  //   return WebSocketSubject.create(observer, observable);
-  // }
 }

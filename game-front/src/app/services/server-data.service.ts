@@ -29,7 +29,6 @@ export class ServerDataService {
     this.wsSubscription = this.wsService
       .connect()
       .subscribe((response: any) => {
-        console.log('Response from websocket================> ', response);
         this.charactersChanged.next(response.serverData.characters);
         this.missionsChanged.next(response.serverData.missions);
         this.playersChanged.next(response.serverData.currentConnectedUsers);
