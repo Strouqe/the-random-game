@@ -1,36 +1,30 @@
 .missions {
-
   min-width: 700px;
-
   padding: 10px;
   margin: auto;
 
-
-  &__list{
+  &__list {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-gap: 10px;
 
-
-    &__item{
+    &__item {
       display: flex;
       flex-direction: column;
       justify-content: space-around;
       align-items: center;
 
-      min-height: 120px;
+      min-height: 150px;
       min-width: 180px;
-
       padding: 5px 10px;
 
-        h4{
-          margin: 0;
-        }
+      h4 {
+        margin: 0;
+      }
 
-        p{
-          margin: 0;
-        }
-
+      p {
+        margin: 0;
+      }
     }
   }
 }

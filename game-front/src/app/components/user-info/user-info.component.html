@@ -1,10 +1,10 @@
 <mat-card class="user-info" *ngIf="user">
-  <mat-list>
+  <mat-list class="user-info__list">
     <mat-list-item>
       Name: {{ user.name}}
     </mat-list-item>
     <mat-list-item>
-      Missions compleated: {{ user.missionsCompleated.length }}
+      Missions completed: {{ user.missionsCompleated.length }}
     </mat-list-item>
     <mat-list-item>
       Currency: {{ user.currencyBalance }}
@@ -30,14 +30,18 @@
         <p>Dexterity: {{ character.characteristics.dexterity }}</p>
         <p>Intelect: {{ character.characteristics.intelect }}</p>
         <p>Income: {{ character.income }}</p>
-        <button
-        type="button"
-        mat-raised-button
-        color="primary"
-        [disabled]="user.currencyBalance < character.price"
-        (click)="onDeleteCharacter(character)"
-      >
-        X
-      </button>
+        <div class="user-info__character-characteristics--button-container">
+          Delete for
+          <button
+          class="user-info__character-characteristics--button"
+          type="button"
+          mat-raised-button
+          color="primary"
+          [disabled]="user.currencyBalance < character.price"
+          (click)="onDeleteCharacter(character)"
+        >
+          100
+        </button>
+        </div>
       </div>
     </mat-card>

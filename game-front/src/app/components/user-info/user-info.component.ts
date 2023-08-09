@@ -17,30 +17,22 @@ export const WS_ENDPOINT = environment.URL;
 export class UserInfoComponent implements OnInit, OnDestroy {
   interval: TimeInterval<any>;
   userSubscription: Subscription;
-
   user: User;
-
   message = {}
-
 
   constructor(
     private userService: UserService,
     private wsService: WebsocketService,
-  ) {
-  }
+  ) {}
 
   ngOnInit(): void {
-
     this.userSubscription = this.userService.userChanged.subscribe(
       (user: User) => {
         this.user = user;
-        console.log("User in user component ====>", this.user);
       }
     );
   }
-
   ngOnDestroy(): void {
-
     this.message = {
       type: 'logout',
       data: this.userService.getUser()

@@ -1,20 +1,14 @@
-import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
-import { MatDialog, MatDialogRef } from '@angular/material/dialog';
-import { MissionsService } from 'src/app/services/missions.service';
-import { UserService } from 'src/app/services/user.service';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { Mission } from 'src/app/models/mission.model';
 import {
   CdkDragDrop,
-  CdkDrag,
-  CdkDropList,
-  CdkDropListGroup,
   moveItemInArray,
-  transferArrayItem,
+  transferArrayItem
 } from '@angular/cdk/drag-drop';
-import { User } from 'src/app/models/user.model';
-import { Subscription } from 'rxjs';
+import { Component, Inject } from '@angular/core';
+import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { Character } from 'src/app/models/character.model';
+import { Mission } from 'src/app/models/mission.model';
+import { User } from 'src/app/models/user.model';
+import { UserService } from 'src/app/services/user.service';
 import { MissionResultComponent } from '../mission-result/mission-result.component';
 
 @Component({
@@ -33,7 +27,6 @@ export class DialogAnimationComponent {
     public dialog: MatDialog,
     public dialogRef: MatDialogRef<DialogAnimationComponent>,
     private userService: UserService,
-    private missionService: MissionsService,
     @Inject(MAT_DIALOG_DATA) public data: { mission: Mission; user: User }
   ) {
     console.log('data in dialog ====>', data);
@@ -42,8 +35,9 @@ export class DialogAnimationComponent {
 
     dialogRef.afterClosed().subscribe((result) => {
       console.log('The dialog was closed');
-      this.missionStarted ? this.userService.trigerStart() : this.resumeGeneration();
-
+      this.missionStarted
+        ? this.userService.trigerStart()
+        : this.resumeGeneration();
     });
   }
 
@@ -58,11 +52,6 @@ export class DialogAnimationComponent {
     this.userService.trigerStart();
     console.log('Party when mission is started', this.party);
     this.openMissionDialog('500ms', '500ms');
-    // if (this.missionService.startMission(this.data.mission, this.party)) {
-    //   console.log('mission compleated');
-    // } else {
-    //   console.log('mission failed');
-    // }
   }
 
   drop(event: CdkDragDrop<Character[]>) {
@@ -84,15 +73,18 @@ export class DialogAnimationComponent {
 
   openMissionDialog(
     enterAnimationDuration: string,
-    exitAnimationDuration: string,
+    exitAnimationDuration: string
   ): void {
-    // this.triggerPauseIncomeGeneration();
-    this.user.characters = [ ...this.characters];
+    this.user.characters = [...this.characters];
     this.dialog.open(MissionResultComponent, {
       width: '40%',
       enterAnimationDuration,
       exitAnimationDuration,
-      data: { mission: this.data.mission, charectersLeft: this.characters, party: this.party },
+      data: {
+        mission: this.data.mission,
+        charectersLeft: this.characters,
+        party: this.party,
+      },
     });
   }
 }

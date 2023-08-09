@@ -2,11 +2,11 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Subscription } from 'rxjs';
 import { Mission } from 'src/app/models/mission.model';
+import { User } from 'src/app/models/user.model';
 import { MissionsService } from 'src/app/services/missions.service';
 import { ServerDataService } from 'src/app/services/server-data.service';
 import { UserService } from 'src/app/services/user.service';
 import { DialogAnimationComponent } from '../dialog-animation/dialog-animation.component';
-import { User } from 'src/app/models/user.model';
 
 @Component({
   selector: 'app-missions',
