@@ -21,7 +21,7 @@ export class DialogAnimationComponent {
   party: Character[] = [];
   characters: Character[];
 
-  missionStarted: boolean = false; //temporary fix
+  missionStarted: boolean = false;
 
   constructor(
     public dialog: MatDialog,
@@ -29,12 +29,10 @@ export class DialogAnimationComponent {
     private userService: UserService,
     @Inject(MAT_DIALOG_DATA) public data: { mission: Mission; user: User }
   ) {
-    console.log('data in dialog ====>', data);
     this.user = data.user;
     this.characters = data.user.characters;
 
     dialogRef.afterClosed().subscribe((result) => {
-      console.log('The dialog was closed');
       this.missionStarted
         ? this.userService.trigerStart()
         : this.resumeGeneration();
@@ -50,7 +48,6 @@ export class DialogAnimationComponent {
   onStartMission(): void {
     this.missionStarted = true;
     this.userService.trigerStart();
-    console.log('Party when mission is started', this.party);
     this.openMissionDialog('500ms', '500ms');
   }
 

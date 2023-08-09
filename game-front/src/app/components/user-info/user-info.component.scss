@@ -3,6 +3,8 @@
 
   &__list{
     height: 160px;
+    width: 100%;
+    
     line-height: 0.8;
 
     & > * {
@@ -17,7 +19,8 @@
     justify-content: space-around;
     align-items: center;
     height: 180px;
-    width: 100%;
+    width: 320px;
+
     padding: 0 10px;
     margin: 10px 0;
 
