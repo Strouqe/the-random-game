@@ -90,17 +90,17 @@ wss.on("connection", (ws: WebSocket) => {
         );
         console.log("connected users", connectedUsers);
         break;
-      // case "update user data":
-      //   connectedUsers = connectedUsers.map((user: any) => {
-      //     if (user.name === message.data.name) {
-      //       return message.data;
-      //     }
-      //     return user;
-      //   });
-      //   ws.send(getData());
-      //   break;
+      case "update":
+        console.log("update",JSON.parse(data.toString()));
+        connectedUsers = connectedUsers.map((user: any) => {
+          if (user.name !== message.data.name) {
+            return user;
+          }
+          return message.data;
+        });
+        break;
       case "data request":
-        console.log("data request", serverData);
+        // console.log("data request", serverData);
         ws.send(getData());
         break;
       case "mission result":

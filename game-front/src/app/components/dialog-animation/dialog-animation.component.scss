@@ -11,7 +11,6 @@
 
     &__requirements {
       display: flex;
-      flex-direction: row;
       justify-content: space-around;
       align-items: center;
       width: 35%;
@@ -33,7 +32,7 @@
 
     &__list{
       display: flex !important;
-      flex-flow: row wrap;
+      flex-wrap: wrap;
 
       min-height: 300px;
       min-width: 100%;
@@ -45,7 +44,6 @@
 
   &__character-select {
     display: flex;
-    flex-direction: row;
 
     width: 100%;
   }
@@ -71,7 +69,6 @@
     }
     &__item {
       display: flex;
-      flex-direction: row;
       justify-content: space-around;
       align-items: center;
       width: 100%;

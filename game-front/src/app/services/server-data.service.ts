@@ -9,6 +9,14 @@ import { WebsocketService } from './websocket.service';
 
 export const WS_ENDPOINT = environment.URL;
 
+interface Responce {
+  serverData: {
+    characters: Character[],
+    missions: Mission[],
+    currentConnectedUsers: User[],
+  }
+}
+
 @Injectable({
   providedIn: 'root',
 })
@@ -28,7 +36,8 @@ export class ServerDataService {
 
     this.wsSubscription = this.wsService
       .connect()
-      .subscribe((response: any) => {
+      .subscribe((response: Responce | any)  => {
+        console.log("responce from server=====>",response)
         this.charactersChanged.next(response.serverData.characters);
         this.missionsChanged.next(response.serverData.missions);
         this.playersChanged.next(response.serverData.currentConnectedUsers);

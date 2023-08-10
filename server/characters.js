@@ -15,16 +15,20 @@ class Character {
     }
 }
 exports.Character = Character;
+function generateCharacteristics(level) {
+    let intelect = Math.floor(Math.random() * 10) * level + 10 * level;
+    let strength = Math.floor(Math.random() * 10) * level + 10 * level;
+    let dexterity = Math.floor(Math.random() * 10) * level + 10 * level;
+    return { intelect, strength, dexterity };
+}
 function createCharacters() {
     let characters = [];
     for (let i = 0; i < 6; i++) {
-        //generate rendom id
+        let level = (i % 3) + 1;
         let id = Math.floor(Math.random() * 1000000);
         let name = (0, names_js_1.generateName)();
-        let intelect = Math.floor(Math.random() * 10) + 20;
-        let strength = Math.floor(Math.random() * 10) + 20;
-        let dexterity = Math.floor(Math.random() * 10) + 20;
-        characters.push(new Character(id, name, 100, 10, `https://robohash.org/${name}.png`, 0, { intelect, strength, dexterity }));
+        let characteristics = generateCharacteristics(level);
+        characters.push(new Character(id, name, 100 * level, 10 * level, `https://robohash.org/${name}.png`, 0, characteristics));
     }
     return characters;
 }

@@ -44,11 +44,11 @@ export class UserService {
 
   initialCounterState: CounterStateModel;
   patchCounterState: BehaviorSubject<Partial<CounterStateModel>>;
-  counterCommands$: any;
+  counterCommands$: any; //???;
   commandFromTick$: Observable<Partial<CounterStateModel>>;
   commandFromReset$: Observable<Partial<CounterStateModel>>;
   counterState$: Observable<CounterStateModel>;
-  isTicking$: any;
+  isTicking$: any; //Observable<boolean>???;
 
   trigerStartEvent: EventEmitter<void> = new EventEmitter();
   trigerPauseEvent: EventEmitter<void> = new EventEmitter();
@@ -104,7 +104,7 @@ export class UserService {
     });
 
     this.initialCounterState = {
-      count: 400,
+      count: 1000,
       isTicking: false,
     };
 
@@ -140,7 +140,7 @@ export class UserService {
     );
 
     this.commandFromTick$ = this.isTicking$.pipe(
-      switchMap((isTicking) => (isTicking ? timer(100, 15000) : NEVER)),
+      switchMap((isTicking) => (isTicking ? timer(0, 15000) : NEVER)),
       withLatestFrom(this.counterState$, (_, counterState) => ({
         count: this.user.currencyBalance + this.user.currencyIncome / 4,
       })),
@@ -154,8 +154,8 @@ export class UserService {
           data: this.getUser(),
         });
         // this.wsService.sendToServer({
-        //   type: 'update user data',
-        //   data: this.getUser(),
+        //   type: 'update',
+        //   data: JSON.stringify(this.getUser()),
         // });
         this.wsService.sendToServer({ type: 'data request' });
         this.patchCounterState.next({

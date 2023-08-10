@@ -4,23 +4,22 @@ import { catchError, switchAll, tap } from 'rxjs/operators';
 import { WebSocketSubject, webSocket } from 'rxjs/webSocket';
 import { environment } from '../environments/environment';
 import { ServerData } from '../models/serverData.model';
+import { User } from '../models/user.model';
 
 export const WS_ENDPOINT = environment.URL;
 
 interface MessageData {
-  message: string;
-  time?: string;
+  type: string;
+  data?: User;
 }
 @Injectable({
   providedIn: 'root',
 })
 export class WebsocketService {
   wsSubscription: Subscription;
-  dataChanged = new Subject<ServerData>();
 
   private subject: WebSocketSubject<MessageEvent>;
 
-  message = {};
 
   constructor() {}
 
@@ -35,11 +34,4 @@ export class WebsocketService {
     this.subject.next(data);
   }
 
-  login(name: string) {
-    this.message = {
-      type: 'login',
-      data: name
-    }
-    this.sendToServer(this.message);
-  }
 }

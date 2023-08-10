@@ -99,8 +99,17 @@ wss.on("connection", (ws) => {
                 connectedUsers = connectedUsers.filter((user) => user.name !== message.data.name);
                 console.log("connected users", connectedUsers);
                 break;
+            case "update":
+                console.log("update", JSON.parse(data.toString()).name);
+                connectedUsers = connectedUsers.map((user) => {
+                    if (user.name !== message.data.name) {
+                        return user;
+                    }
+                    return message.data;
+                });
+                break;
             case "data request":
-                console.log("data request", serverData);
+                // console.log("data request", serverData);
                 ws.send(getData());
                 break;
             case "mission result":

@@ -15,7 +15,6 @@ export const WS_ENDPOINT = environment.URL;
   styleUrls: ['./user-info.component.scss']
 })
 export class UserInfoComponent implements OnInit, OnDestroy {
-  interval: TimeInterval<any>;
   userSubscription: Subscription;
   user: User;
   message = {}
