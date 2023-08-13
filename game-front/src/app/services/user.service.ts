@@ -146,17 +146,9 @@ export class UserService {
       })),
       tap(({ count }) => {
         this.wsService.sendToServer({
-          type: 'logout',
-          data: this.getUser(),
+          type: 'update',
+          data: JSON.stringify(this.getUser()),
         });
-        this.wsService.sendToServer({
-          type: 'login',
-          data: this.getUser(),
-        });
-        // this.wsService.sendToServer({
-        //   type: 'update',
-        //   data: JSON.stringify(this.getUser()),
-        // });
         this.wsService.sendToServer({ type: 'data request' });
         this.patchCounterState.next({
           count: count + this.user.currencyIncome / 4,

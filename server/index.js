@@ -100,12 +100,12 @@ wss.on("connection", (ws) => {
                 console.log("connected users", connectedUsers);
                 break;
             case "update":
-                console.log("update", JSON.parse(data.toString()).name);
+                console.log("update", JSON.parse(message.data));
                 connectedUsers = connectedUsers.map((user) => {
-                    if (user.name !== message.data.name) {
+                    if (user.name !== JSON.parse(message.data).name) {
                         return user;
                     }
-                    return message.data;
+                    return JSON.parse(message.data);
                 });
                 break;
             case "data request":
