@@ -25,7 +25,7 @@
             [disabled]="fullParty || user.currencyBalance < character.price"
             (click)="onAddcharacter(character)"
           >
-            100
+            {{character.price}}
           </button>
         </div>
       </div>

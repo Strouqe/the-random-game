@@ -1,12 +1,9 @@
 import express from "express";
 import WebSocket from "ws";
-// const WebSocket = require("ws");
-import http from "http";
-// const http = require("http");
-import * as db from "./db.js";
 import createCharacters from "./characters.js";
+import * as db from "./db.js";
 import createMissions from "./missions.js";
-// import * as firebaseFunctions from "firebase-functions";
+
 const app = express();
 
 const port = process.env.PORT || 10000;
@@ -32,36 +29,9 @@ function getConneccedUsers() {
 
 const PORT = 8080;
 
-// const server = http.createServer((req: any, res: any) => {
-//   console.log('Received request for ' + req + 'Responce' + res);
-// });
-
 const wss = new WebSocket.Server({ server });
 
 let interval: any;
-
-// function startSendingData() {
-//   interval = setInterval(() => {
-//     wss.clients.forEach((client) => {
-//       // characters = createCharacters();
-//       // missions = createMissions();
-//       let currentConnectedUsers = getConneccedUsers();
-//       serverData = {
-//         missions,
-//         characters,
-//         currentConnectedUsers,
-//       };
-//       if (client.readyState === WebSocket.OPEN) {
-//         client.send(JSON.stringify({ serverData }));
-//       }
-//     });
-//   }, 10000);
-//   return interval;
-// }
-
-// function stopSendingData() {
-//   clearInterval(interval);
-// }
 
 function getData() {
   characters = createCharacters();
@@ -82,25 +52,22 @@ wss.on("connection", (ws: WebSocket) => {
       case "login":
         connectedUsers.push(message.data);
         ws.send(getData());
-        console.log("Conected users ======>", connectedUsers);
         break;
       case "logout":
         connectedUsers = connectedUsers.filter(
           (user: any) => user.name !== message.data.name
         );
-        console.log("connected users", connectedUsers);
+
         break;
-      // case "update user data":
-      //   connectedUsers = connectedUsers.map((user: any) => {
-      //     if (user.name === message.data.name) {
-      //       return message.data;
-      //     }
-      //     return user;
-      //   });
-      //   ws.send(getData());
-      //   break;
+      case "update":
+        connectedUsers = connectedUsers.map((user: any) => {
+          if (user.name !== JSON.parse(message.data).name) {
+            return user;
+          }
+          return JSON.parse(message.data);
+        });
+        break;
       case "data request":
-        console.log("data request", serverData);
         ws.send(getData());
         break;
       case "mission result":
@@ -110,14 +77,5 @@ wss.on("connection", (ws: WebSocket) => {
           message.data.currencyIncome
         );
     }
-
-    // ws.send(JSON.stringify(`Hello, you sent --> ${data}`));
-    console.log("received: %s", data);
   });
-
-  // ws.send(JSON.stringify({ serverData }));
 });
-
-// server.listen(PORT, () => {
-//   console.log(`Server started on port  ${PORT}`);
-// });

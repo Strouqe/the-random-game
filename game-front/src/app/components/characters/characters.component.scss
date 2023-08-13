@@ -7,13 +7,6 @@
     grid-template-columns: repeat(3, 1fr);
     grid-gap: 10px;
 
-    &--card {
-      display: flex;
-      flex-direction: column;
-      justify-content: space-around;
-      align-items: center;
-    }
-
     &__item {
       display: flex;
       flex-direction: row;

@@ -1,7 +1,4 @@
-import { generateName } from "./names.js"
-
-
-
+import { generateName } from "./names.js";
 
 export class Character {
   constructor(
@@ -12,25 +9,29 @@ export class Character {
     public image: string,
     public fatigue: number,
     public characteristics: Characteristics
-  ){}
+  ) {}
 }
 export interface Characteristics {
-  intelect: number,
-  strength: number,
-  dexterity: number,
+  intelect: number;
+  strength: number;
+  dexterity: number;
 }
 
+function generateCharacteristics(level: number): Characteristics {
+  let intelect = Math.floor(Math.random() * 10) * level + 10 * level;
+  let strength = Math.floor(Math.random() * 10) * level + 10 * level;
+  let dexterity = Math.floor(Math.random() * 10) * level + 10 * level;
+  return { intelect, strength, dexterity };
+}
 
 export default function createCharacters(): Character[] {
-  let characters = []
+  let characters = [];
   for (let i = 0; i < 6; i++) {
-    //generate rendom id
-    let id = Math.floor(Math.random() * 1000000)
-    let name = generateName()
-    let intelect = Math.floor(Math.random() * 10) + 20
-    let strength = Math.floor(Math.random() * 10) + 20
-    let dexterity = Math.floor(Math.random() * 10) + 20
-    characters.push(new Character(id, name, 100, 10, `https://robohash.org/${name}.png`, 0, {intelect, strength, dexterity}))
+    let level = (i % 3) + 1;
+    let id = Math.floor(Math.random() * 1000000);
+    let name = generateName();
+    let characteristics = generateCharacteristics(level);
+    characters.push( new Character( id, name, 100*level , 10*level, `https://robohash.org/${name}.png`, 0, characteristics));
   }
-  return characters
+  return characters;
 }
