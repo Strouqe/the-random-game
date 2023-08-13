@@ -14,6 +14,7 @@
     </mat-list-item>
   </mat-list>
 </mat-card>
+<div *ngIf="user">
 <h4 *ngIf="user.characters.length == 0 ">You dont have any characters</h4>
 <mat-card
       *ngFor="let character of user.characters"
@@ -45,3 +46,4 @@
         </div>
       </div>
     </mat-card>
+  </div>

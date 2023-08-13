@@ -1,33 +1,34 @@
-<div class="characters" *ngIf="characters">
+<div class="characters" *ngIf="user">
   <div class="characters__list" *ngIf="characters.length != 0">
     <mat-card
       *ngFor="let character of characters"
-      class="characters__list--card"
+      class="characters__list__item"
     >
-      <div class="characters__list__item">
-        <img
-          src="{{ character.image }}"
-          alt="character-image"
-          class="characters__list__item-image"
-        />
-        <div matLine class="characters__list__item-characteristics">
-          <h4 matLine>{{ character.name }}</h4>
-          <p>Strength: {{ character.characteristics.strength }}</p>
-          <p>Dexterity: {{ character.characteristics.dexterity }}</p>
-          <p>Intelect: {{ character.characteristics.intelect }}</p>
-          <p>Income: {{ character.income }}</p>
+      <img
+        src="{{ character.image }}"
+        alt="characters__character-image"
+        class="characters__list__item-image"
+      />
+      <div matLine class="characters__list__item-characteristics">
+        <h4 matLine>{{ character.name }}</h4>
+        <p>Strength: {{ character.characteristics.strength }}</p>
+        <p>Dexterity: {{ character.characteristics.dexterity }}</p>
+        <p>Intelect: {{ character.characteristics.intelect }}</p>
+        <p>Income: {{ character.income }}</p>
+        <div>
+          Add for
+          <button
+            class="characters__list__item-characteristics--button"
+            type="button"
+            mat-raised-button
+            color="primary"
+            [disabled]="fullParty || user.currencyBalance < character.price"
+            (click)="onAddcharacter(character)"
+          >
+            100
+          </button>
         </div>
       </div>
-      <button
-        class="characters__list__item-characteristics--button"
-        type="button"
-        mat-raised-button
-        color="primary"
-        [disabled]="fullParty || user.currencyBalance < character.price"
-        (click)="onAddcharacter(character)"
-      >
-        Add
-      </button>
     </mat-card>
   </div>
   <div *ngIf="characters.length == 0">

@@ -99,6 +99,15 @@ wss.on("connection", (ws) => {
                 connectedUsers = connectedUsers.filter((user) => user.name !== message.data.name);
                 console.log("connected users", connectedUsers);
                 break;
+            // case "update user data":
+            //   connectedUsers = connectedUsers.map((user: any) => {
+            //     if (user.name === message.data.name) {
+            //       return message.data;
+            //     }
+            //     return user;
+            //   });
+            //   ws.send(getData());
+            //   break;
             case "data request":
                 console.log("data request", serverData);
                 ws.send(getData());
