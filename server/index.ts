@@ -33,14 +33,18 @@ const wss = new WebSocket.Server({ server });
 
 let interval: any;
 
+let dbdata
 function getData() {
   characters = createCharacters();
   missions = createMissions();
   let currentConnectedUsers = getConneccedUsers();
+  dbdata = db.returnEntries(); 
+  console.log("dbdata in index ts", db.returnEntries());
   serverData = {
     missions,
     characters,
     currentConnectedUsers,
+    dbdata
   };
   return JSON.stringify({ serverData });
 }
@@ -74,7 +78,9 @@ wss.on("connection", (ws: WebSocket) => {
         db.addEntry(
           message.data.name,
           message.data.currencyBalance,
-          message.data.currencyIncome
+          message.data.mission,
+          message.data.difficulty,
+          message.data.victory
         );
     }
   });

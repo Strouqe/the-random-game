@@ -1,0 +1,11 @@
+<div class="dialog">
+  <button class="dialog__close" mat-button mat-dialog-close>X</button>
+  <mat-card>
+    <mat-list class="dialog__list">
+      <div *ngIf="!dbData">Loading...</div>
+      <mat-list-item class="dialog__list__item" *ngFor="let entry of dbData">
+        id: {{ entry.id }} name: {{ entry.name }} mission: {{ entry.mission }} result: {{ entry.victory ? "Victory!" : "Defeat!"}}
+      </mat-list-item>
+    </mat-list>
+  </mat-card>
+</div>
