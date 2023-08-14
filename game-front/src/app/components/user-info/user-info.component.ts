@@ -1,10 +1,12 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { Subscription, TimeInterval } from 'rxjs';
 import { environment } from 'src/app/environments/environment';
 import { Character } from 'src/app/models/character.model';
 import { User } from 'src/app/models/user.model';
 import { UserService } from 'src/app/services/user.service';
 import { WebsocketService } from 'src/app/services/websocket.service';
+import { LeaderboardComponent } from '../leaderboard/leaderboard.component';
 
 
 export const WS_ENDPOINT = environment.URL;
@@ -20,6 +22,7 @@ export class UserInfoComponent implements OnInit, OnDestroy {
   message = {}
 
   constructor(
+    public dialog: MatDialog,
     private userService: UserService,
     private wsService: WebsocketService,
   ) {}
@@ -42,6 +45,18 @@ export class UserInfoComponent implements OnInit, OnDestroy {
 
   onDeleteCharacter(character: Character){
     this.userService.deleteCharacter(character);
+  }
+
+    openMissionDialog(
+    enterAnimationDuration: string,
+    exitAnimationDuration: string
+  ): void {
+    this.dialog.open(LeaderboardComponent , {
+      width: '40%',
+      enterAnimationDuration,
+      exitAnimationDuration,
+      data: {},
+    });
   }
 
 }

@@ -7,6 +7,7 @@ export class ServerData {
     public missions: Mission[],
     public currentConnectedUsers: User[],
     public characters: Character[],
+    public dbdata: any[],
   ){}
 }
 

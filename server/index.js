@@ -49,14 +49,18 @@ function getConneccedUsers() {
 const PORT = 8080;
 const wss = new ws_1.default.Server({ server });
 let interval;
+let dbdata;
 function getData() {
     characters = (0, characters_js_1.default)();
     missions = (0, missions_js_1.default)();
     let currentConnectedUsers = getConneccedUsers();
+    dbdata = db.returnEntries();
+    console.log("dbdata in index ts", db.returnEntries());
     serverData = {
         missions,
         characters,
         currentConnectedUsers,
+        dbdata
     };
     return JSON.stringify({ serverData });
 }
@@ -83,7 +87,7 @@ wss.on("connection", (ws) => {
                 ws.send(getData());
                 break;
             case "mission result":
-                db.addEntry(message.data.name, message.data.currencyBalance, message.data.currencyIncome);
+                db.addEntry(message.data.name, message.data.currencyBalance, message.data.mission, message.data.difficulty, message.data.victory);
         }
     });
 });

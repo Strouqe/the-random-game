@@ -24,10 +24,7 @@ export class MissionsService {
     );
   }
 
-  startMission(
-    mission: Mission,
-    party: Character[],
-  ): boolean {
+  startMission(mission: Mission, party: Character[]): boolean {
     const req = mission.requirements;
     for (const character in party) {
       if (
@@ -40,7 +37,13 @@ export class MissionsService {
         this.userService.updateIncome();
         let message = {
           type: 'mission result',
-          data: this.user,
+          data: {
+            name: this.user.name,
+            currencyBalance: this.user.currencyBalance,
+            mission: mission.name,
+            difficulty: mission.difficulty,
+            victory: false,
+          },
         };
         this.wsService.sendToServer(message);
         return false;
@@ -53,7 +56,13 @@ export class MissionsService {
     this.userService.trigerUpdateState();
     let message = {
       type: 'mission result',
-      data: this.user,
+      data: {
+        name: this.user.name,
+        currencyBalance: this.user.currencyBalance,
+        mission: mission.name,
+        difficulty: mission.difficulty,
+        victory: false,
+      },
     };
     this.wsService.sendToServer(message);
     return true;

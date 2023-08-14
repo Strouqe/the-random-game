@@ -13,6 +13,11 @@
       Income: {{ user.currencyIncome }}/min
     </mat-list-item>
   </mat-list>
+  <button
+    mat-raised-button
+    color="primary"
+    (click)="openMissionDialog('500ms', '500ms')"
+  >Results</button>
 </mat-card>
 <div *ngIf="user">
 <h4 *ngIf="user.characters.length == 0 ">You dont have any characters</h4>
