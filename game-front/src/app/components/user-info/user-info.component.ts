@@ -52,7 +52,7 @@ export class UserInfoComponent implements OnInit, OnDestroy {
     exitAnimationDuration: string
   ): void {
     this.dialog.open(LeaderboardComponent , {
-      width: '30%',
+      width: '35%',
       enterAnimationDuration,
       exitAnimationDuration,
       data: {},
