@@ -42,7 +42,7 @@ export class MissionsService {
             currencyBalance: this.user.currencyBalance,
             mission: mission.name,
             difficulty: mission.difficulty,
-            victory: false,
+            result: "Defeat",
           },
         };
         this.wsService.sendToServer(message);
@@ -61,7 +61,7 @@ export class MissionsService {
         currencyBalance: this.user.currencyBalance,
         mission: mission.name,
         difficulty: mission.difficulty,
-        victory: false,
+        result: "Victory",
       },
     };
     this.wsService.sendToServer(message);

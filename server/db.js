@@ -12,18 +12,18 @@ let db = new sqlite3_1.default.Database("./test.db", sqlite3_1.default.OPEN_READ
         return console.error(err.message);
     console.log("Connected to the test database.");
 });
-// sql = `CREATE TABLE users(id INTEGER PRIMARY KEY, name, balance, mission, difficulty, victory)`
+// sql = `CREATE TABLE users(id INTEGER PRIMARY KEY, name, balance, mission, difficulty, result)`
 // db.run(sql)
 // db.run("DROP TABLE users")
-function addEntry(name, balance, mission, difficulty, victory) {
-    sql = `INSERT INTO users(name, balance, mission, difficulty, victory) VALUES(?, ?, ?, ?, ?)`;
-    db.run(sql, [name, balance, mission, difficulty, victory], (err) => {
+function addEntry(name, balance, mission, difficulty, result) {
+    sql = `INSERT INTO users(name, balance, mission, difficulty, result) VALUES(?, ?, ?, ?, ?)`;
+    db.run(sql, [name, balance, mission, difficulty, result], (err) => {
         if (err)
             return console.error(err.message);
     });
 }
 exports.addEntry = addEntry;
-// sql = `INSERT INTO users(name, balance, mission, difficulty, victory) VALUES(?, ?, ?, ?, ?)`;
+// sql = `INSERT INTO users(name, balance, mission, difficulty, result) VALUES(?, ?, ?, ?, ?)`;
 // db.run(sql, ["Bob", 105, "creepy dungeon", 100, true], (err: any) => {
 //   if (err) return console.error(err.message);
 // });

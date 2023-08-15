@@ -87,7 +87,7 @@ wss.on("connection", (ws) => {
                 ws.send(getData());
                 break;
             case "mission result":
-                db.addEntry(message.data.name, message.data.currencyBalance, message.data.mission, message.data.difficulty, message.data.victory);
+                db.addEntry(message.data.name, message.data.currencyBalance, message.data.mission, message.data.difficulty, message.data.result);
         }
     });
 });

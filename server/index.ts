@@ -80,7 +80,7 @@ wss.on("connection", (ws: WebSocket) => {
           message.data.currencyBalance,
           message.data.mission,
           message.data.difficulty,
-          message.data.victory
+          message.data.result
         );
     }
   });

@@ -5,6 +5,6 @@ export class DbEntry {
     public balance: number,
     public mission: string,
     public difficulty: number,
-    public victory: boolean,
+    public result: string,
   ){}
 }

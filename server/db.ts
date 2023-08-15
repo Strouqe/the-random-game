@@ -12,17 +12,17 @@ let db = new sqlite3.Database(
   }
 );
 
-// sql = `CREATE TABLE users(id INTEGER PRIMARY KEY, name, balance, mission, difficulty, victory)`
+// sql = `CREATE TABLE users(id INTEGER PRIMARY KEY, name, balance, mission, difficulty, result)`
 // db.run(sql)
 
 // db.run("DROP TABLE users")
-export function addEntry(name: string, balance: number, mission: string, difficulty: string, victory: boolean) {
-  sql = `INSERT INTO users(name, balance, mission, difficulty, victory) VALUES(?, ?, ?, ?, ?)`;
-  db.run(sql, [name, balance, mission, difficulty, victory], (err: any) => {
+export function addEntry(name: string, balance: number, mission: string, difficulty: string, result: string) {
+  sql = `INSERT INTO users(name, balance, mission, difficulty, result) VALUES(?, ?, ?, ?, ?)`;
+  db.run(sql, [name, balance, mission, difficulty, result], (err: any) => {
     if (err) return console.error(err.message);
   });
 }
-// sql = `INSERT INTO users(name, balance, mission, difficulty, victory) VALUES(?, ?, ?, ?, ?)`;
+// sql = `INSERT INTO users(name, balance, mission, difficulty, result) VALUES(?, ?, ?, ?, ?)`;
 // db.run(sql, ["Bob", 105, "creepy dungeon", 100, true], (err: any) => {
 //   if (err) return console.error(err.message);
 // });
