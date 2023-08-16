@@ -31,6 +31,7 @@ const ws_1 = __importDefault(require("ws"));
 const characters_js_1 = __importDefault(require("./characters.js"));
 const db = __importStar(require("./db.js"));
 const missions_js_1 = __importDefault(require("./missions.js"));
+const missions_js_2 = require("./missions.js");
 const app = (0, express_1.default)();
 const port = process.env.PORT || 10000;
 const server = app.listen(port, () => {
@@ -55,14 +56,18 @@ function getData() {
     missions = (0, missions_js_1.default)();
     let currentConnectedUsers = getConneccedUsers();
     dbdata = db.returnEntries();
-    console.log("dbdata in index ts", db.returnEntries());
-    serverData = {
+    // console.log("dbdata in index ts", db.returnEntries());
+    let data = {
         missions,
         characters,
         currentConnectedUsers,
-        dbdata
+        dbdata,
     };
-    return JSON.stringify({ serverData });
+    let responce = JSON.stringify({
+        type: "data responce",
+        data: data,
+    });
+    return responce;
 }
 wss.on("connection", (ws) => {
     ws.on("message", (data) => {
@@ -87,7 +92,15 @@ wss.on("connection", (ws) => {
                 ws.send(getData());
                 break;
             case "mission result":
-                db.addEntry(message.data.name, message.data.currencyBalance, message.data.mission, message.data.difficulty, message.data.result);
+                let result = (0, missions_js_2.startMission)(message.data.difficulty, message.data.party);
+                result ? db.addEntry(message.data.name, message.data.currencyBalance, message.data.mission, message.data.difficulty, "Victory") :
+                    db.addEntry(message.data.name, message.data.currencyBalance, message.data.mission, message.data.difficulty, "Defeat");
+                let responce = JSON.stringify({
+                    type: 'mission result responce',
+                    data: result ? "Victory" : "Defeat"
+                });
+                ws.send(responce);
+                break;
         }
     });
 });

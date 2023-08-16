@@ -7,15 +7,16 @@ import { Mission } from '../models/mission.model';
 import { User } from '../models/user.model';
 import { WebsocketService } from './websocket.service';
 import { DbEntry } from '../models/dbEntry.model';
+import { MissionsService } from './missions.service';
 
 export const WS_ENDPOINT = environment.URL;
 
 interface Responce {
   serverData: {
-    characters: Character[],
-    missions: Mission[],
-    currentConnectedUsers: User[],
-  }
+    characters: Character[];
+    missions: Mission[];
+    currentConnectedUsers: User[];
+  };
 }
 
 @Injectable({
@@ -31,6 +32,7 @@ export class ServerDataService {
 
   constructor(
     private wsService: WebsocketService,
+    private missionService: MissionsService
   ) {
     this.charactersChanged = new Subject<Character[]>();
     this.missionsChanged = new Subject<Mission[]>();
@@ -39,14 +41,21 @@ export class ServerDataService {
 
     this.wsSubscription = this.wsService
       .connect()
-      .subscribe((response: Response | any)  => {
-        let dbData = JSON.parse(response.serverData.dbdata);
-        console.log("server responce",response);
-        this.charactersChanged.next(response.serverData.characters);
-        this.missionsChanged.next(response.serverData.missions);
-        this.playersChanged.next(response.serverData.currentConnectedUsers);
-        console.log("dbdata",dbData);
-        this.dbDataChanged.next(dbData);
+      .subscribe((response: Response | any) => {
+        console.log('server responce', response);
+        switch (response.type) {
+          case 'data responce':
+            let dbData = JSON.parse(response.data.dbdata);
+            this.charactersChanged.next(response.data.characters);
+            this.missionsChanged.next(response.data.missions);
+            this.playersChanged.next(response.data.currentConnectedUsers);
+            this.dbDataChanged.next(dbData);
+            break;
+          case 'mission result responce':
+            this.missionService.promiseResolve(response.data);
+            console.log('mission result', response.data);
+            break;
+        }
       });
   }
 }

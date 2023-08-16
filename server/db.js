@@ -73,7 +73,7 @@ function returnEntries() {
         data = JSON.stringify(rows);
         // console.log("rows in db ts", data);
     });
-    console.log("data in return db ts", data);
+    // console.log("data in return db ts", data);
     return data;
 }
 exports.returnEntries = returnEntries;

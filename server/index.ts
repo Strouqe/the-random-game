@@ -3,6 +3,7 @@ import WebSocket from "ws";
 import createCharacters from "./characters.js";
 import * as db from "./db.js";
 import createMissions from "./missions.js";
+import { startMission } from "./missions.js";
 
 const app = express();
 
@@ -33,20 +34,24 @@ const wss = new WebSocket.Server({ server });
 
 let interval: any;
 
-let dbdata
+let dbdata;
 function getData() {
   characters = createCharacters();
   missions = createMissions();
   let currentConnectedUsers = getConneccedUsers();
-  dbdata = db.returnEntries(); 
-  console.log("dbdata in index ts", db.returnEntries());
-  serverData = {
+  dbdata = db.returnEntries();
+  // console.log("dbdata in index ts", db.returnEntries());
+  let data = {
     missions,
     characters,
     currentConnectedUsers,
-    dbdata
+    dbdata,
   };
-  return JSON.stringify({ serverData });
+  let responce = JSON.stringify({
+    type: "data responce",
+    data: data,
+  });
+  return responce;
 }
 
 wss.on("connection", (ws: WebSocket) => {
@@ -75,13 +80,28 @@ wss.on("connection", (ws: WebSocket) => {
         ws.send(getData());
         break;
       case "mission result":
+        let result = startMission(message.data.difficulty, message.data.party)
+        result ? db.addEntry(
+          message.data.name,
+          message.data.currencyBalance,
+          message.data.mission,
+          message.data.difficulty,
+          "Victory"
+        ) :
         db.addEntry(
           message.data.name,
           message.data.currencyBalance,
           message.data.mission,
           message.data.difficulty,
-          message.data.result
+          "Defeat"
         );
+        let responce = JSON.stringify({
+          type: 'mission result responce', 
+          data: result ? "Victory" : "Defeat"
+        })
+        
+        ws.send(responce);
+        break;
     }
   });
 });

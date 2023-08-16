@@ -12,7 +12,7 @@ import { LeaderboardComponent } from '../leaderboard/leaderboard.component';
   styleUrls: ['./mission-result.component.scss'],
 })
 export class MissionResultComponent {
-  result: boolean;
+  result: any;
   user: User;
   constructor(
     public dialog: MatDialog,
@@ -25,10 +25,13 @@ export class MissionResultComponent {
       party: Character[];
     }
   ) {
-    this.result = this.missionService.startMission(
+     this.missionService.getResult(
       this.data.mission,
       this.data.party
-    );
+    ).then((result) => {
+      this.result = result;
+      console.log("mission result component getResult",this.result);
+    });
   }
 
   // openMissionDialog(
