@@ -1,6 +1,6 @@
 export const environment = {
     production: false,
-    URL: 'ws://rndm-srvr.onrender.com',
+    URL: 'wss://rndm-srvr.onrender.com',
 }
 
 
