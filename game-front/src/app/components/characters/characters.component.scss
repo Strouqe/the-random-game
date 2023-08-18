@@ -1,11 +1,23 @@
 .characters {
-  min-width: 700px;
+  width: 980px;
+  height: 370px;
+
   padding: 10px;
 
+  &__spinner {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 100%;
+    min-height: 350px;
+
+    text-align: center;
+  }
   &__list {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-gap: 10px;
+    min-height: 50%;
 
     &__item {
       display: flex;

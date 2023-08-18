@@ -2,8 +2,7 @@ import express from "express";
 import WebSocket from "ws";
 import createCharacters from "./characters.js";
 import * as db from "./db.js";
-import createMissions from "./missions.js";
-import { startMission } from "./missions.js";
+import createMissions, { startMission } from "./missions.js";
 
 const app = express();
 
@@ -19,28 +18,18 @@ let missions = createMissions();
 
 let connectedUsers: any = [];
 
-let serverData: any = {
-  missions,
-  characters,
-};
-
 function getConneccedUsers() {
   return connectedUsers;
 }
 
-const PORT = 8080;
-
 const wss = new WebSocket.Server({ server });
 
-let interval: any;
-
 let dbdata;
-function getData() {
+function getData(): string {
   characters = createCharacters();
   missions = createMissions();
   let currentConnectedUsers = getConneccedUsers();
   dbdata = db.returnEntries();
-  // console.log("dbdata in index ts", db.returnEntries());
   let data = {
     missions,
     characters,
@@ -66,7 +55,6 @@ wss.on("connection", (ws: WebSocket) => {
         connectedUsers = connectedUsers.filter(
           (user: any) => user.name !== message.data.name
         );
-
         break;
       case "update":
         connectedUsers = connectedUsers.map((user: any) => {
@@ -80,26 +68,26 @@ wss.on("connection", (ws: WebSocket) => {
         ws.send(getData());
         break;
       case "mission result":
-        let result = startMission(message.data.difficulty, message.data.party)
-        result ? db.addEntry(
-          message.data.name,
-          message.data.currencyBalance,
-          message.data.mission,
-          message.data.difficulty,
-          "Victory"
-        ) :
-        db.addEntry(
-          message.data.name,
-          message.data.currencyBalance,
-          message.data.mission,
-          message.data.difficulty,
-          "Defeat"
-        );
+        let result = startMission(message.data.difficulty, message.data.party);
+        result
+          ? db.addEntry(
+              message.data.name,
+              message.data.currencyBalance,
+              message.data.mission,
+              message.data.difficulty,
+              "Victory"
+            )
+          : db.addEntry(
+              message.data.name,
+              message.data.currencyBalance,
+              message.data.mission,
+              message.data.difficulty,
+              "Defeat"
+            );
         let responce = JSON.stringify({
-          type: 'mission result responce', 
-          data: result ? "Victory" : "Defeat"
-        })
-        
+          type: "mission result responce",
+          data: result ? "Victory" : "Defeat",
+        });
         ws.send(responce);
         break;
     }

@@ -1,5 +1,5 @@
 <div class="characters" *ngIf="user">
-  <div class="characters__list" *ngIf="characters.length != 0">
+  <div class="characters__list" *ngIf="characters && characters.length != 0">
     <mat-card
       *ngFor="let character of characters"
       class="characters__list__item"
@@ -25,13 +25,19 @@
             [disabled]="fullParty || user.currencyBalance < character.price"
             (click)="onAddcharacter(character)"
           >
-            {{character.price}}
+            {{ character.price }}
           </button>
         </div>
       </div>
     </mat-card>
   </div>
-  <div *ngIf="characters.length == 0">
-    Please wait for new charecters to arrive
+  <div class="characters__spinner" *ngIf="!characters || characters.length == 0">
+    <mat-progress-spinner
+      class="example-margin"
+      color="primary"
+      mode="indeterminate"
+    >
+    </mat-progress-spinner>
+    <div>Please wait for new charecters to arrive</div>
   </div>
 </div>

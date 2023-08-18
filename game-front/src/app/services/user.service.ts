@@ -104,7 +104,7 @@ export class UserService {
     });
 
     this.initialCounterState = {
-      count: 1000,
+      count: 1200,
       isTicking: false,
     };
 
@@ -149,14 +149,8 @@ export class UserService {
           type: 'update',
           data: JSON.stringify(this.getUser()),
         });
-        // this.wsService.sendToServer({
-        //   type: 'update user data',
-        //   data: this.getUser(),
-        // });
         this.wsService.sendToServer({ type: 'data request' });
-        this.patchCounterState.next({
-          count: count + this.user.currencyIncome / 4,
-        });
+        this.patchCounterState.next({ count: count + this.user.currencyIncome / 4,});
       })
     );
 

@@ -1,5 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
+import { Message } from 'src/app/models/serverData.model';
 import { User } from 'src/app/models/user.model';
 import { ServerDataService } from 'src/app/services/server-data.service';
 import { UserService } from 'src/app/services/user.service';
@@ -15,7 +16,7 @@ export class PlayersOnlineComponent implements OnInit, OnDestroy {
   userSubscription: Subscription;
   players: User[];
   user: User;
-  message = {};
+  message: Message;
 
   constructor(
     private dataService: ServerDataService,

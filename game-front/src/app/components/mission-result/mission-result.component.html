@@ -3,7 +3,7 @@
   <button class="dialog__close" mat-button mat-dialog-close>X</button>
   <div class="dialog__results">
     <h1>{{result ? "You have passed the mission!" : "You have failed the mission"}}</h1>
-    <h1>Congradulations!</h1>
+    <h1>Congratulations!</h1>
     <h3>You have passed the mission!</h3>
     <!-- animation -->
     <div class="animation-container">
@@ -38,8 +38,8 @@
   <h1 mat-dialog-title>{{this.data.mission.name}}</h1>
   <div class="dialog__results">
     <button class="dialog__close" mat-button mat-dialog-close>X</button>
-    <h1>Congradulations!</h1>
-    <h3>You have lost {{this.data.party.length}} charecters!</h3>
+    <h1>Defeat!</h1>
+    <h3>Unfortunately you have failed!</h3>
     <div class="dialog__characters">
     <mat-card
       *ngFor="let character of this.data.party"
@@ -59,6 +59,6 @@
       </div>
     </mat-card>
   </div>
-    <p>You failed! Good luck next time!</p>
+    <p>You have lost {{this.data.party.length}} charecters. Good luck next time!</p>
   </div>
 </div>

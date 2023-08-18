@@ -3,8 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.Character = void 0;
 const names_js_1 = require("./names.js");
 class Character {
-    constructor(id, name, price, income, // Income per unit of time, can be negative
-    image, fatigue, characteristics) {
+    constructor(id, name, price, income, image, fatigue, characteristics) {
         this.id = id;
         this.name = name;
         this.price = price;

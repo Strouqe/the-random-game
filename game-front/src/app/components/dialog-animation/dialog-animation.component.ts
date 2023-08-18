@@ -18,10 +18,10 @@ import { MissionResultComponent } from '../mission-result/mission-result.compone
 })
 export class DialogAnimationComponent {
   user: User;
-  party: Character[] = [];
+  party: Character[];
   characters: Character[];
 
-  missionStarted: boolean = false;
+  missionStarted: boolean;
 
   constructor(
     public dialog: MatDialog,
@@ -30,7 +30,9 @@ export class DialogAnimationComponent {
     @Inject(MAT_DIALOG_DATA) public data: { mission: Mission; user: User }
   ) {
     this.user = data.user;
+    this.party = []
     this.characters = data.user.characters;
+    this.missionStarted = false;
 
     dialogRef.afterClosed().subscribe((result) => {
       this.missionStarted
@@ -51,7 +53,7 @@ export class DialogAnimationComponent {
     this.openMissionDialog('500ms', '500ms');
   }
 
-  drop(event: CdkDragDrop<Character[]>) {
+  drop(event: CdkDragDrop<Character[]>): void {
     if (event.previousContainer === event.container) {
       moveItemInArray(
         event.container.data,

@@ -11,14 +11,6 @@ import { MissionsService } from './missions.service';
 
 export const WS_ENDPOINT = environment.URL;
 
-interface Responce {
-  serverData: {
-    characters: Character[];
-    missions: Mission[];
-    currentConnectedUsers: User[];
-  };
-}
-
 @Injectable({
   providedIn: 'root',
 })
@@ -41,8 +33,7 @@ export class ServerDataService {
 
     this.wsSubscription = this.wsService
       .connect()
-      .subscribe((response: Response | any) => {
-        console.log('server responce', response);
+      .subscribe((response: any) => {
         switch (response.type) {
           case 'data responce':
             let dbData = JSON.parse(response.data.dbdata);
@@ -53,7 +44,6 @@ export class ServerDataService {
             break;
           case 'mission result responce':
             this.missionService.promiseResolve(response.data);
-            console.log('mission result', response.data);
             break;
         }
       });

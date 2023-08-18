@@ -15,14 +15,15 @@ export class charactersComponent implements OnInit, OnDestroy {
   charactersSubscription: Subscription;
   user: User;
   characters: Character[];
-  fullParty: boolean = false;
+  fullParty: boolean;
 
   constructor(
     private dataService: ServerDataService,
-    private userService: UserService
+    private userService: UserService,
   ) {}
 
   ngOnInit(): void {
+    this.fullParty = false;
     this.charactersSubscription = this.dataService.charactersChanged.subscribe(
       (characters) => {
         this.characters = characters;

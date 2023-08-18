@@ -1,10 +1,9 @@
 import { Component, Inject } from '@angular/core';
-import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Character } from 'src/app/models/character.model';
 import { Mission } from 'src/app/models/mission.model';
 import { User } from 'src/app/models/user.model';
 import { MissionsService } from 'src/app/services/missions.service';
-import { LeaderboardComponent } from '../leaderboard/leaderboard.component';
 
 @Component({
   selector: 'app-mission-result',
@@ -15,8 +14,6 @@ export class MissionResultComponent {
   result: any;
   user: User;
   constructor(
-    public dialog: MatDialog,
-    public dialogRef: MatDialogRef<MissionResultComponent>,
     private missionService: MissionsService,
     @Inject(MAT_DIALOG_DATA)
     public data: {
@@ -25,24 +22,10 @@ export class MissionResultComponent {
       party: Character[];
     }
   ) {
-     this.missionService.getResult(
-      this.data.mission,
-      this.data.party
-    ).then((result) => {
-      this.result = result;
-      console.log("mission result component getResult",this.result);
-    });
+    this.missionService
+      .getResult(this.data.mission, this.data.party)
+      .then((result) => {
+        this.result = result;
+      });
   }
-
-  // openMissionDialog(
-  //   enterAnimationDuration: string,
-  //   exitAnimationDuration: string
-  // ): void {
-  //   this.dialog.open(LeaderboardComponent, {
-  //     width: '40%',
-  //     enterAnimationDuration,
-  //     exitAnimationDuration,
-  //     data: {},
-  //   });
-  // }
 }

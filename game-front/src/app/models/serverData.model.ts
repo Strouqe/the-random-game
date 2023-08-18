@@ -16,3 +16,10 @@ export class ServerDataResponse {
     public serverData: ServerData,
   ){}
 }
+
+export class Message {
+  constructor(
+    public type: string,
+    public data: any,
+  ){}
+}

@@ -1,44 +1,40 @@
 <mat-card class="user-info" *ngIf="user">
   <mat-list class="user-info__list">
-    <mat-list-item>
-      Name: {{ user.name}}
-    </mat-list-item>
+    <mat-list-item> Name: {{ user.name }} </mat-list-item>
     <mat-list-item>
       Missions completed: {{ user.missionsCompleated.length }}
     </mat-list-item>
-    <mat-list-item>
-      Currency: {{ user.currencyBalance }}
-    </mat-list-item>
-    <mat-list-item>
-      Income: {{ user.currencyIncome }}/min
-    </mat-list-item>
+    <mat-list-item> Currency: {{ user.currencyBalance }} </mat-list-item>
+    <mat-list-item> Income: {{ user.currencyIncome }}/min </mat-list-item>
   </mat-list>
   <button
     mat-raised-button
     color="primary"
     (click)="openMissionDialog('500ms', '500ms')"
-  >Results</button>
+  >
+    Results
+  </button>
 </mat-card>
 <div *ngIf="user">
-<h4 *ngIf="user.characters.length == 0 ">You dont have any characters</h4>
-<mat-card
-      *ngFor="let character of user.characters"
-      class="user-info__character"
-    >
-      <img
-        src="{{ character.image }}"
-        alt="user-info__character-image"
-        class="user-info__character-image"
-      />
-      <div matLine class="user-info__character-characteristics">
-        <h4 matLine>{{ character.name }}</h4>
-        <p>Strength: {{ character.characteristics.strength }}</p>
-        <p>Dexterity: {{ character.characteristics.dexterity }}</p>
-        <p>Intelect: {{ character.characteristics.intelect }}</p>
-        <p>Income: {{ character.income }}</p>
-        <div class="user-info__character-characteristics--button-container">
-          Delete for
-          <button
+  <h4 *ngIf="user.characters.length == 0">You dont have any characters</h4>
+  <mat-card
+    *ngFor="let character of user.characters"
+    class="user-info__character"
+  >
+    <img
+      src="{{ character.image }}"
+      alt="user-info__character-image"
+      class="user-info__character-image"
+    />
+    <div matLine class="user-info__character-characteristics">
+      <h4 matLine>{{ character.name }}</h4>
+      <p>Strength: {{ character.characteristics.strength }}</p>
+      <p>Dexterity: {{ character.characteristics.dexterity }}</p>
+      <p>Intelect: {{ character.characteristics.intelect }}</p>
+      <p>Income: {{ character.income }}</p>
+      <div class="user-info__character-characteristics--button-container">
+        Delete for
+        <button
           class="user-info__character-characteristics--button"
           type="button"
           mat-raised-button
@@ -46,9 +42,9 @@
           [disabled]="user.currencyBalance < character.price"
           (click)="onDeleteCharacter(character)"
         >
-          {{character.price}}
+          {{ character.price }}
         </button>
-        </div>
       </div>
-    </mat-card>
-  </div>
+    </div>
+  </mat-card>
+</div>

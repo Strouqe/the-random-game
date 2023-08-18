@@ -3,7 +3,7 @@ export class Character {
     public id: number,
     public name: string,
     public price: number,
-    public income: number, // Income per unit of time, can be negative
+    public income: number,
     public image: string,
     public fatigue: number,
     public characteristics: Characteristics

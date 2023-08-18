@@ -7,6 +7,7 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatListModule } from '@angular/material/list';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -16,12 +17,12 @@ import { AppComponent } from './app.component';
 import { BoardComponent } from './components/board/board.component';
 import { charactersComponent } from './components/characters/characters.component';
 import { DialogAnimationComponent } from './components/dialog-animation/dialog-animation.component';
+import { LeaderboardComponent } from './components/leaderboard/leaderboard.component';
 import { MissionResultComponent } from './components/mission-result/mission-result.component';
 import { MissionsComponent } from './components/missions/missions.component';
 import { PlayersOnlineComponent } from './components/players-online/players-online.component';
 import { UserInfoComponent } from './components/user-info/user-info.component';
 import { UserLoginComponent } from './components/user-login/user-login.component';
-import { LeaderboardComponent } from './components/leaderboard/leaderboard.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,6 @@ import { LeaderboardComponent } from './components/leaderboard/leaderboard.compo
     PlayersOnlineComponent,
     MissionResultComponent,
     LeaderboardComponent,
-
   ],
   imports: [
     BrowserModule,
@@ -51,8 +51,9 @@ import { LeaderboardComponent } from './components/leaderboard/leaderboard.compo
     MatButtonModule,
     MatFormFieldModule,
     MatInputModule,
+    MatProgressSpinnerModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
