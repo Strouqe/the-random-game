@@ -16,7 +16,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { BoardComponent } from './components/board/board.component';
 import { charactersComponent } from './components/characters/characters.component';
 import { DialogAnimationComponent } from './components/dialog-animation/dialog-animation.component';
 import { HomeComponent } from './components/home/home.component';
@@ -32,7 +31,6 @@ import { UserCharactersComponent } from './components/user-characters/user-chara
   declarations: [
     AppComponent,
     charactersComponent,
-    BoardComponent,
     MissionsComponent,
     DialogAnimationComponent,
     UserLoginComponent,

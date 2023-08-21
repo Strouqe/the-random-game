@@ -1,12 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { UserLoginComponent } from './components/user-login/user-login.component';
-import { BoardComponent } from './components/board/board.component';
 import { HomeComponent } from './components/home/home.component';
 
 const routes: Routes = [
   { path: '', component: UserLoginComponent, pathMatch: 'full' },
-  { path: 'board', component: BoardComponent, pathMatch: 'full' },
   { path: 'home', component: HomeComponent, pathMatch: 'full'},
 ];
 
