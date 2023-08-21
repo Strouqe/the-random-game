@@ -9,7 +9,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatListModule } from '@angular/material/list';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import {MatExpansionModule} from '@angular/material/expansion';
+import { MatExpansionModule } from '@angular/material/expansion';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -24,7 +24,6 @@ import { LeaderboardComponent } from './components/leaderboard/leaderboard.compo
 import { MissionResultComponent } from './components/mission-result/mission-result.component';
 import { MissionsComponent } from './components/missions/missions.component';
 import { PlayersOnlineComponent } from './components/players-online/players-online.component';
-import { UserInfoComponent } from './components/user-info/user-info.component';
 import { UserLoginComponent } from './components/user-login/user-login.component';
 import { NavComponent } from './components/nav/nav.component';
 import { UserCharactersComponent } from './components/user-characters/user-characters.component';
@@ -33,7 +32,6 @@ import { UserCharactersComponent } from './components/user-characters/user-chara
   declarations: [
     AppComponent,
     charactersComponent,
-    UserInfoComponent,
     BoardComponent,
     MissionsComponent,
     DialogAnimationComponent,
