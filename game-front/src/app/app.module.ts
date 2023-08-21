@@ -8,6 +8,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatListModule } from '@angular/material/list';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import {MatExpansionModule} from '@angular/material/expansion';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -17,12 +19,15 @@ import { AppComponent } from './app.component';
 import { BoardComponent } from './components/board/board.component';
 import { charactersComponent } from './components/characters/characters.component';
 import { DialogAnimationComponent } from './components/dialog-animation/dialog-animation.component';
+import { HomeComponent } from './components/home/home.component';
 import { LeaderboardComponent } from './components/leaderboard/leaderboard.component';
 import { MissionResultComponent } from './components/mission-result/mission-result.component';
 import { MissionsComponent } from './components/missions/missions.component';
 import { PlayersOnlineComponent } from './components/players-online/players-online.component';
 import { UserInfoComponent } from './components/user-info/user-info.component';
 import { UserLoginComponent } from './components/user-login/user-login.component';
+import { NavComponent } from './components/nav/nav.component';
+import { UserCharactersComponent } from './components/user-characters/user-characters.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +41,9 @@ import { UserLoginComponent } from './components/user-login/user-login.component
     PlayersOnlineComponent,
     MissionResultComponent,
     LeaderboardComponent,
+    HomeComponent,
+    NavComponent,
+    UserCharactersComponent,
   ],
   imports: [
     BrowserModule,
@@ -45,11 +53,13 @@ import { UserLoginComponent } from './components/user-login/user-login.component
     FormsModule,
     ReactiveFormsModule,
     MatCardModule,
+    MatExpansionModule,
     MatListModule,
     MatDialogModule,
     MatDividerModule,
     MatButtonModule,
     MatFormFieldModule,
+    MatToolbarModule,
     MatInputModule,
     MatProgressSpinnerModule,
   ],

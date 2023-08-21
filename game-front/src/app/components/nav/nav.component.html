@@ -1,0 +1,28 @@
+<mat-toolbar class="nav" color="primary">
+  <span>The RNDM game</span>
+  <div class="NAV_USER-INFO">
+    <span>{{user.name}} </span>
+    <span>Balance: {{user.currencyBalance}} </span>
+    <span>Income: {{user.currencyIncome}}/min</span>
+
+  </div>
+
+  <div class="nav__buttons">
+    <button
+      class="nav__button"
+      type="button"
+      mat-flat-button
+      (click)="openLeaderboardDialog('500ms', '500ms')"
+    >
+      Results
+    </button>
+    <button
+      class="nav__button"
+      type="button"
+      mat-flat-button
+      (click)="onLogout()"
+    >
+      Logout
+    </button>
+  </div>
+</mat-toolbar>

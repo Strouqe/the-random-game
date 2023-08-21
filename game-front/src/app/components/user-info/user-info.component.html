@@ -1,19 +1,19 @@
 <mat-card class="user-info" *ngIf="user">
-  <mat-list class="user-info__list">
+  <!-- <mat-list class="user-info__list">
     <mat-list-item> Name: {{ user.name }} </mat-list-item>
     <mat-list-item>
       Missions completed: {{ user.missionsCompleated.length }}
     </mat-list-item>
     <mat-list-item> Currency: {{ user.currencyBalance }} </mat-list-item>
     <mat-list-item> Income: {{ user.currencyIncome }}/min </mat-list-item>
-  </mat-list>
-  <button
+  </mat-list> -->
+  <!-- <button
     mat-raised-button
     color="primary"
     (click)="openMissionDialog('500ms', '500ms')"
   >
     Results
-  </button>
+  </button> -->
 </mat-card>
 <div *ngIf="user">
   <h4 *ngIf="user.characters.length == 0">You dont have any characters</h4>

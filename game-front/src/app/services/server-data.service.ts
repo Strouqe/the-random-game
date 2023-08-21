@@ -48,4 +48,11 @@ export class ServerDataService {
         }
       });
   }
+
+  clearAlldata(){
+    this.charactersChanged.next([]);
+    this.missionsChanged.next([]);
+    this.playersChanged.next([]);
+    this.dbDataChanged.next([]);
+  }
 }

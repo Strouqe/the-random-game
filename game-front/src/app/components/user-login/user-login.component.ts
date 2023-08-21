@@ -23,7 +23,8 @@ export class UserLoginComponent implements OnInit {
   onSubmit(): void {
     this.userService.setUser(this.userForm.value.userName);
     this.userService.initService();
-    this.router.navigate(['/board']);
+    // this.router.navigate(['/board']);
+    this.router.navigate(['/home']);
     this.userService.trigerStart();
   }
 
