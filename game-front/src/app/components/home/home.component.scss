@@ -21,15 +21,18 @@
   }
 
   &__generated{
-    height: 85%;
+    // display: felx;
+    // flex-direction: column;
+    // justify-content: space-around;
+    // height: 85%;
 
     &__characters{
-      height: 50%;
-      margin: 20px 0;
+      height: 60%;
+      // margin: 20px 0;
     }
     &__missions{
-      height: 40%;
-      margin: 20px 0;
+      // height: 40%;
+      // margin: 20px 0;
     }
   }
 }
