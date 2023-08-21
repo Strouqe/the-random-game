@@ -1,6 +1,9 @@
 .user-characters {
   width: 320px;
 
+  &__header{
+    color: #fff;
+  }
 
   &__character {
     display: flex;
