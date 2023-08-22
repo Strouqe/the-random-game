@@ -1,7 +1,11 @@
 <div *ngIf="user">
-  <h4 class="user-characters__header">{{user.characters.length == 0 ?
-  "You dont have any characters" : "My characters:"
-  }}</h4>
+  <h4 class="user-characters__header">
+    {{
+      user.characters.length == 0
+        ? "You dont have any characters"
+        : "My characters:"
+    }}
+  </h4>
   <mat-card
     *ngFor="let character of user.characters"
     class="user-characters__character"
@@ -13,9 +17,14 @@
     />
     <div matLine class="user-characters__character-characteristics">
       <h4 matLine>{{ character.name }}</h4>
-      <p>Strength: {{ character.characteristics.strength }}</p>
+      <p>
+        <span>Str:{{ character.characteristics.strength }} </span
+        ><span>Dex: {{ character.characteristics.dexterity }} </span
+        ><span>Int: {{ character.characteristics.intelect }}</span>
+      </p>
+      <!-- <p>Strength: {{ character.characteristics.strength }}</p>
       <p>Dexterity: {{ character.characteristics.dexterity }}</p>
-      <p>Intelect: {{ character.characteristics.intelect }}</p>
+      <p>Intelect: {{ character.characteristics.intelect }}</p> -->
       <p>Income: {{ character.income }}</p>
       <div class="user-characters__character-characteristics--button-container">
         Delete for

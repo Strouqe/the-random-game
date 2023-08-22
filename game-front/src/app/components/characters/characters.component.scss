@@ -8,7 +8,7 @@
     justify-content: space-evenly;
     align-items: center;
     width: 100%;
-    min-height: 350px;
+    min-height: 270px;
 
     text-align: center;
   }
@@ -16,7 +16,7 @@
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-gap: 8px;
-    min-height: 40%;
+    min-height: 50%;
 
     &__item {
       display: flex;
@@ -30,7 +30,7 @@
       &-image {
         width: 100px;
         height: 100px;
-        margin: 0 auto 0 10px;
+        margin: 0 auto 0 8px;
         object-fit: cover;
       }
 
