@@ -1,7 +1,5 @@
 .characters {
-
   width: 980px;
-
 
   &__spinner {
     display: flex;
@@ -19,6 +17,7 @@
     min-height: 50%;
 
     &__item {
+      scale: 0.9;
       display: flex;
       flex-direction: row;
       justify-content: space-around;

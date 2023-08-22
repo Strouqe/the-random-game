@@ -3,6 +3,7 @@
   flex-flow: column nowrap;
   width: 100%;
   height: 100%;
+  
   background-image: url(../../images/galaxy2.webp);
   background-size: cover;
 
@@ -29,12 +30,14 @@
     // height: 85%;
 
     &__characters{
+
       height: 50%;
       margin-top: 10px;
       // margin: 20px 0;
     }
     &__missions{
       height: 50%;
+
       // margin: 20px 0;
     }
   }
