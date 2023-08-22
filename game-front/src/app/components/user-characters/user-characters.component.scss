@@ -1,16 +1,8 @@
-.user-info {
+.user-characters {
   width: 320px;
 
-  &__list{
-    height: 160px;
-    width: 100%;
-    
-    line-height: 0.8;
-
-    & > * {
-      margin: 0;
-      height: 40px;
-    }
+  &__header{
+    color: #fff;
   }
 
   &__character {

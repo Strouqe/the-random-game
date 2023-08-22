@@ -39,6 +39,7 @@ export class charactersComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.charactersSubscription.unsubscribe();
+    this.userSubscription.unsubscribe();
   }
 
   onAddcharacter(character: Character): void {

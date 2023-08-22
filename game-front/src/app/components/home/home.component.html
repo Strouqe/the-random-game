@@ -1,0 +1,27 @@
+<div class="home">
+  <app-nav></app-nav>
+  <div class="home__board">
+    <app-user-characters></app-user-characters>
+
+    <div class="home__generated">
+      <div class="home__generated__characters">
+        <mat-expansion-panel hideToggle>
+          <mat-expansion-panel-header>
+            <mat-panel-title> Shop </mat-panel-title>
+          </mat-expansion-panel-header>
+          <app-characters></app-characters>
+        </mat-expansion-panel>
+      </div>
+
+      <div class="home__generated__missions">
+        <mat-expansion-panel hideToggle>
+          <mat-expansion-panel-header>
+            <mat-panel-title> Missions </mat-panel-title>
+          </mat-expansion-panel-header>
+          <app-missions></app-missions>
+        </mat-expansion-panel>
+      </div>
+    </div>
+  </div>
+  <app-players-online display="none"></app-players-online>
+</div>
