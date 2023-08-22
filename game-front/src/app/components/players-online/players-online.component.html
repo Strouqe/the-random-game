@@ -1,13 +1,3 @@
-<!-- <div class="players-online">
-  <div class="players-online__list">
-    <mat-card *ngFor="let player of players" class="players-online__list__item">
-      <h2 matLine>{{ player.name }}</h2>
-      <p>Number of charecters: {{ player.characters.length }}</p>
-      <p>Missions completed: {{ player.missionsCompleated.length }}</p>
-      <p>Time played: {{ player.timePlayed }}</p>
-    </mat-card>
-  </div>
-</div> -->
 <div class="players-online">
   <div [@scroll]="animationState" (@scroll.done)="scrollDone()">
     <div class="players-online__scrolling-text">

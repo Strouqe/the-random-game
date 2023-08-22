@@ -11,10 +11,11 @@
       />
       <div matLine class="characters__list__item-characteristics">
         <h4 matLine>{{ character.name }}</h4>
-        <p><span>Str:{{ character.characteristics.strength }} </span><span>Dex: {{ character.characteristics.dexterity }} </span><span>Int: {{ character.characteristics.intelect }}</span> </p>
-        <!-- <p>Strength: {{ character.characteristics.strength }}</p>
-        <p>Dexterity: {{ character.characteristics.dexterity }}</p>
-        <p>Intelect: {{ character.characteristics.intelect }}</p> -->
+        <p>
+          <span>Str:{{ character.characteristics.strength }} </span>
+          <span>Dex: {{ character.characteristics.dexterity }} </span>
+          <span>Int: {{ character.characteristics.intelect }}</span>
+        </p>
         <p>Income: {{ character.income }}</p>
         <div>
           Add for
@@ -32,7 +33,10 @@
       </div>
     </mat-card>
   </div>
-  <div class="characters__spinner" *ngIf="!characters || characters.length == 0">
+  <div
+    class="characters__spinner"
+    *ngIf="!characters || characters.length == 0"
+  >
     <mat-progress-spinner
       class="example-margin"
       color="primary"

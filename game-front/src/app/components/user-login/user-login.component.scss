@@ -1,9 +1,9 @@
-.login{
+.login {
   position: relative;
   height: 100%;
 
-  color: #bd7c40;
-  background-image: url(../../images/galaxy-3608029_1280.jpg);
+  color: #3F51B5;
+  background-image: url(../../images/blue-sky.svg);
   background-size: cover;
   &__header {
     position: absolute;
@@ -27,4 +27,3 @@
     }
   }
 }
-

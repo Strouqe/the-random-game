@@ -1,37 +1,24 @@
-// .players-online {
-//   max-width: 150px;
-//   margin: auto;
-//   text-align: center;
-
-//   &__list{
-//     &__item{
-//       height: 150px;
-//       width: 170px;
-//       margin: 15px 0;
-
-//       P{
-//         margin: 0;
-//       }
-//     }
-//   }
-// }
 .players-online {
   position: relative;
-  height: 70px;
+  height: 60px;
   width: 100%;
   overflow: hidden;
-  margin: 20px 0;
-  // border: 2px solid red;
+  padding: 13px 0;
+  margin-top: 10px;
+  align-self: end;
+
+  background-color: #3F51B5;
 
   &__scrolling-text {
     z-index: 1000;
     position: absolute;
     display: flex;
     width: 100%;
+    min-width: 60px;
     height: 100%;
     margin: 0;
     color: #fff;
-    line-height: 25px;
+    line-height: 20px;
     text-align: center;
     -moz-transform:translateX(100%);
     -webkit-transform:translateX(100%);
@@ -44,11 +31,7 @@
     &__player{
       display: flex;
       flex-direction: column;
-      width: 300px;
-      margin: 0 10px;
-      padding: 0 10px;
-      // border: 1px solid #ccc;
-      border-radius: 4px;
+      width: 200px;
     }
   }
 }
