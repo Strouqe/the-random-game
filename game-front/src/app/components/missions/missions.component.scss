@@ -3,6 +3,16 @@
   padding: 10px;
   margin: auto;
 
+  &__spinner {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 100%;
+    min-height: 250px;
+
+    text-align: center;
+  }
+
   &__list {
     display: grid;
     grid-template-columns: repeat(3, 1fr);

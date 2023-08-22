@@ -14,7 +14,6 @@ export class HomeComponent {
   userSubscription: Subscription;
   user: User;
 
-  panelOpenState = false;
 
   constructor(private userService: UserService, private router: Router,
     private dataService: ServerDataService) {}

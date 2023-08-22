@@ -9,14 +9,28 @@
     justify-content: center;
     align-items: center;
 
-    &__requirements {
+    &__box-titles {
       display: flex;
-      justify-content: space-around;
+      justify-content: space-between;
       align-items: center;
-      width: 35%;
+      width: 90%;
       margin: 10px auto;
 
       line-height: 0.6;
+
+      &--characters {
+        width: 40%;
+      }
+
+      &--requirements {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        width: 35%;
+        margin: 10px 60px 10px auto;
+
+        line-height: 0.6;
+      }
     }
   }
 
@@ -30,7 +44,7 @@
     border: 1px solid #ccc;
     border-radius: 4px;
 
-    &__list{
+    &__list {
       display: flex !important;
       flex-wrap: wrap;
 
@@ -56,36 +70,29 @@
 
 .characters {
   &__list {
-    &--card {
-      display: flex;
-      flex-direction: column;
-      justify-content: space-around;
-      align-items: center;
-
-      width: 260px;
-      height: 140px;
-      padding: 0 10px;
-      margin: 10px auto;
-    }
     &__item {
+      scale: 0.9;
       display: flex;
+      flex-direction: row;
       justify-content: space-around;
       align-items: center;
-      width: 100%;
+      width: 45%;
 
-      padding: 0 10px;
+      padding: 4px 8px;
+      margin: auto;
 
       &-image {
-        width: 125px;
-        height: 125px;
-        margin: 0 auto 0 10px;
+        width: 100px;
+        height: 100px;
+        margin: 0 auto 0 8px;
         object-fit: cover;
       }
 
       &-characteristics {
         align-items: center;
+        margin: 0 auto;
         & > * {
-          margin: 0 auto;
+          margin: 4px auto;
           text-align: center;
         }
       }

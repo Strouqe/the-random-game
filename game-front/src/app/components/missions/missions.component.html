@@ -14,4 +14,16 @@
       </button>
     </mat-card>
   </div>
+  <div
+    class="missions__spinner"
+    *ngIf="!missions"
+  >
+    <mat-progress-spinner
+      class="example-margin"
+      color="primary"
+      mode="indeterminate"
+    >
+    </mat-progress-spinner>
+    <div>Please wait for new mission to get posted</div>
+  </div>
 </div>

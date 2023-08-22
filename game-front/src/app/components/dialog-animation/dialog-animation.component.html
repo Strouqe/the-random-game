@@ -1,15 +1,72 @@
 <div class="dialog">
   <div class="dialog__mission-info">
     <h1 mat-dialog-title>{{ this.data.mission.name }}</h1>
-    <div class="dialog__mission-info__requirements">
-      <h2>Minimum requirements for a character:</h2>
-      <div>
-        <p>Strength: {{ this.data.mission.requirements.strength }}</p>
-        <p>Dexterity: {{ this.data.mission.requirements.dexterity }}</p>
-        <p>Intelect: {{ this.data.mission.requirements.intelect }}</p>
+    <div class="dialog__mission-info__box-titles">
+      <div class="dialog__mission-info__box-titles--characters">
+        <h2>Available Characters</h2>
+      </div>
+      <div class="dialog__mission-info__box-titles--requirements">
+        <h2>Character minimum requirements:</h2>
+        <div>
+          <p>Strength: {{ this.data.mission.requirements.strength }}</p>
+          <p>Dexterity: {{ this.data.mission.requirements.dexterity }}</p>
+          <p>Intelect: {{ this.data.mission.requirements.intelect }}</p>
+        </div>
       </div>
     </div>
     <div class="dialog__character-select">
+      <div class="dialog__container">
+        <div
+          cdkDropList
+          #characterList="cdkDropList"
+          [cdkDropListData]="characters"
+          [cdkDropListConnectedTo]="[partyList]"
+          class="dialog__container__list"
+          (cdkDropListDropped)="drop($event)"
+        >
+          <!-- <mat-card
+            cdkDrag
+            *ngFor="let character of characters"
+            class="characters__list--card"
+          >
+            <div class="characters__list__item">
+              <img
+                src="{{ character.image }}"
+                alt="character-image"
+                class="characters__list__item-image"
+              />
+              <div matLine class="characters__list__item-characteristics">
+                <h4 matLine>{{ character.name }}</h4>
+                <p>Strength: {{ character.characteristics.strength }}</p>
+                <p>Dexterity: {{ character.characteristics.dexterity }}</p>
+                <p>Intelect: {{ character.characteristics.intelect }}</p>
+                <p>Income: {{ character.income }}</p>
+              </div>
+            </div>
+          </mat-card> -->
+
+          <mat-card
+            cdkDrag
+            *ngFor="let character of characters"
+            class="characters__list__item"
+          >
+            <img
+              src="{{ character.image }}"
+              alt="characters__character-image"
+              class="characters__list__item-image"
+            />
+            <div matLine class="characters__list__item-characteristics">
+              <h4 matLine>{{ character.name }}</h4>
+              <p>
+                <span>Str:{{ character.characteristics.strength }} </span>
+                <span>Dex: {{ character.characteristics.dexterity }} </span>
+                <span>Int: {{ character.characteristics.intelect }}</span>
+              </p>
+              <p>Income: {{ character.income }}</p>
+            </div>
+          </mat-card>
+        </div>
+      </div>
       <div class="dialog__container">
         <h2>Choose {{ this.data.mission.partySize }} characters</h2>
         <div *ngIf="party.length == 0">Drop selected character here</div>
@@ -21,7 +78,7 @@
           class="dialog__container__list"
           (cdkDropListDropped)="drop($event)"
         >
-          <mat-card
+          <!-- <mat-card
             cdkDrag
             *ngFor="let character of party"
             class="characters__list--card"
@@ -40,37 +97,25 @@
                 <p>Income: {{ character.income }}</p>
               </div>
             </div>
-          </mat-card>
-        </div>
-      </div>
-      <div class="dialog__container">
-        <h2>Available Characters</h2>
-        <div
-          cdkDropList
-          #characterList="cdkDropList"
-          [cdkDropListData]="characters"
-          [cdkDropListConnectedTo]="[partyList]"
-          class="dialog__container__list"
-          (cdkDropListDropped)="drop($event)"
-        >
+          </mat-card> -->
           <mat-card
             cdkDrag
-            *ngFor="let character of characters"
-            class="characters__list--card"
+            *ngFor="let character of party"
+            class="characters__list__item"
           >
-            <div class="characters__list__item">
-              <img
-                src="{{ character.image }}"
-                alt="character-image"
-                class="characters__list__item-image"
-              />
-              <div matLine class="characters__list__item-characteristics">
-                <h4 matLine>{{ character.name }}</h4>
-                <p>Strength: {{ character.characteristics.strength }}</p>
-                <p>Dexterity: {{ character.characteristics.dexterity }}</p>
-                <p>Intelect: {{ character.characteristics.intelect }}</p>
-                <p>Income: {{ character.income }}</p>
-              </div>
+            <img
+              src="{{ character.image }}"
+              alt="characters__character-image"
+              class="characters__list__item-image"
+            />
+            <div matLine class="characters__list__item-characteristics">
+              <h4 matLine>{{ character.name }}</h4>
+              <p>
+                <span>Str:{{ character.characteristics.strength }} </span>
+                <span>Dex: {{ character.characteristics.dexterity }} </span>
+                <span>Int: {{ character.characteristics.intelect }}</span>
+              </p>
+              <p>Income: {{ character.income }}</p>
             </div>
           </mat-card>
         </div>
