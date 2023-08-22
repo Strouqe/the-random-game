@@ -19,7 +19,7 @@ import { User } from '../models/user.model';
 import { WebsocketService } from './websocket.service';
 
 const sampleUser: User = {
-  name: 'John Doe',
+  name: '',
   currencyBalance: 0,
   currencyIncome: 0,
   characters: [],
@@ -178,6 +178,12 @@ export class UserService {
   }
   trigerUpdateState(): void {
     this.trigerUpdateCountStateEvent.emit();
+  }
+
+  clearUser(): void {
+    this.trigerPause();
+    this.user = sampleUser;
+    this.userChanged.next(this.user);
   }
 
   private getUserIncome(): number {

@@ -5,11 +5,21 @@ import { User } from 'src/app/models/user.model';
 import { ServerDataService } from 'src/app/services/server-data.service';
 import { UserService } from 'src/app/services/user.service';
 import { WebsocketService } from 'src/app/services/websocket.service';
+import { trigger, state, style, animate, transition } from '@angular/animations';
 
 @Component({
   selector: 'app-players-online',
   templateUrl: './players-online.component.html',
   styleUrls: ['./players-online.component.scss'],
+  animations: [
+    trigger('scroll', [
+      state('on', style({left: '-100px'})),
+      transition('* => *', [
+        style({left: '-100px'}),
+        animate(10000, style({left: '100%'}))
+      ])
+    ])
+  ]
 })
 export class PlayersOnlineComponent implements OnInit, OnDestroy {
   playersSubscription: Subscription;
@@ -17,6 +27,8 @@ export class PlayersOnlineComponent implements OnInit, OnDestroy {
   players: User[];
   user: User;
   message: Message;
+
+  animationState = 0;
 
   constructor(
     private dataService: ServerDataService,
@@ -50,5 +62,9 @@ export class PlayersOnlineComponent implements OnInit, OnDestroy {
       data: this.userService.getUser().name,
     };
     this.wsService.sendToServer(this.message);
+  }
+
+  scrollDone() {
+    this.animationState++;
   }
 }

@@ -1,18 +1,23 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Subscription } from 'rxjs';
+import { Character } from 'src/app/models/character.model';
 import { User } from 'src/app/models/user.model';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
-  selector: 'app-board',
-  templateUrl: './board.component.html',
-  styleUrls: ['./board.component.scss'],
+  selector: 'app-user-characters',
+  templateUrl: './user-characters.component.html',
+  styleUrls: ['./user-characters.component.scss']
 })
-export class BoardComponent implements OnInit, OnDestroy {
+export class UserCharactersComponent {
   userSubscription: Subscription;
   user: User;
 
-  constructor(private userService: UserService) {}
+
+  constructor(
+
+    private userService: UserService,
+  ) {}
 
   ngOnInit(): void {
     this.userSubscription = this.userService.userChanged.subscribe(
@@ -23,5 +28,9 @@ export class BoardComponent implements OnInit, OnDestroy {
   }
   ngOnDestroy(): void {
     this.userSubscription.unsubscribe();
+  }
+
+  onDeleteCharacter(character: Character) {
+    this.userService.deleteCharacter(character);
   }
 }

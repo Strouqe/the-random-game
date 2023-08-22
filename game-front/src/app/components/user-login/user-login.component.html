@@ -1,14 +1,22 @@
-<form class="form" [formGroup]="userForm" (ngSubmit)="onSubmit()">
-  <mat-form-field appearance="outline">
-    <mat-label>Name</mat-label>
-    <input formControlName="userName" matInput minlength="3" />
-  </mat-form-field>
-  <button
-    type="submit"
-    mat-raised-button
-    color="primary"
-    [disabled]="!userForm.valid"
-  >
-    Submit
-  </button>
-</form>
+<div class="login">
+  <div class="login__header">
+    <h3>The RNDM game</h3>
+    <p>By Strouqe</p>
+  </div>
+  <form class="login__form" [formGroup]="userForm" (ngSubmit)="onSubmit()">
+    <h3>Enter your Name</h3>
+    <mat-form-field appearance="outline">
+      <mat-label>Name</mat-label>
+      <input formControlName="userName" matInput minlength="3" />
+    </mat-form-field>
+    <button
+      type="submit"
+      mat-raised-button
+      color="primary"
+      [disabled]="!userForm.valid"
+    >
+      Let's play
+    </button>
+  </form>
+
+</div>

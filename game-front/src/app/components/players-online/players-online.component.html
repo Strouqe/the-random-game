@@ -1,4 +1,4 @@
-<div class="players-online">
+<!-- <div class="players-online">
   <div class="players-online__list">
     <mat-card *ngFor="let player of players" class="players-online__list__item">
       <h2 matLine>{{ player.name }}</h2>
@@ -6,5 +6,23 @@
       <p>Missions completed: {{ player.missionsCompleated.length }}</p>
       <p>Time played: {{ player.timePlayed }}</p>
     </mat-card>
+  </div>
+</div> -->
+<div class="players-online">
+  <div [@scroll]="animationState" (@scroll.done)="scrollDone()">
+    <div class="players-online__scrolling-text">
+      <div
+        class="players-online__scrolling-text__player"
+        *ngFor="let player of players"
+      >
+        <div class="players-online__scrolling-text__player--name">{{ player.name }}</div>
+        <div class="players-online__scrolling-text__player--info">
+          <div>Missions completed: {{ player.missionsCompleated.length }}</div>
+          <!-- <span>Number of charecters: {{ player.characters.length }}</span>
+          <span>Missions completed: {{ player.missionsCompleated.length }}</span> -->
+          <div>Time played: {{ player.timePlayed }}</div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>

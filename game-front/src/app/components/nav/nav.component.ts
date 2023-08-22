@@ -1,29 +1,27 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { environment } from 'src/app/environments/environment';
-import { Character } from 'src/app/models/character.model';
 import { User } from 'src/app/models/user.model';
 import { UserService } from 'src/app/services/user.service';
 import { WebsocketService } from 'src/app/services/websocket.service';
 import { LeaderboardComponent } from '../leaderboard/leaderboard.component';
 
-export const WS_ENDPOINT = environment.URL;
-
 @Component({
-  selector: 'app-user-info',
-  templateUrl: './user-info.component.html',
-  styleUrls: ['./user-info.component.scss'],
+  selector: 'app-nav',
+  templateUrl: './nav.component.html',
+  styleUrls: ['./nav.component.scss'],
 })
-export class UserInfoComponent implements OnInit, OnDestroy {
+export class NavComponent implements OnInit, OnDestroy{
   userSubscription: Subscription;
   user: User;
   message = {};
 
   constructor(
+    private router: Router,
     public dialog: MatDialog,
     private userService: UserService,
-    private wsService: WebsocketService
+    private wsService: WebsocketService,
   ) {}
 
   ngOnInit(): void {
@@ -39,14 +37,11 @@ export class UserInfoComponent implements OnInit, OnDestroy {
       data: this.userService.getUser(),
     };
     this.userSubscription.unsubscribe();
+
     this.wsService.sendToServer(this.message);
   }
 
-  onDeleteCharacter(character: Character) {
-    this.userService.deleteCharacter(character);
-  }
-
-  openMissionDialog(
+  openLeaderboardDialog(
     enterAnimationDuration: string,
     exitAnimationDuration: string
   ): void {
@@ -56,5 +51,12 @@ export class UserInfoComponent implements OnInit, OnDestroy {
       exitAnimationDuration,
       data: {},
     });
+  }
+
+  onLogout(): void {
+    this.router.navigate(['/']);
+    // this.userService.clearUser();
+    // this.dataService.clearAlldata();
+    window.location.reload();
   }
 }

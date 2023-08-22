@@ -1,16 +1,8 @@
-.user-info {
+.user-characters {
   width: 320px;
 
-  &__list{
-    height: 160px;
-    width: 100%;
-    
-    line-height: 0.8;
-
-    & > * {
-      margin: 0;
-      height: 40px;
-    }
+  &__header{
+    color: #fff;
   }
 
   &__character {
@@ -18,16 +10,18 @@
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
-    height: 180px;
+
+    // height: 180px;
     width: 320px;
 
-    padding: 0 10px;
+    padding: 0 8px;
     margin: 10px 0;
 
     &-image {
-      width: 140px;
-      height: 140px;
-      margin: 0 auto 0 10px;
+      width: 100px;
+      height: 100px;
+      margin: 0 auto 0 8px;
+
       object-fit: cover;
     }
 
