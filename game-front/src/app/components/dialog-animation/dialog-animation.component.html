@@ -49,14 +49,32 @@
       </div>
       <div class="dialog__container">
         <div class="dialog__mission-info__box-titles--requirements">
-          <h2>Character minimum requirements:</h2>
+          <h2>
+            Required sum of Characteristics:
+            {{ 10 * (this.data.mission.difficulty / 100) * 4 }} -
+            {{ 20 * (this.data.mission.difficulty / 100) * 4 }}
+          </h2>
           <div>
-            <p>Strength: {{ this.data.mission.requirements.strength }}</p>
+            <!-- <p>Strength: {{ this.data.mission.requirements.strength }}</p>
             <p>Dexterity: {{ this.data.mission.requirements.dexterity }}</p>
-            <p>Intelect: {{ this.data.mission.requirements.intelect }}</p>
+            <p>Intelect: {{ this.data.mission.requirements.intelect }}</p> -->
+            <!-- <p>
+              {{ 10 * (this.data.mission.difficulty / 100) * 4 }} -
+              {{ 20 * (this.data.mission.difficulty / 100) * 4 }}
+            </p> -->
           </div>
         </div>
-        <div class="dialog__mission-info__box-titles--description">Choose {{ this.data.mission.partySize }} characters and drop them here</div>
+        <div class="dialog__mission-info__box-titles--party-stats">
+          <h4>Sum of your party characteristics:</h4>
+          <div>
+            <p>Strength: {{ this.partyStats.strength }}</p>
+            <p>Dexterity: {{ this.partyStats.dexterity }}</p>
+            <p>Intelect: {{ this.partyStats.intelect }}</p>
+          </div>
+        </div>
+        <div class="dialog__mission-info__box-titles--description">
+          Choose {{ this.data.mission.partySize }} characters and drop them here
+        </div>
         <!-- <div *ngIf="party.length == 0">Drop selected character here</div> -->
         <div
           cdkDropList

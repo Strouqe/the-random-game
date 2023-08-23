@@ -45,6 +45,11 @@ export class MissionsService {
       this.promiseReject = reject;
     }).then((result) => {
       if (result == 'Victory') {
+        party.forEach((character) => {
+          character.characteristics.strength -= 2;
+          character.characteristics.dexterity -= 2;
+          character.characteristics.intelect -= 2;
+        });
         this.user.characters = [...this.user.characters, ...party];
         this.user.missionsCompleated.push(mission);
         this.user.currencyBalance += mission.reward;

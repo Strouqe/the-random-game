@@ -24,9 +24,9 @@
     -webkit-transform:translateX(100%);
     transform:translateX(100%);
     /* Apply animation to this element */
-    -moz-animation: players-online 15s linear infinite;
-    -webkit-animation: players-online 15s linear infinite;
-    animation: players-online 15s linear infinite;
+    -moz-animation: players-online 60s linear infinite;
+    -webkit-animation: players-online 60s linear infinite;
+    animation: players-online 60s linear infinite;
 
     &__player{
       display: flex;

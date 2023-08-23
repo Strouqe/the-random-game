@@ -34,6 +34,7 @@ export class ServerDataService {
     this.wsSubscription = this.wsService
       .connect()
       .subscribe((response: any) => {
+        console.log("responce from server ====>",response);
         switch (response.type) {
           case 'data responce':
             let dbData = JSON.parse(response.data.dbdata);
