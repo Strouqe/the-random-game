@@ -26,10 +26,18 @@
         display: flex;
         justify-content: space-around;
         align-items: center;
-        width: 35%;
-        margin: 10px 60px 10px auto;
+        width: 85%;
+        margin: 10px auto;
+        // margin: 10px 60px 10px auto;
 
         line-height: 0.6;
+      }
+
+      &--description{
+        width: 50%;
+        margin: 0 auto;
+
+        font-style: italic;
       }
     }
   }
@@ -43,6 +51,11 @@
 
     border: 1px solid #ccc;
     border-radius: 4px;
+
+    &__heading{
+      width: 40%;
+      margin: 30px auto;
+    }
 
     &__list {
       display: flex !important;
