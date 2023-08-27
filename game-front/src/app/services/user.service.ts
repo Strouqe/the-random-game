@@ -183,6 +183,7 @@ export class UserService {
   clearUser(): void {
     this.trigerPause();
     this.user = sampleUser;
+    this.trigerUpdateState();
     this.userChanged.next(this.user);
   }
 

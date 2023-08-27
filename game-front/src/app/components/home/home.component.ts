@@ -45,9 +45,9 @@ export class HomeComponent {
 
   onLogout(): void {
     this.router.navigate(['/']);
-    // this.userService.clearUser();
+    this.userService.clearUser();
     // this.dataService.clearAlldata();
-    window.location.reload()
+    // window.location.reload()
   }
 
 }
