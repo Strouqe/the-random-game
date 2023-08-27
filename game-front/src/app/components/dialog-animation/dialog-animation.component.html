@@ -64,14 +64,7 @@
             </p> -->
           </div>
         </div>
-        <div class="dialog__mission-info__box-titles--party-stats">
-          <h4>Sum of your party characteristics:</h4>
-          <div>
-            <p>Strength: {{ this.partyStats.strength }}</p>
-            <p>Dexterity: {{ this.partyStats.dexterity }}</p>
-            <p>Intelect: {{ this.partyStats.intelect }}</p>
-          </div>
-        </div>
+
         <div class="dialog__mission-info__box-titles--description">
           Choose {{ this.data.mission.partySize }} characters and drop them here
         </div>
@@ -107,6 +100,15 @@
         </div>
       </div>
     </div>
+    <div class="dialog__mission-info__box-titles--party-stats">
+      <h4>Sum of your party characteristics:</h4>
+      <div>
+        <p>Strength: {{ this.partyStats.strength }}</p>
+        <p>Dexterity: {{ this.partyStats.dexterity }}</p>
+        <p>Intelect: {{ this.partyStats.intelect }}</p>
+      </div>
+    </div>
+
     <div mat-dialog-content>Start the mission?</div>
     <div mat-dialog-actions>
       <button mat-button mat-dialog-close (click)="resumeGeneration()">

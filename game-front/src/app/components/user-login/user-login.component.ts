@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ServerDataService } from 'src/app/services/server-data.service';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
@@ -13,6 +14,7 @@ export class UserLoginComponent implements OnInit {
 
   constructor(
     private userService: UserService,
+    private dataService: ServerDataService,
     private router: Router
   ) {}
 
@@ -21,11 +23,19 @@ export class UserLoginComponent implements OnInit {
   }
 
   onSubmit(): void {
-    this.userService.setUser(this.userForm.value.userName);
-    this.userService.initService();
-    // this.router.navigate(['/board']);
-    this.router.navigate(['/home']);
-    this.userService.trigerStart();
+    this.dataService.nameValidation(this.userForm.value.userName).then((res) => {
+      if(res) {
+        this.userService.setUser(this.userForm.value.userName);
+        this.userService.initService();
+        // this.router.navigate(['/board']);
+        this.router.navigate(['/home']);
+        this.userService.trigerStart();
+      } else {
+        alert('User name already in use');
+      }
+    })
+
+
   }
 
   private initForm(): void {

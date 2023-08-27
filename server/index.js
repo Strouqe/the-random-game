@@ -65,6 +65,24 @@ wss.on("connection", (ws) => {
     ws.on("message", (data) => {
         const message = JSON.parse(data.toString());
         switch (message.type) {
+            case "name validation":
+                if (connectedUsers.some((user) => user.name === message.data)) {
+                    let responce = JSON.stringify({
+                        type: "name validation",
+                        data: "invalid",
+                    });
+                    console.log("name invalid");
+                    ws.send(responce);
+                }
+                else {
+                    let responce = JSON.stringify({
+                        type: "name validation",
+                        data: "valid",
+                    });
+                    // console.log("name valid");
+                    ws.send(responce);
+                }
+                break;
             case "login":
                 connectedUsers.push(message.data);
                 ws.send(getData());

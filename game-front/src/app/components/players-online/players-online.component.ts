@@ -47,21 +47,11 @@ export class PlayersOnlineComponent implements OnInit, OnDestroy {
         this.user = user;
       }
     );
-    this.message = {
-      type: 'login',
-      data: this.userService.getUser(),
-    };
-    this.wsService.sendToServer(this.message);
   }
 
   ngOnDestroy(): void {
     this.playersSubscription.unsubscribe();
     this.userSubscription.unsubscribe();
-    this.message = {
-      type: 'logout',
-      data: this.userService.getUser().name,
-    };
-    this.wsService.sendToServer(this.message);
   }
 
   scrollDone() {

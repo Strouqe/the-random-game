@@ -1,21 +1,34 @@
 .login {
-  position: relative;
-  height: 100%;
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+height: 100%;
+width: 100%;
+
 
   color: #3F51B5;
   background-image: url(../../images/blue-sky.svg);
   background-size: cover;
   &__header {
-    position: absolute;
-    top: 10%;
-    left: 20%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 40%;
+    width: 100%;
+
+
+    // position: absolute;
+    // top: 10%;
+    // left: 20%;
   }
 
   &__form {
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    min-height: 100%;
+
+    min-height: 50%;
     width: 100%;
 
     height: 100%;
