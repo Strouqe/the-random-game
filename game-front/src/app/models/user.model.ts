@@ -9,5 +9,6 @@ export class User {
     public characters: Character[],
     public missionsCompleated: Mission[],
     public timePlayed: number,
+    public points: number
   ){}
 }

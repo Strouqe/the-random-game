@@ -45,24 +45,45 @@ export class MissionsService {
       this.promiseReject = reject;
     }).then((result) => {
       if (result == 'Victory') {
-        party.forEach((character) => {
-          character.characteristics.strength -= 2;
-          character.characteristics.dexterity -= 2;
-          character.characteristics.intelect -= 2;
-        });
+        if (party.length != mission.partySize) {
+          this.user.points += (mission.partySize - party.length) * (mission.reward/2);
+        }
+        this.charecterStatPenalty(party, mission);
+        this.user.points += mission.reward;
         this.user.characters = [...this.user.characters, ...party];
         this.user.missionsCompleated.push(mission);
         this.user.currencyBalance += mission.reward;
         this.userService.userChanged.next(this.user);
         this.userService.trigerUpdateState();
+        console.log('user in mission service =====>', this.user);
         return true;
       } else {
-        this.user.characters = [...this.user.characters];
+        // if(party.length < mission.partySize){
+        //   this.user.points += (party.length - mission.partySize)*100
+        // } Do I need to give a penalty to big party in the case of defeat?
+        this.charecterStatPenalty(party, mission);
+        this.user.characters = [...this.user.characters, ...party];
+        this.user.missionsCompleated.push(mission);
         this.userService.userChanged.next(this.user);
         this.userService.updateIncome();
         return false;
       }
     });
     return result;
+  }
+
+  private charecterStatPenalty(party: Character[], mission: Mission) {
+    party.forEach((character: Character) => {
+      let statPenalty = 0
+      if(character.price - mission.difficulty > 0){
+        statPenalty = ((character.price - mission.difficulty) / 100) * 2
+      }
+      character.characteristics.strength -=
+        2 + statPenalty;
+      character.characteristics.dexterity -=
+        2 + statPenalty;
+      character.characteristics.intelect -=
+        2 + statPenalty;
+    });
   }
 }

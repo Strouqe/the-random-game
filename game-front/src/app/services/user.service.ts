@@ -25,6 +25,7 @@ const sampleUser: User = {
   characters: [],
   missionsCompleated: [],
   timePlayed: 0,
+  points: 0,
 };
 
 export interface CounterStateModel {
