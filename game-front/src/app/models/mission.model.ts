@@ -10,3 +10,9 @@ export class Mission {
     public partySize: number,
   ){}
 }
+
+
+export interface MissionResults {
+  result: boolean,
+  points: number
+}

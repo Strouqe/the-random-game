@@ -11,13 +11,13 @@ let db = new sqlite3.Database(
   }
 );
 
-// sql = `CREATE TABLE users(id INTEGER PRIMARY KEY, name, balance, mission, difficulty, result)`
+// sql = `CREATE TABLE users(id INTEGER PRIMARY KEY, name, balance, timePlayed, points)`
 // db.run(sql)
 
 // db.run("DROP TABLE users")
-export function addEntry(name: string, balance: number, mission: string, difficulty: string, result: string) {
-  sql = `INSERT INTO users(name, balance, mission, difficulty, result) VALUES(?, ?, ?, ?, ?)`;
-  db.run(sql, [name, balance, mission, difficulty, result], (err: any) => {
+export function addEntry(name: string, balance: number, timePlayed: number, points: number) {
+  sql = `INSERT INTO users(name, balance, timePlayed, points) VALUES(?, ?, ?, ?)`;
+  db.run(sql, [name, balance, timePlayed, points], (err: any) => {
     if (err) return console.error(err.message);
   });
 }

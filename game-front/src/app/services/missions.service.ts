@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { Character } from '../models/character.model';
-import { Mission } from '../models/mission.model';
+import { Mission, MissionResults } from '../models/mission.model';
 import { User } from '../models/user.model';
 import { UserService } from './user.service';
 import { WebsocketService } from './websocket.service';
@@ -27,7 +27,11 @@ export class MissionsService {
     );
   }
 
-  async getResult(mission: Mission, party: Character[]): Promise<boolean> {
+  async getResult(
+    mission: Mission,
+    party: Character[]
+  ): Promise<MissionResults> {
+    let points = 0;
     let message = {
       type: 'mission result',
       data: {
@@ -46,13 +50,14 @@ export class MissionsService {
     }).then((result) => {
       if (result == 'Victory') {
         if (party.length != mission.partySize) {
-          this.user.points += (mission.partySize - party.length) * (mission.reward/2);
+          points += (mission.partySize - party.length) * (mission.reward / 2);
         }
         this.charecterStatPenalty(party, mission);
-        this.user.points += mission.reward;
+        points += mission.reward;
         this.user.characters = [...this.user.characters, ...party];
         this.user.missionsCompleated.push(mission);
         this.user.currencyBalance += mission.reward;
+        this.user.points += points;
         this.userService.userChanged.next(this.user);
         this.userService.trigerUpdateState();
         console.log('user in mission service =====>', this.user);
@@ -69,21 +74,18 @@ export class MissionsService {
         return false;
       }
     });
-    return result;
+    return { result, points };
   }
 
   private charecterStatPenalty(party: Character[], mission: Mission) {
     party.forEach((character: Character) => {
-      let statPenalty = 0
-      if(character.price - mission.difficulty > 0){
-        statPenalty = ((character.price - mission.difficulty) / 100) * 2
+      let statPenalty = 0;
+      if (character.price - mission.difficulty > 0) {
+        statPenalty = ((character.price - mission.difficulty) / 100) * 2;
       }
-      character.characteristics.strength -=
-        2 + statPenalty;
-      character.characteristics.dexterity -=
-        2 + statPenalty;
-      character.characteristics.intelect -=
-        2 + statPenalty;
+      character.characteristics.strength -= 2 + statPenalty;
+      character.characteristics.dexterity -= 2 + statPenalty;
+      character.characteristics.intelect -= 2 + statPenalty;
     });
   }
 }

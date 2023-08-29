@@ -124,6 +124,11 @@ wss.on("connection", (ws) => {
                 });
                 ws.send(responce);
                 break;
+            case "end user session":
+                console.log("end user session", JSON.parse(message.data));
+                let entry = JSON.parse(message.data);
+                db.addEntry(entry.name, entry.currencyBalance, entry.timePlayed, entry.points);
+                break;
         }
     });
 });

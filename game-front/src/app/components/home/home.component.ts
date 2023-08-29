@@ -40,14 +40,5 @@ export class HomeComponent {
     };
     this.wsService.sendToServer(this.message);
     this.userSubscription.unsubscribe();
-    // window.location.reload()
   }
-
-  onLogout(): void {
-    this.router.navigate(['/']);
-    this.userService.clearUser();
-    // this.dataService.clearAlldata();
-    // window.location.reload()
-  }
-
 }

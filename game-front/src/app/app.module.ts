@@ -26,6 +26,7 @@ import { PlayersOnlineComponent } from './components/players-online/players-onli
 import { UserLoginComponent } from './components/user-login/user-login.component';
 import { NavComponent } from './components/nav/nav.component';
 import { UserCharactersComponent } from './components/user-characters/user-characters.component';
+import { FinalScreenComponent } from './components/final-screen/final-screen.component'
 
 @NgModule({
   declarations: [
@@ -40,6 +41,7 @@ import { UserCharactersComponent } from './components/user-characters/user-chara
     HomeComponent,
     NavComponent,
     UserCharactersComponent,
+    FinalScreenComponent,
   ],
   imports: [
     BrowserModule,
