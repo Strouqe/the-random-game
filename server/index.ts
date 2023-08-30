@@ -89,27 +89,38 @@ wss.on("connection", (ws: WebSocket) => {
         break;
       case "mission result":
         let result = startMission(message.data.difficulty, message.data.party);
-        result
-          ? db.addEntry(
-              message.data.name,
-              message.data.currencyBalance,
-              message.data.mission,
-              message.data.difficulty,
-              "Victory"
-            )
-          : db.addEntry(
-              message.data.name,
-              message.data.currencyBalance,
-              message.data.mission,
-              message.data.difficulty,
-              "Defeat"
-            );
+        
+        // result
+        //   ? db.addEntry(
+        //       message.data.name,
+        //       message.data.currencyBalance,
+        //       message.data.mission,
+        //       message.data.difficulty,
+        //       "Victory"
+        //     )
+        //   : db.addEntry(
+        //       message.data.name,
+        //       message.data.currencyBalance,
+        //       message.data.mission,
+        //       message.data.difficulty,
+        //       "Defeat"
+        //     );
         let responce = JSON.stringify({
           type: "mission result responce",
           data: result ? "Victory" : "Defeat",
         });
         ws.send(responce);
         break;
+      case "end user session":
+        console.log("end user session", JSON.parse(message.data))
+        let entry = JSON.parse(message.data)
+       db.addEntry(
+                entry.name,
+                entry.currencyBalance,
+                entry.timePlayed,
+                entry.points,
+            );
+        break
     }
   });
 });

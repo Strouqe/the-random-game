@@ -3,8 +3,7 @@ export class DbEntry {
     public id: number,
     public name: string,
     public balance: number,
-    public mission: string,
-    public difficulty: number,
-    public result: string,
+    public timePlayed: number,
+    public points: number
   ){}
 }

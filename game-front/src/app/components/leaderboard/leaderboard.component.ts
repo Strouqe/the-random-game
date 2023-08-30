@@ -32,7 +32,7 @@ export class LeaderboardComponent implements OnInit, OnDestroy {
     this.dataSubscription = this.dataService.dbDataChanged.subscribe(
       (dbData) => {
         this.dbData = dbData
-        this.dbData = this.dbData.slice(Math.max(this.dbData.length - 10, 0))
+        this.dbData = this.dbData.slice(0, 10)
         console.log("leaderboard dialog", this.dbData)
       }
     );

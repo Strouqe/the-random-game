@@ -1,11 +1,11 @@
 <div class="dialog">
   <button class="dialog__close" mat-button mat-dialog-close>X</button>
   <div>
-    <h2>Last 10 missions</h2>
+    <h2>Top Highscores</h2>
     <mat-list class="dialog__list">
       <div *ngIf="!dbData">Loading...</div>
       <mat-list-item class="dialog__list__item" *ngFor="let entry of dbData">
-        id: {{ entry.id }} name: {{ entry.name }} mission: {{ entry.mission }} result: {{ entry.result }}
+      {{dbData.indexOf(entry) + 1}}.  Name: {{ entry.name }} Points: {{ entry.points }}
       </mat-list-item>
     </mat-list>
   </div>

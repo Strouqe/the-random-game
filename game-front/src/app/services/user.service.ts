@@ -25,6 +25,7 @@ const sampleUser: User = {
   characters: [],
   missionsCompleated: [],
   timePlayed: 0,
+  points: 0,
 };
 
 export interface CounterStateModel {
@@ -62,7 +63,7 @@ export class UserService {
   }
 
   setUser(userName: string) {
-    this.user = sampleUser;
+    this.user = new User("",0,0,[],[],0,0);
     this.user.name = userName;
     this.userChanged.next(this.user);
   }
@@ -182,9 +183,10 @@ export class UserService {
 
   clearUser(): void {
     this.trigerPause();
-    this.user = sampleUser;
+    this.setUser("")
+    // this.user = sampleUser;
+    // this.userChanged.next(this.user);
     this.trigerUpdateState();
-    this.userChanged.next(this.user);
   }
 
   private getUserIncome(): number {

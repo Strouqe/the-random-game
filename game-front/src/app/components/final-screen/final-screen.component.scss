@@ -1,0 +1,25 @@
+.final-screen {
+  display: flex;
+  flex-flow: column;
+  min-height: 350px;
+  width: 100%;
+  justify-content: space-between;
+  align-content: center;
+  overflow: hidden;
+
+  &__header{
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  &__score{
+    margin: 0 auto;
+    text-align: center;
+    line-height: 2;
+  }
+
+  &__button{
+    width: 20%;
+    margin: 10px auto;
+  }
+}

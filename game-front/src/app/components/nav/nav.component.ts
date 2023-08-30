@@ -12,7 +12,7 @@ import { LeaderboardComponent } from '../leaderboard/leaderboard.component';
   templateUrl: './nav.component.html',
   styleUrls: ['./nav.component.scss'],
 })
-export class NavComponent implements OnInit, OnDestroy{
+export class NavComponent implements OnInit, OnDestroy {
   userSubscription: Subscription;
   user: User;
   message = {};
@@ -21,7 +21,7 @@ export class NavComponent implements OnInit, OnDestroy{
     private router: Router,
     public dialog: MatDialog,
     private userService: UserService,
-    private wsService: WebsocketService,
+    private wsService: WebsocketService
   ) {}
 
   ngOnInit(): void {
@@ -39,6 +39,7 @@ export class NavComponent implements OnInit, OnDestroy{
     this.userSubscription.unsubscribe();
 
     this.wsService.sendToServer(this.message);
+    this.userService.clearUser();
   }
 
   openLeaderboardDialog(
@@ -54,9 +55,10 @@ export class NavComponent implements OnInit, OnDestroy{
   }
 
   onLogout(): void {
-    this.router.navigate(['/']);
     // this.userService.clearUser();
+    this.router.navigate(['/']);
+    // this.userService.trigerUpdateState()
     // this.dataService.clearAlldata();
-    window.location.reload();
+    // window.location.reload()
   }
 }
