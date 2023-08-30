@@ -69,7 +69,7 @@ export class MissionResultComponent implements OnInit{
       enterAnimationDuration,
       exitAnimationDuration,
       data: {
-        user: JSON.stringify(this.user)
+        user: this.user
       },
     });
   }

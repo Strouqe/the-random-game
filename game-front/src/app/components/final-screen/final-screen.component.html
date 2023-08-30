@@ -3,13 +3,19 @@
     <h2>Congratulations! You have compleated the game</h2>
   </div>
   <div class="final-screen__score">
-    You'r final score is !!SCORE!!
+    <h3 *ngIf="userEntry">
+      You are number {{dbData.indexOf(userEntry)}} in the leaderboard
+    </h3>
+    <h4>
+      You'r final score is {{user.points}}
+    </h4>
   </div>
   <button
   mat-button
   mat-dialog-close
   mat-raised-button
   cdkFocusInitial
+  class="final-screen__button"
   color="primary"
   (click)="onRestart()"
 >

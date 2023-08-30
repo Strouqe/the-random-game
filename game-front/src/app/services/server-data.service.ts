@@ -43,10 +43,14 @@ export class ServerDataService {
         console.log("responce from server ====>",response);
         switch (response.type) {
           case 'data responce':
-            let dbData = JSON.parse(response.data.dbdata);
+            let dbData: DbEntry[] = JSON.parse(response.data.dbdata);
             this.charactersChanged.next(response.data.characters);
             this.missionsChanged.next(response.data.missions);
             this.playersChanged.next(response.data.currentConnectedUsers);
+
+            dbData.sort((a,b)=>{
+              return b.points - a.points
+            })
             this.dbDataChanged.next(dbData);
             break;
           case 'mission result responce':
@@ -84,11 +88,7 @@ export class ServerDataService {
     }
 
 
-  // onForceLogout(): void {
-  //   this.router.navigate(['/']);
-  //   window.location.reload()
-  //   console.log('force logout');
-  // }
+
 
   clearAlldata(){
     this.charactersChanged.next([]);
