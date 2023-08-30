@@ -11,12 +11,12 @@ let db = new sqlite3_1.default.Database("./test.db", sqlite3_1.default.OPEN_READ
         return console.error(err.message);
     console.log("Connected to the test database.");
 });
-// sql = `CREATE TABLE users(id INTEGER PRIMARY KEY, name, balance, mission, difficulty, result)`
+// sql = `CREATE TABLE users(id INTEGER PRIMARY KEY, name, balance, timePlayed, points)`
 // db.run(sql)
 // db.run("DROP TABLE users")
-function addEntry(name, balance, mission, difficulty, result) {
-    sql = `INSERT INTO users(name, balance, mission, difficulty, result) VALUES(?, ?, ?, ?, ?)`;
-    db.run(sql, [name, balance, mission, difficulty, result], (err) => {
+function addEntry(name, balance, timePlayed, points) {
+    sql = `INSERT INTO users(name, balance, timePlayed, points) VALUES(?, ?, ?, ?)`;
+    db.run(sql, [name, balance, timePlayed, points], (err) => {
         if (err)
             return console.error(err.message);
     });

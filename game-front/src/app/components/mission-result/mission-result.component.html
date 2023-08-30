@@ -1,25 +1,28 @@
 <div class="dialog" *ngIf="result">
-  <h1 mat-dialog-title>{{this.data.mission.name}}</h1>
+  <h1 mat-dialog-title>{{ this.data.mission.name }}</h1>
   <button class="dialog__close" mat-button mat-dialog-close>X</button>
   <div class="dialog__results">
-    <h1>{{result ? "You have passed the mission!" : "You have failed the mission"}}</h1>
+    <h1>
+      {{
+        result ? "You have passed the mission!" : "You have failed the mission"
+      }}
+    </h1>
     <h1>Congratulations!</h1>
     <h3>You have passed the mission!</h3>
+    <h4>You got {{points}} points!</h4>
     <!-- animation -->
     <div class="animation-container">
       <div class="y-axis-container">
         <div class="container">
           <div class="flash"></div>
           <div class="coin side">
-            <div class="shine" style="transform:rotate(-30deg);"></div>
+            <div class="shine" style="transform: rotate(-30deg)"></div>
           </div>
           <div class="side-coin"></div>
           <div class="coin">
             <div class="dai">
               <div class="inner-dai">
-                <div class="inner-inner-dai">
-
-                </div>
+                <div class="inner-inner-dai"></div>
               </div>
               <div class="cutout"></div>
               <div class="dai-shadow"></div>
@@ -31,34 +34,37 @@
       <div class="shadow"></div>
     </div>
     <!-- animation end -->
-    <p>Your revard is {{data.mission.reward}}</p>
+    <p>Your revard is {{ data.mission.reward }}</p>
   </div>
 </div>
 <div class="dialog" *ngIf="!result">
-  <h1 mat-dialog-title>{{this.data.mission.name}}</h1>
+  <h1 mat-dialog-title>{{ this.data.mission.name }}</h1>
   <div class="dialog__results">
     <button class="dialog__close" mat-button mat-dialog-close>X</button>
     <h1>Defeat!</h1>
     <h3>Unfortunately you have failed!</h3>
-    <div class="dialog__characters">
-    <mat-card
-      *ngFor="let character of this.data.party"
-      class="dialog__character"
-    >
-      <img
-        src="{{ character.image }}"
-        alt="dialog__character-image"
-        class="dialog__character-image"
-      />
-      <div matLine class="dialog__character-characteristics">
-        <h4 matLine>{{ character.name }}</h4>
-        <p>Strength: {{ character.characteristics.strength }}</p>
-        <p>Dexterity: {{ character.characteristics.dexterity }}</p>
-        <p>Intelect: {{ character.characteristics.intelect }}</p>
-        <p>Income: {{ character.income }}</p>
-      </div>
-    </mat-card>
-  </div>
-    <p>You have lost {{this.data.party.length}} charecters. Good luck next time!</p>
+    <!-- <div class="dialog__characters">
+      <mat-card
+        *ngFor="let character of this.data.party"
+        class="dialog__character"
+      >
+        <img
+          src="{{ character.image }}"
+          alt="dialog__character-image"
+          class="dialog__character-image"
+        />
+        <div matLine class="dialog__character-characteristics">
+          <h4 matLine>{{ character.name }}</h4>
+          <p>Strength: {{ character.characteristics.strength }}</p>
+          <p>Dexterity: {{ character.characteristics.dexterity }}</p>
+          <p>Intelect: {{ character.characteristics.intelect }}</p>
+          <p>Income: {{ character.income }}</p>
+        </div>
+      </mat-card>
+    </div> -->
+    <!-- <p>
+      You have lost {{this.data.party.length}} charecters.
+       Good luck next time!</p> -->
+    <p>Better luck next time!</p>
   </div>
 </div>
