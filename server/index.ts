@@ -66,7 +66,6 @@ wss.on("connection", (ws: WebSocket) => {
           ws.send(responce);
         }
         break;
-
       case "login":
         connectedUsers.push(message.data);
         ws.send(getData());
@@ -87,8 +86,17 @@ wss.on("connection", (ws: WebSocket) => {
       case "data request":
         ws.send(getData());
         break;
+      case "dbData request":
+
+        let dbData = db.returnEntries()
+        let dbDataResponce = JSON.stringify({
+          type: "dbData responce",
+          data: dbData,
+        });
+        ws.send(dbDataResponce)
+        break
       case "mission result":
-        let result = startMission(message.data.difficulty, message.data.party);
+        let result = startMission(message.data.difficulty, message.data.party, message.data.specialization, message.data.requirements);
         
         // result
         //   ? db.addEntry(

@@ -45,7 +45,7 @@ export class FinalScreenComponent {
     // this.userSubscription = this.userService.userChanged.subscribe((user) => {
     //   this.user = user;
     // });
-    this.wsService.sendToServer({ type: 'data request' });
+    this.wsService.sendToServer({ type: 'dbData request' });
     this.dataSubscription = this.dataService.dbDataChanged.subscribe(
       (dbData) => {
         this.dbData = dbData;

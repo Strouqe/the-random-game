@@ -18,9 +18,12 @@ export interface Characteristics {
 }
 
 function generateCharacteristics(level: number): Characteristics {
-  let intelect = Math.floor(Math.random() * 10) * level + 10 * level;
-  let strength = Math.floor(Math.random() * 10) * level + 10 * level;
-  let dexterity = Math.floor(Math.random() * 10) * level + 10 * level;
+  let specialization = Math.floor(Math.random() * 3) + 1;
+  let intelect =
+  Math.floor((Math.floor(Math.random() * 10) * level + 10 * level) *(specialization === 1 ? 1.5 : 1));
+  let strength =
+  Math.floor((Math.floor(Math.random() * 10) * level + 10 * level) *(specialization === 2 ? 1.5 : 1));
+  let dexterity = Math.floor((Math.floor(Math.random() * 10) * level + 10 * level) *(specialization === 3 ? 1.5 : 1));
   return { intelect, strength, dexterity };
 }
 
@@ -31,7 +34,17 @@ export default function createCharacters(): Character[] {
     let id = Math.floor(Math.random() * 1000000);
     let name = generateName();
     let characteristics = generateCharacteristics(level);
-    characters.push( new Character( id, name, 100*level , 10*level, `https://robohash.org/${name}.png`, 0, characteristics));
+    characters.push(
+      new Character(
+        id,
+        name,
+        100 * level,
+        10 * level,
+        `https://robohash.org/${name}.png`,
+        0,
+        characteristics
+      )
+    );
   }
   return characters;
 }
