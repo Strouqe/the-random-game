@@ -4,23 +4,23 @@ import {
   MatDialog,
   MatDialogRef,
 } from '@angular/material/dialog';
+import { Subscription } from 'rxjs';
 import { Character } from 'src/app/models/character.model';
 import { Mission, MissionResults } from 'src/app/models/mission.model';
 import { User } from 'src/app/models/user.model';
 import { MissionsService } from 'src/app/services/missions.service';
-import { FinalScreenComponent } from '../final-screen/final-screen.component';
 import { UserService } from 'src/app/services/user.service';
-import { Subscription } from 'rxjs';
+import { FinalScreenComponent } from '../final-screen/final-screen.component';
 
 @Component({
   selector: 'app-mission-result',
   templateUrl: './mission-result.component.html',
   styleUrls: ['./mission-result.component.scss'],
 })
-export class MissionResultComponent implements OnInit{
+export class MissionResultComponent implements OnInit {
   result: boolean;
   points: number;
-  results: MissionResults
+  results: MissionResults;
   user: User;
   userSubscription: Subscription;
 
@@ -43,19 +43,21 @@ export class MissionResultComponent implements OnInit{
         this.points = results.points;
       });
 
-
-      console.log(" mission compleated length ===>", this.userService.getUser().missionsCompleated.length)
-
+    console.log(
+      ' mission compleated length ===>',
+      this.userService.getUser().missionsCompleated.length
+    );
   }
-  ngOnInit(){
+  ngOnInit() {
     this.userSubscription = this.userService.userChanged.subscribe(
       (user: User) => {
         this.user = user;
       }
     );
-    this.dialogRef.afterClosed().subscribe(() => { // check if the user has compleated 10 missions
-      if(this.userService.getUser().missionsCompleated.length >=2){
-        this.openMissionDialog('500ms', '500ms')
+    this.dialogRef.afterClosed().subscribe(() => {
+      // check if the user has compleated 10 missions
+      if (this.userService.getUser().missionsCompleated.length >= 10) {
+        this.openMissionDialog('500ms', '500ms');
       }
     });
   }
@@ -69,7 +71,7 @@ export class MissionResultComponent implements OnInit{
       enterAnimationDuration,
       exitAnimationDuration,
       data: {
-        user: this.user
+        user: this.user,
       },
     });
   }
