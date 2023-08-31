@@ -87,7 +87,6 @@ wss.on("connection", (ws: WebSocket) => {
         ws.send(getData());
         break;
       case "dbData request":
-
         let dbData = db.returnEntries()
         let dbDataResponce = JSON.stringify({
           type: "dbData responce",
@@ -97,22 +96,6 @@ wss.on("connection", (ws: WebSocket) => {
         break
       case "mission result":
         let result = startMission(message.data.difficulty, message.data.party, message.data.specialization, message.data.requirements);
-        
-        // result
-        //   ? db.addEntry(
-        //       message.data.name,
-        //       message.data.currencyBalance,
-        //       message.data.mission,
-        //       message.data.difficulty,
-        //       "Victory"
-        //     )
-        //   : db.addEntry(
-        //       message.data.name,
-        //       message.data.currencyBalance,
-        //       message.data.mission,
-        //       message.data.difficulty,
-        //       "Defeat"
-        //     );
         let responce = JSON.stringify({
           type: "mission result responce",
           data: result ? "Victory" : "Defeat",

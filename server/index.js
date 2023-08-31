@@ -111,21 +111,6 @@ wss.on("connection", (ws) => {
                 break;
             case "mission result":
                 let result = (0, missions_js_1.startMission)(message.data.difficulty, message.data.party, message.data.specialization, message.data.requirements);
-                // result
-                //   ? db.addEntry(
-                //       message.data.name,
-                //       message.data.currencyBalance,
-                //       message.data.mission,
-                //       message.data.difficulty,
-                //       "Victory"
-                //     )
-                //   : db.addEntry(
-                //       message.data.name,
-                //       message.data.currencyBalance,
-                //       message.data.mission,
-                //       message.data.difficulty,
-                //       "Defeat"
-                //     );
                 let responce = JSON.stringify({
                     type: "mission result responce",
                     data: result ? "Victory" : "Defeat",
