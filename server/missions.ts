@@ -8,7 +8,8 @@ export class Mission {
     public difficulty: number,
     public reward: number,
     public requirements: Characteristics,
-    public partySize: number
+    public partySize: number,
+    public specialization: number
   ) {}
 }
 
@@ -22,30 +23,49 @@ export class Mission {
 //   let dexterity =
 //     Math.floor(Math.random() * 10) * (difficulty / 100) +
 //     10 * (difficulty / 100);
-//   return { intelect, strength, dexterity };
+//   return { intelect, strength, dexterity }
 // }
+function generateCharacteristic(difficulty: number, specializationModifier: number) {
+ let level = difficulty / 100 
 
-function generateMissionCharacteristics(difficulty: number){
+ let characteristic =( Math.floor(Math.random() * 10) * (level * 4) + 10 * (level * 4)) * specializationModifier;
+ return characteristic
+}
+
+function generateMissionCharacteristics(difficulty: number, specialization: number){
   let intelect = 0
   let strength = 0
   let dexterity = 0
-  for (let i = 0; i < 4; i++) {
-    intelect += Math.floor(Math.random() * 10) * (difficulty / 100) +
-    10 * (difficulty / 100);
-    strength += Math.floor(Math.random() * 10) * (difficulty / 100) +
-    10 * (difficulty / 100);
-    dexterity += Math.floor(Math.random() * 10) * (difficulty / 100) +
-    10 * (difficulty / 100);
-  }
+  // (specialization === 2 ? (difficulty / 25) + 1 : (difficulty / 25))
+  
+    intelect = generateCharacteristic(difficulty, specialization === 1 ? 1.5 : 1)
+    strength = generateCharacteristic(difficulty, specialization === 2 ? 1.5 : 1)
+    dexterity = generateCharacteristic(difficulty, specialization === 3 ? 1.5 : 1)
+
   return { intelect, strength, dexterity };
 }
+// function generateMissionCharacteristics(difficulty: number){
+//   let intelect = 0
+//   let strength = 0
+//   let dexterity = 0
+//   for (let i = 0; i < 4; i++) {
+//     intelect += Math.floor(Math.random() * 10) * (difficulty / 100) +
+//     10 * (difficulty / 100);
+//     strength += Math.floor(Math.random() * 10) * (difficulty / 100) +
+//     10 * (difficulty / 100);
+//     dexterity += Math.floor(Math.random() * 10) * (difficulty / 100) +
+//     10 * (difficulty / 100);
+//   }
+//   return { intelect, strength, dexterity };
+// }
 
 export default function createMissions(): Mission[] {
   let missions = [];
   let characteristics;
   for (let i = 0; i < 6; i++) {
+    let specialization = Math.floor(Math.random() * 3) + 1;
     let difficulty = ((i % 3) + 1) * 100;
-    characteristics = generateMissionCharacteristics(difficulty);
+    characteristics = generateMissionCharacteristics(difficulty, specialization);
     missions.push(
       new Mission(
         i,
@@ -53,17 +73,17 @@ export default function createMissions(): Mission[] {
         difficulty,
         difficulty,
         characteristics,
-        4
+        4,
+        specialization
       )
     );
   }
   return missions;
 }
 
-export function startMission(difficulty, party) {
-  const req = generateMissionCharacteristics(difficulty);
-
-
+export function startMission(difficulty, party, specialization, requirements) {
+  const req = requirements
+  // const req = generateMissionCharacteristics(difficulty, specialization);
   // for (const character in party) {
   //   if (
   //     party[character].characteristics.strength < req.strength &&

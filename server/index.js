@@ -101,8 +101,16 @@ wss.on("connection", (ws) => {
             case "data request":
                 ws.send(getData());
                 break;
+            case "dbData request":
+                let dbData = db.returnEntries();
+                let dbDataResponce = JSON.stringify({
+                    type: "dbData responce",
+                    data: dbData,
+                });
+                ws.send(dbDataResponce);
+                break;
             case "mission result":
-                let result = (0, missions_js_1.startMission)(message.data.difficulty, message.data.party);
+                let result = (0, missions_js_1.startMission)(message.data.difficulty, message.data.party, message.data.specialization, message.data.requirements);
                 // result
                 //   ? db.addEntry(
                 //       message.data.name,

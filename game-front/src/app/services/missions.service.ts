@@ -36,11 +36,10 @@ export class MissionsService {
       type: 'mission result',
       data: {
         name: this.user.name,
-        currencyBalance: this.user.currencyBalance,
         party: party,
-        mission: mission.name,
         difficulty: mission.difficulty,
-        result: 'Defeat',
+        specialization: mission.specialization,
+        requirements: mission.requirements,
       },
     };
     this.wsService.sendToServer(message);

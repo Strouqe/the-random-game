@@ -15,9 +15,10 @@ class Character {
 }
 exports.Character = Character;
 function generateCharacteristics(level) {
-    let intelect = Math.floor(Math.random() * 10) * level + 10 * level;
-    let strength = Math.floor(Math.random() * 10) * level + 10 * level;
-    let dexterity = Math.floor(Math.random() * 10) * level + 10 * level;
+    let specialization = Math.floor(Math.random() * 3) + 1;
+    let intelect = Math.floor((Math.floor(Math.random() * 10) * level + 10 * level) * (specialization === 1 ? 1.5 : 1));
+    let strength = Math.floor((Math.floor(Math.random() * 10) * level + 10 * level) * (specialization === 2 ? 1.5 : 1));
+    let dexterity = Math.floor((Math.floor(Math.random() * 10) * level + 10 * level) * (specialization === 3 ? 1.5 : 1));
     return { intelect, strength, dexterity };
 }
 function createCharacters() {
