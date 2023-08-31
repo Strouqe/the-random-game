@@ -28,7 +28,7 @@ export class LeaderboardComponent implements OnInit, OnDestroy {
       @Inject(MAT_DIALOG_DATA) public data: { }) { }
 
   ngOnInit(): void {
-    this.wsService.sendToServer({ type: 'data request' });
+    this.wsService.sendToServer({ type: 'dbData request' });
     this.dataSubscription = this.dataService.dbDataChanged.subscribe(
       (dbData) => {
         this.dbData = dbData

@@ -35,7 +35,7 @@ export class ServerDataService {
     this.charactersChanged = new Subject<Character[]>();
     this.missionsChanged = new Subject<Mission[]>();
     this.playersChanged = new Subject<User[]>();
-    this.dbDataChanged = new Subject<DbEntry[]>();
+    this.dbDataChanged = new Subject<DbEntry[]>(); //behaviorSubject?
 
     this.wsSubscription = this.wsService
       .connect()
@@ -43,15 +43,12 @@ export class ServerDataService {
         console.log("responce from server ====>",response);
         switch (response.type) {
           case 'data responce':
-            let dbData: DbEntry[] = JSON.parse(response.data.dbdata);
+
             this.charactersChanged.next(response.data.characters);
             this.missionsChanged.next(response.data.missions);
             this.playersChanged.next(response.data.currentConnectedUsers);
 
-            dbData.sort((a,b)=>{
-              return b.points - a.points
-            })
-            this.dbDataChanged.next(dbData);
+
             break;
           case 'mission result responce':
             this.missionService.promiseResolve(response.data);
@@ -64,6 +61,13 @@ export class ServerDataService {
               this.namePromiseResolve(true);
             }
             break;
+          case 'dbData responce':
+            console.log(response)
+          let dbData: DbEntry[] = JSON.parse(response.data) ;
+          dbData.sort((a,b)=>{
+            return b.points - a.points
+          })
+          this.dbDataChanged.next(dbData);
         }
       });
   }
