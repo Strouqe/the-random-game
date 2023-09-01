@@ -10,7 +10,7 @@ export class Character {
   ){}
 }
 export interface Characteristics {
-  intelect: number,
+  intellect: number,
   strength: number,
   dexterity: number,
 }

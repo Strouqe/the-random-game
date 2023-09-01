@@ -23,7 +23,7 @@ export class DialogAnimationComponent {
   partyStats: Characteristics = {
     strength: 0,
     dexterity: 0,
-    intelect: 0,
+    intellect: 0,
   };
 
   missionStarted: boolean;
@@ -81,13 +81,13 @@ export class DialogAnimationComponent {
     const stats: Characteristics = {
       strength: 0,
       dexterity: 0,
-      intelect: 0,
+      intellect: 0,
 
     };
     this.party.forEach((char) => {
       stats.strength += char.characteristics.strength;
       stats.dexterity += char.characteristics.dexterity;
-      stats.intelect += char.characteristics.intelect;
+      stats.intellect += char.characteristics.intellect;
     });
     return stats;
   }

@@ -8,7 +8,7 @@ export class Mission {
     public reward: number,
     public requirements: Characteristics,
     public partySize: number,
-    public specialization: number
+    public specialization: string
   ){}
 }
 

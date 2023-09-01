@@ -84,7 +84,7 @@ export class MissionsService {
       }
       character.characteristics.strength -= 2 + statPenalty;
       character.characteristics.dexterity -= 2 + statPenalty;
-      character.characteristics.intelect -= 2 + statPenalty;
+      character.characteristics.intellect -= 2 + statPenalty;
     });
   }
 }
