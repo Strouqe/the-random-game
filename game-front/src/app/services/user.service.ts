@@ -56,10 +56,13 @@ export class UserService {
   trigerUpdateCountStateEvent: EventEmitter<void> = new EventEmitter();
   triggerUpdateIncomeEvent: EventEmitter<void> = new EventEmitter();
 
+  pause: boolean;
+
   private user: User;
 
   constructor(private wsService: WebsocketService) {
     this.userChanged = new Subject<User>();
+    this.pause = false;
   }
 
   setUser(userName: string) {
@@ -142,18 +145,25 @@ export class UserService {
 
     this.commandFromTick$ = this.isTicking$.pipe(
       switchMap((isTicking) => (isTicking ? timer(0, 15000) : NEVER)),
-      withLatestFrom(this.counterState$, (_, counterState) => ({
-        count: this.user.currencyBalance + this.user.currencyIncome / 4,
+      !this.pause && withLatestFrom(this.counterState$, (_, counterState) => ({
+        count: this.user.currencyBalance + this.ifPause(this.user.currencyIncome / 4),
       })),
       tap(({ count }) => {
-        this.wsService.sendToServer({
-          type: 'update',
-          data: JSON.stringify(this.getUser()),
-        });
-        this.wsService.sendToServer({ type: 'data request' });
-        this.patchCounterState.next({ count: count + this.user.currencyIncome / 4,});
+        if(this.pause){
+          this.pause = false
+        } else {
+          this.wsService.sendToServer({
+            type: 'update',
+            data: JSON.stringify(this.getUser()),
+          });
+          this.wsService.sendToServer({ type: 'data request' });
+          this.patchCounterState.next({ count: count + this.user.currencyIncome / 4,});
+        }
       })
     );
+
+
+
 
     this.incomeGeneratorSubscription = this.commandFromTick$
       .pipe(startWith(this.initialCounterState))
@@ -172,6 +182,7 @@ export class UserService {
 
   trigerPause(): void {
     this.trigerPauseEvent.emit();
+    this.pause = true;
   }
 
   trigerStart(): void {
@@ -193,5 +204,10 @@ export class UserService {
     return this.user.characters.reduce((acc, character) => {
       return acc + character.income;
     }, 0);
+  }
+  private ifPause(data:any): any{
+      if(!this.pause){
+        return data
+      }
   }
 }
