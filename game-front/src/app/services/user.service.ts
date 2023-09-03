@@ -146,7 +146,7 @@ export class UserService {
     this.commandFromTick$ = this.isTicking$.pipe(
       switchMap((isTicking) => (isTicking ? timer(0, 15000) : NEVER)),
       !this.pause && withLatestFrom(this.counterState$, (_, counterState) => ({
-        count: this.user.currencyBalance + this.ifPause(this.user.currencyIncome / 4),
+        count: this.user.currencyBalance +  this.ifPause(this.user.currencyIncome / 4),
       })),
       tap(({ count }) => {
         if(this.pause){
@@ -193,7 +193,8 @@ export class UserService {
   }
 
   clearUser(): void {
-    this.trigerPause();
+    this.trigerPauseEvent.emit();
+    this.pause = false;
     this.setUser("")
     // this.user = sampleUser;
     // this.userChanged.next(this.user);
