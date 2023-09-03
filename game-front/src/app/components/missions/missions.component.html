@@ -2,7 +2,7 @@
   <div class="missions__list">
     <mat-card *ngFor="let mission of missions" class="missions__list__item">
       <h4 matLine>{{ mission.name }}</h4>
-      <p>Sum of Characteristics: {{ 10 * (mission.difficulty / 100) * 4 }} - {{ (20 * (mission.difficulty / 100) * 4) * 1.5 }}</p>
+      <p>Sum of Characteristics: {{ 10 * (mission.difficulty / 100) * 4 }} - {{ (20 * (mission.difficulty / 100) * 4)}}</p>
       <p>reward: {{ mission.reward }}</p>
       <button
         mat-raised-button
