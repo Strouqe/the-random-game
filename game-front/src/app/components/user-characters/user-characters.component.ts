@@ -7,17 +7,13 @@ import { UserService } from 'src/app/services/user.service';
 @Component({
   selector: 'app-user-characters',
   templateUrl: './user-characters.component.html',
-  styleUrls: ['./user-characters.component.scss']
+  styleUrls: ['./user-characters.component.scss'],
 })
 export class UserCharactersComponent {
   userSubscription: Subscription;
   user: User;
 
-
-  constructor(
-
-    private userService: UserService,
-  ) {}
+  constructor(private userService: UserService,) {}
 
   ngOnInit(): void {
     this.userSubscription = this.userService.userChanged.subscribe(
@@ -30,7 +26,7 @@ export class UserCharactersComponent {
     this.userSubscription.unsubscribe();
   }
 
-  onDeleteCharacter(character: Character) {
+  onDeleteCharacter(character: Character): void {
     this.userService.deleteCharacter(character);
   }
 }

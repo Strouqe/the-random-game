@@ -5,7 +5,7 @@ import { Mission } from 'src/app/models/mission.model';
 import { User } from 'src/app/models/user.model';
 import { ServerDataService } from 'src/app/services/server-data.service';
 import { UserService } from 'src/app/services/user.service';
-import { DialogAnimationComponent } from '../dialog-animation/dialog-animation.component';
+import { MissionSelectComponent } from '../mission-select/mission-select.component';
 
 @Component({
   selector: 'app-missions',
@@ -52,7 +52,7 @@ export class MissionsComponent implements OnInit, OnDestroy {
     mission: Mission
   ): void {
     this.triggerPauseIncomeGeneration();
-    this.dialog.open(DialogAnimationComponent, {
+    this.dialog.open(MissionSelectComponent, {
       width: '95%',
       enterAnimationDuration,
       exitAnimationDuration,

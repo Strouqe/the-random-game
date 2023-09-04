@@ -50,9 +50,10 @@ export class MissionResultComponent implements OnInit {
         this.user = user;
       }
     );
-    this.dialogRef.afterClosed().subscribe(() => { // check if the user has compleated 10 missions
-      if(this.userService.getUser().missionsCompleated.length >= 10){
-        this.openMissionDialog('500ms', '500ms')
+    this.dialogRef.afterClosed().subscribe(() => {
+      // check if the user has compleated 10 missions
+      if (this.userService.getUser().missionsCompleated.length >= 10) {
+        this.openMissionDialog('500ms', '500ms');
       }
     });
   }
@@ -71,11 +72,11 @@ export class MissionResultComponent implements OnInit {
     });
   }
 
-  getPenalty(character: Character, mission: Mission){
+  getPenalty(character: Character, mission: Mission) {
     let statPenalty = 2;
     if (character.price - mission.difficulty > 0) {
       statPenalty += ((character.price - mission.difficulty) / 100) * 2;
     }
-    return statPenalty
+    return statPenalty;
   }
 }

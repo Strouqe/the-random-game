@@ -27,10 +27,7 @@ export class MissionsService {
     );
   }
 
-  async getResult(
-    mission: Mission,
-    party: Character[]
-  ): Promise<MissionResults> {
+  async getResult( mission: Mission, party: Character[]): Promise<MissionResults> {
     let points = 0;
     let message = {
       type: 'mission result',
@@ -59,12 +56,8 @@ export class MissionsService {
         this.user.points += points;
         this.userService.userChanged.next(this.user);
         this.userService.trigerUpdateState();
-        console.log('user in mission service =====>', this.user);
         return true;
       } else {
-        // if(party.length < mission.partySize){
-        //   this.user.points += (party.length - mission.partySize)*100
-        // } Do I need to give a penalty to big party in the case of defeat?
         this.charecterStatPenalty(party, mission);
         this.user.characters = [...this.user.characters, ...party];
         this.user.missionsCompleated.push(mission);

@@ -25,7 +25,7 @@ export class ServerDataService {
 
   namePromiseResolve: any;
   namePromiseReject: any;
-  message = {}
+  message = {};
 
   constructor(
     private wsService: WebsocketService,
@@ -40,39 +40,33 @@ export class ServerDataService {
     this.wsSubscription = this.wsService
       .connect()
       .subscribe((response: any) => {
-        console.log("responce from server ====>",response);
         switch (response.type) {
           case 'data responce':
-
             this.charactersChanged.next(response.data.characters);
             this.missionsChanged.next(response.data.missions);
             this.playersChanged.next(response.data.currentConnectedUsers);
-
-
             break;
           case 'mission result responce':
             this.missionService.promiseResolve(response.data);
             break;
           case 'name validation':
-            // this.onForceLogout();
-            if(response.data == 'invalid'){
+            if (response.data == 'invalid') {
               this.namePromiseResolve(false);
-            }else{
+            } else {
               this.namePromiseResolve(true);
             }
             break;
           case 'dbData responce':
-            console.log(response)
-          let dbData: DbEntry[] = JSON.parse(response.data) ;
-          dbData.sort((a,b)=>{
-            return b.points - a.points
-          })
-          this.dbDataChanged.next(dbData);
+            let dbData: DbEntry[] = JSON.parse(response.data);
+            dbData.sort((a, b) => {
+              return b.points - a.points;
+            });
+            this.dbDataChanged.next(dbData);
         }
       });
   }
 
-  async nameValidation(name: string) {
+  async nameValidation(name: string): Promise<boolean> {
     this.message = {
       type: 'name validation',
       data: name,
@@ -82,19 +76,16 @@ export class ServerDataService {
       this.namePromiseResolve = resolve;
       this.namePromiseReject = reject;
     }).then((result) => {
-      if(result == false){
+      if (result == false) {
         return false;
-      }else{
+      } else {
         return true;
       }
     });
     return result;
-    }
+  }
 
-
-
-
-  clearAlldata(){
+  clearAlldata(): void {
     this.charactersChanged.next([]);
     this.missionsChanged.next([]);
     this.playersChanged.next([]);

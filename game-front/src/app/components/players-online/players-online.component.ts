@@ -58,7 +58,7 @@ export class PlayersOnlineComponent implements OnInit, OnDestroy {
     this.userSubscription.unsubscribe();
   }
 
-  scrollDone() {
+  scrollDone(): void {
     this.animationState++;
   }
 }

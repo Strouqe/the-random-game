@@ -1,10 +1,6 @@
 .user-characters {
   width: 320px;
 
-  &__header{
-
-  }
-
   &__character {
     display: flex;
     flex-direction: row;
@@ -12,7 +8,6 @@
     align-items: center;
 
     width: 320px;
-
     padding: 0 8px;
     margin: 10px 0;
 
@@ -27,6 +22,7 @@
     &-characteristics {
       align-items: center;
       margin: 0 auto;
+
       & > * {
         margin: 4px auto;
         text-align: center;

@@ -23,19 +23,18 @@ export class UserLoginComponent implements OnInit {
   }
 
   onSubmit(): void {
-    this.dataService.nameValidation(this.userForm.value.userName).then((res) => {
-      if(res) {
-        this.userService.setUser(this.userForm.value.userName);
-        this.userService.initService();
-        // this.router.navigate(['/board']);
-        this.router.navigate(['/home']);
-        this.userService.trigerStart();
-      } else {
-        alert('User name already in use');
-      }
-    })
-
-
+    this.dataService
+      .nameValidation(this.userForm.value.userName)
+      .then((res) => {
+        if (res) {
+          this.userService.setUser(this.userForm.value.userName);
+          this.userService.initService();
+          this.router.navigate(['/home']);
+          this.userService.trigerStart();
+        } else {
+          alert('User name already in use');
+        }
+      });
   }
 
   private initForm(): void {
