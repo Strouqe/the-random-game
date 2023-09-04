@@ -42,12 +42,8 @@ export class MissionResultComponent implements OnInit {
         this.result = results.result;
         this.points = results.points;
       });
-
-    console.log(
-      ' mission compleated length ===>',
-      this.userService.getUser().missionsCompleated.length
-    );
   }
+
   ngOnInit() {
     this.userSubscription = this.userService.userChanged.subscribe(
       (user: User) => {
@@ -55,7 +51,7 @@ export class MissionResultComponent implements OnInit {
       }
     );
     this.dialogRef.afterClosed().subscribe(() => { // check if the user has compleated 10 missions
-      if(this.userService.getUser().missionsCompleated.length >=10){
+      if(this.userService.getUser().missionsCompleated.length >= 10){
         this.openMissionDialog('500ms', '500ms')
       }
     });

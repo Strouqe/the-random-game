@@ -32,19 +32,11 @@ export class FinalScreenComponent {
       user: User;
     }
   ) {
-    console.log('data in final screen component', data);
-    console.log('user in final screen component', data.user);
-    console.log('points in final screen component', data.user.points);
     this.user = data.user;
     this.userService.trigerPause();
     dialogRef.afterClosed().subscribe(() => {
       router.navigate(['/']);
     });
-
-    // this.wsService.sendToServer({ type: 'data request' });
-    // this.userSubscription = this.userService.userChanged.subscribe((user) => {
-    //   this.user = user;
-    // });
     this.wsService.sendToServer({ type: 'dbData request' });
     this.dataSubscription = this.dataService.dbDataChanged.subscribe(
       (dbData) => {
@@ -60,7 +52,6 @@ export class FinalScreenComponent {
         this.dbData.sort((a, b) => {
           return b.points - a.points;
         });
-        // this.dbData = this.dbData.slice(0, 10);
       }
     );
     console.log('final screen dialog db', this.dbData);

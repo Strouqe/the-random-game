@@ -55,10 +55,6 @@ export class NavComponent implements OnInit, OnDestroy {
   }
 
   onLogout(): void {
-    // this.userService.clearUser();
     this.router.navigate(['/']);
-    // this.userService.trigerUpdateState()
-    // this.dataService.clearAlldata();
-    // window.location.reload()
   }
 }
