@@ -29,7 +29,7 @@
     justify-content: space-around;
     align-items: center;
 
-    width: 250px;
+    width: 280px;
 
     padding: 5px 10px;
     margin: 10px auto;
@@ -41,7 +41,11 @@
     }
 
     &-characteristics {
-      width: 40%;
+      width: 43%;
+      &--penalty{
+        color: red;
+      }
+
       h4 {
         margin: 0;
       }
