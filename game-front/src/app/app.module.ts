@@ -27,6 +27,7 @@ import { NavComponent } from './components/nav/nav.component';
 import { PlayersOnlineComponent } from './components/players-online/players-online.component';
 import { UserCharactersComponent } from './components/user-characters/user-characters.component';
 import { UserLoginComponent } from './components/user-login/user-login.component';
+import { LogoutConfirmComponent } from './components/logout-confirm/logout-confirm.component';
 
 @NgModule({
   declarations: [
@@ -42,6 +43,7 @@ import { UserLoginComponent } from './components/user-login/user-login.component
     NavComponent,
     UserCharactersComponent,
     FinalScreenComponent,
+    LogoutConfirmComponent,
   ],
   imports: [
     BrowserModule,

@@ -65,13 +65,13 @@ export class UserService {
     this.pause = false;
   }
 
-  setUser(userName: string) {
+  setUser(userName: string): void {
     this.user = new User("",0,0,[],[],0,0);
     this.user.name = userName;
     this.userChanged.next(this.user);
   }
 
-  getUser() {
+  getUser(): User {
     return this.user;
   }
 

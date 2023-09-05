@@ -6,6 +6,7 @@ import { User } from 'src/app/models/user.model';
 import { UserService } from 'src/app/services/user.service';
 import { WebsocketService } from 'src/app/services/websocket.service';
 import { LeaderboardComponent } from '../leaderboard/leaderboard.component';
+import { LogoutConfirmComponent } from '../logout-confirm/logout-confirm.component';
 
 @Component({
   selector: 'app-nav',
@@ -42,6 +43,22 @@ export class NavComponent implements OnInit, OnDestroy {
     this.userService.clearUser();
   }
 
+  onLogout(): void {
+    this.openLogoutConfirm('500ms', '500ms');
+  }
+
+  openLogoutConfirm(
+    enterAnimationDuration: string,
+    exitAnimationDuration: string
+  ): void {
+    this.dialog.open(LogoutConfirmComponent, {
+      width: '20%',
+      enterAnimationDuration,
+      exitAnimationDuration,
+      data: {},
+    });
+  }
+
   openLeaderboardDialog(
     enterAnimationDuration: string,
     exitAnimationDuration: string
@@ -54,7 +71,5 @@ export class NavComponent implements OnInit, OnDestroy {
     });
   }
 
-  onLogout(): void {
-    this.router.navigate(['/']);
-  }
+
 }
