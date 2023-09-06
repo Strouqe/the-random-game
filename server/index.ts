@@ -62,7 +62,6 @@ wss.on("connection", (ws: WebSocket) => {
             type: "name validation",
             data: "valid",
           })
-          // console.log("name valid");
           ws.send(responce);
         }
         break;
@@ -103,7 +102,6 @@ wss.on("connection", (ws: WebSocket) => {
         ws.send(responce);
         break;
       case "end user session":
-        console.log("end user session", JSON.parse(message.data))
         let entry = JSON.parse(message.data)
        db.addEntry(
                 entry.name,
