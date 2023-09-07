@@ -59,6 +59,7 @@ export class UserService {
   triggerUpdateIncomeEvent: EventEmitter<void> = new EventEmitter();
 
   pause: boolean;
+  timePlayed: any; //NodeJS.Timeout; install node types
   encryptStorage: EncryptStorage
 
   private user: User;
@@ -216,11 +217,17 @@ export class UserService {
         }
       });
 
-    setInterval(() => {
+      this.setTimePlayedInterval();
+  }
+  setTimePlayedInterval(): void {
+    this.timePlayed = setInterval(() => {
       this.user.timePlayed += 15;
       this.userChanged.next(this.user);
       this.setUserStorage();
     }, 15000);
+  }
+  clearTimePlayedInterval(): void {
+    clearInterval(this.timePlayed);
   }
 
   trigerPause(): void {

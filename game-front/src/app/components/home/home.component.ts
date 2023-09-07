@@ -29,6 +29,7 @@ export class HomeComponent {
 
   }
   ngOnDestroy(): void {
+    this.userService.clearTimePlayedInterval();
     this.message = {
       type: 'logout',
       data: this.userService.getUser().name,
