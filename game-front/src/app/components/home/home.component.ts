@@ -26,11 +26,7 @@ export class HomeComponent {
         this.user = user;
       }
     );
-    this.message = {
-      type: 'login',
-      data: this.userService.getUser(),
-    };
-    this.wsService.sendToServer(this.message);
+
   }
   ngOnDestroy(): void {
     this.message = {

@@ -41,6 +41,7 @@ export class NavComponent implements OnInit, OnDestroy {
 
     this.wsService.sendToServer(this.message);
     this.userService.clearUser();
+    sessionStorage.clear();
   }
 
   onLogout(): void {
