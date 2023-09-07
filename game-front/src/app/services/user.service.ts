@@ -17,6 +17,8 @@ import { map, scan, startWith, switchMap } from 'rxjs/operators';
 import { Character } from '../models/character.model';
 import { User } from '../models/user.model';
 import { WebsocketService } from './websocket.service';
+import { EncryptStorage } from 'encrypt-storage';
+import { environment } from '../environments/environment';
 
 const sampleUser: User = {
   name: '',
@@ -57,12 +59,37 @@ export class UserService {
   triggerUpdateIncomeEvent: EventEmitter<void> = new EventEmitter();
 
   pause: boolean;
+  encryptStorage: EncryptStorage
 
   private user: User;
 
   constructor(private wsService: WebsocketService) {
+    this.encryptStorage = new EncryptStorage(environment.SECRET,{
+      storageType: 'sessionStorage',
+    });
     this.userChanged = new Subject<User>();
     this.pause = false;
+  }
+
+  setUserStorage(): void {
+    if(this.encryptStorage.getItem('user')){
+      this.encryptStorage.removeItem('user')
+
+      this.encryptStorage.setItem('user', JSON.stringify(this.user));
+    } else {
+      this.encryptStorage.setItem('user', JSON.stringify(this.user));
+    }
+  }
+  setUserFromMemory(): void {
+    let user = this.encryptStorage.getItem('user');
+    this.user = user;
+    this.userChanged.next(this.user);
+    this.trigerUpdateState();
+  }
+
+  getUserFromMemory(): User {
+    let user = this.encryptStorage.getItem('user');
+    return user;
   }
 
   setUser(userName: string): void {
@@ -84,6 +111,7 @@ export class UserService {
     this.user.characters.push(cherecter);
     this.user.currencyIncome = this.getUserIncome();
     this.userChanged.next(this.user);
+    this.setUserStorage();
     this.trigerUpdateState();
   }
 
@@ -94,21 +122,33 @@ export class UserService {
     );
     this.user.currencyIncome = this.getUserIncome();
     this.userChanged.next(this.user);
+    this.setUserStorage();
     this.trigerUpdateState();
   }
 
   updateIncome(): void {
     this.user.currencyIncome = this.getUserIncome();
     this.userChanged.next(this.user);
+    this.setUserStorage();
+  }
+  getCount(): number {
+    if(this.encryptStorage.getItem('user')){
+      return this.encryptStorage.getItem('user').currencyBalance - (this.encryptStorage.getItem('user').currencyIncome / 4)
+    } else {
+      return 1200;
+    }
   }
 
   initService(): void {
+    if(this.encryptStorage.getItem('user')){
+      this.setUserFromMemory()
+    }
     this.userChanged.subscribe((user: User) => {
       this.user = user;
     });
 
     this.initialCounterState = {
-      count: 1200,
+      count: this.getCount(),
       isTicking: false,
     };
 
@@ -158,6 +198,7 @@ export class UserService {
           });
           this.wsService.sendToServer({ type: 'data request' });
           this.patchCounterState.next({ count: count + this.user.currencyIncome / 4,});
+          this.setUserStorage();
         }
       })
     );
@@ -171,12 +212,14 @@ export class UserService {
         if (state.count) {
           this.user.currencyBalance = state.count;
           this.userChanged.next(this.user);
+          this.setUserStorage();
         }
       });
 
     setInterval(() => {
       this.user.timePlayed += 15;
       this.userChanged.next(this.user);
+      this.setUserStorage();
     }, 15000);
   }
 
@@ -199,6 +242,7 @@ export class UserService {
     // this.user = sampleUser;
     // this.userChanged.next(this.user);
     this.trigerUpdateState();
+
   }
 
   private getUserIncome(): number {

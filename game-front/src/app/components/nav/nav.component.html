@@ -1,6 +1,6 @@
 <mat-toolbar class="nav" color="primary">
   <span>The RNDM game</span>
-  <div class="NAV_USER-INFO">
+  <div class="NAV_USER-INFO" *ngIf="user">
     <span>{{user.name}} </span>
     <span>Balance: {{user.currencyBalance}} </span>
     <span>Income: {{user.currencyIncome}}/min </span>
