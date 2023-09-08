@@ -1,12 +1,14 @@
 <div class="dialog">
-  <button class="dialog__close" mat-button mat-dialog-close>X</button>
-  <div>
-    <h2>Top 10 Highscores</h2>
-    <mat-list class="dialog__list">
-      <div *ngIf="!dbData">Loading...</div>
-      <mat-list-item class="dialog__list__item" *ngFor="let entry of dbData">
-      {{dbData.indexOf(entry) + 1}}.  Name: {{ entry.name }} Points: {{ entry.points }}
-      </mat-list-item>
-    </mat-list>
-  </div>
+  <button class="dialog__close" mat-button mat-dialog-close (click)="onClick()" >X</button>
+
+  <h2 class="dialog__heading">Top 10 Highscores</h2>
+  <mat-list class="dialog__list">
+    <div *ngIf="!dbData">Loading...</div>
+    <div class="dialog__list__item" *ngFor="let entry of dbData">
+      {{ dbData.indexOf(entry) + 1 }}.
+      <h3 class="dialog__list__item--name">  {{ entry.name }}</h3>
+       <h2 class="dialog__list__item--points" >
+        {{ entry.points }}</h2>
+    </div>
+  </mat-list>
 </div>

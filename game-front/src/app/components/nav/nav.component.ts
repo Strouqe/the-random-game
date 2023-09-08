@@ -65,7 +65,7 @@ export class NavComponent implements OnInit, OnDestroy {
     exitAnimationDuration: string
   ): void {
     this.dialog.open(LeaderboardComponent, {
-      width: '35%',
+      width: '25%',
       enterAnimationDuration,
       exitAnimationDuration,
       data: {},

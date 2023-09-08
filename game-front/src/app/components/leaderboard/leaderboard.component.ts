@@ -31,4 +31,7 @@ export class LeaderboardComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.dataSubscription.unsubscribe();
   }
+  onClick(): void {
+    this.dialogRef.close();
+  }
 }
