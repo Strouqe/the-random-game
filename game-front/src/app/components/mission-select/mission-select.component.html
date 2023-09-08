@@ -37,12 +37,22 @@
             />
             <div matLine class="characters__list__item-characteristics">
               <h4 matLine>{{ character.name }}</h4>
-              <p>
+              <div>
+                <div class="characters__list__item-characteristics--row">
+                  <span class="characters__list__item-characteristics--str">Str: {{ character.characteristics.strength }} </span>
+                  <span class="characters__list__item-characteristics--dex">Dex: {{ character.characteristics.dexterity }} </span>
+                </div>
+                <div class="characters__list__item-characteristics--row">
+                  <span class="characters__list__item-characteristics--int">Int: {{ character.characteristics.intellect }}</span>
+                  <span class="characters__list__item-characteristics--inc">Gold: {{ character.income }}</span>
+                </div>
+              </div>
+              <!-- <p>
                 <span>Str:{{ character.characteristics.strength }} </span>
                 <span>Dex: {{ character.characteristics.dexterity }} </span>
                 <span>Int: {{ character.characteristics.intellect }}</span>
               </p>
-              <p>Income: {{ character.income }}</p>
+              <p>Income: {{ character.income }}</p> -->
             </div>
           </mat-card>
         </div>
@@ -95,12 +105,22 @@
             />
             <div matLine class="characters__list__item-characteristics">
               <h4 matLine>{{ character.name }}</h4>
-              <p>
+              <div>
+                <div class="characters__list__item-characteristics--row">
+                  <span class="characters__list__item-characteristics--str">Str: {{ character.characteristics.strength }} </span>
+                  <span class="characters__list__item-characteristics--dex">Dex: {{ character.characteristics.dexterity }} </span>
+                </div>
+                <div class="characters__list__item-characteristics--row">
+                  <span class="characters__list__item-characteristics--int">Int: {{ character.characteristics.intellect }}</span>
+                  <span class="characters__list__item-characteristics--inc">Gold: {{ character.income }}</span>
+                </div>
+              </div>
+              <!-- <p>
                 <span>Str:{{ character.characteristics.strength }} </span>
                 <span>Dex: {{ character.characteristics.dexterity }} </span>
                 <span>Int: {{ character.characteristics.intellect }}</span>
               </p>
-              <p>Income: {{ character.income }}</p>
+              <p>Income: {{ character.income }}</p> -->
             </div>
           </mat-card>
         </div>

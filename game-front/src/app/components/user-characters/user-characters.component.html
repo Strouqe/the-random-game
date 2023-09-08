@@ -13,12 +13,22 @@
     />
     <div matLine class="user-characters__character-characteristics">
       <h4 matLine>{{ character.name }}</h4>
-      <p>
+      <div>
+        <div class="user-characters__character-characteristics--row">
+          <span class="user-characters__character-characteristics--str">Str: {{ character.characteristics.strength }} </span>
+          <span class="user-characters__character-characteristics--dex">Dex: {{ character.characteristics.dexterity }} </span>
+        </div>
+        <div class="user-characters__character-characteristics--row">
+          <span class="user-characters__character-characteristics--int">Int: {{ character.characteristics.intellect }}</span>
+          <span class="user-characters__character-characteristics--inc">Gold: {{ character.income }}</span>
+        </div>
+      </div>
+      <!-- <p>
         <span>Str:{{ character.characteristics.strength }} </span>
         <span>Dex: {{ character.characteristics.dexterity }} </span>
         <span>Int: {{ character.characteristics.intellect }}</span>
       </p>
-      <p>Income: {{ character.income }}</p>
+      <p>Income: {{ character.income }}</p> -->
       <div class="user-characters__character-characteristics--button-container">
         Delete for
         <button

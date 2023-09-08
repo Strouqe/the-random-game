@@ -23,10 +23,18 @@
             />
             <div matLine class="dialog__character-characteristics">
               <h4 matLine>{{ character.name }}</h4>
-              <p>Strength: {{ character.characteristics.strength }} - <span class="dialog__character-characteristics--penalty">{{ getPenalty(character, this.data.mission) }}</span></p>
+              <div class="dialog__character-characteristics--row">
+                <span class="dialog__character-characteristics--str">Str: {{ character.characteristics.strength }} - <span class="dialog__character-characteristics--penalty">{{ getPenalty(character, this.data.mission) }}</span></span>
+                <span class="dialog__character-characteristics--dex">Dex: {{ character.characteristics.dexterity }} - <span class="dialog__character-characteristics--penalty">{{ getPenalty(character, this.data.mission) }}</span></span>
+              </div>
+              <div class="dialog__character-characteristics--row">
+                <span class="dialog__character-characteristics--int">Int: {{ character.characteristics.intellect }} - <span class="dialog__character-characteristics--penalty">{{ getPenalty(character, this.data.mission) }}</span></span>
+                <span class="dialog__character-characteristics--inc">Gold: {{ character.income }}</span>
+              </div>
+              <!-- <p>Strength: {{ character.characteristics.strength }} - <span class="dialog__character-characteristics--penalty">{{ getPenalty(character, this.data.mission) }}</span></p>
               <p>Dexterity: {{ character.characteristics.dexterity }} - <span class="dialog__character-characteristics--penalty">{{ getPenalty(character, this.data.mission) }}</span></p>
               <p>Intellect: {{ character.characteristics.intellect }} - <span class="dialog__character-characteristics--penalty">{{ getPenalty(character, this.data.mission) }}</span></p>
-              <p>Income: {{ character.income }}</p>
+              <p>Income: {{ character.income }}</p> -->
             </div>
           </mat-card>
           <div class="dialog__character__penalty">

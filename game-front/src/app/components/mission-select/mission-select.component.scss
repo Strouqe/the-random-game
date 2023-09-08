@@ -114,6 +114,32 @@
       &-characteristics {
         align-items: center;
         margin: 0 auto;
+
+        &--row{
+          display: flex;
+          flex-direction: row;
+          justify-content: space-between;
+          align-items: center;
+          width: 100%;
+          min-width: 130px;
+        }
+        &--str{
+          color: #ff0000;
+          margin-right: auto;
+        }
+        &--dex{
+          color: #00b13b;
+          margin-left: auto;
+        }
+        &--int{
+          color: #0000ff;
+          margin-right: auto;
+        }
+        &--inc{
+          color: #dad606;
+          margin-left: auto;
+        }
+
         & > * {
           margin: 4px auto;
           text-align: center;
