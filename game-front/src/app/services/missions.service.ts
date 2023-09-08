@@ -69,6 +69,15 @@ export class MissionsService {
     return { result, points };
   }
 
+  finalPointCount(): void {
+    console.log('final point count before', this.user.points);
+    this.user.points += this.user.currencyBalance / 4;
+    this.user.points -= this.user.timePlayed;
+    this.userService.userChanged.next(this.user);
+    this.userService.trigerUpdateState();
+    console.log('final point count after', this.user.points);
+  }
+
   private charecterStatPenalty(party: Character[], mission: Mission) {
     party.forEach((character: Character) => {
       let statPenalty = 0;
