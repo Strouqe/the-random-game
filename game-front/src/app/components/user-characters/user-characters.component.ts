@@ -19,13 +19,18 @@ export class UserCharactersComponent {
     this.userSubscription = this.userService.userChanged.subscribe(
       (user: User) => {
         this.user = user;
+        this.user.characters = this.sortCharacters(this.user.characters);
       }
     );
   }
   ngOnDestroy(): void {
     this.userSubscription.unsubscribe();
   }
-
+  sortCharacters(characters: Character[]): Character[] {
+    return characters.sort((a, b) => {
+      return b.price - a.price;
+    });
+  }
   onDeleteCharacter(character: Character): void {
     this.userService.deleteCharacter(character);
   }
