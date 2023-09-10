@@ -23,6 +23,34 @@
       align-items: center;
       margin: 0 auto;
 
+      &--row{
+          display: flex;
+          flex-direction: row;
+          justify-content: center;
+          align-items: center;
+          width: 100%;
+        }
+        &--str{
+          color: #ff0000;
+          // margin-right: auto;
+          width: 50%;
+        }
+        &--dex{
+          color: #00b13b;
+          // margin-left: auto;
+          width: 50%
+        }
+        &--int{
+          color: #0000ff;
+          // margin-right: auto;
+          width: 50%
+        }
+        &--inc{
+          color: #dad606;
+          // margin-left: auto;
+          width: 50%
+        }
+
       & > * {
         margin: 4px auto;
         text-align: center;

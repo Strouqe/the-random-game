@@ -10,6 +10,71 @@
 
     text-align: center;
   }
+
+  &__character {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+
+    width: 320px;
+    padding: 0 8px;
+    margin: 10px 0;
+
+    &-image {
+      width: 100px;
+      height: 100px;
+      margin: 0 auto 0 8px;
+
+      object-fit: cover;
+    }
+
+    &-characteristics {
+      align-items: center;
+      margin: 0 auto;
+
+      &--row{
+          display: flex;
+          flex-direction: row;
+          justify-content: center;
+          align-items: center;
+          width: 100%;
+        }
+        &--str{
+          color: #ff0000;
+          // margin-right: auto;
+          width: 50%;
+        }
+        &--dex{
+          color: #00b13b;
+          // margin-left: auto;
+          width: 50%
+        }
+        &--int{
+          color: #0000ff;
+          // margin-right: auto;
+          width: 50%
+        }
+        &--inc{
+          color: #dad606;
+          // margin-left: auto;
+          width: 50%
+        }
+
+      & > * {
+        margin: 4px auto;
+        text-align: center;
+      }
+
+      &--button {
+        width:25px;
+        padding: 0 !important;
+      }
+    }
+  }
+
+
+  //clean up the redundant code in the __list or change html
   &__list {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -22,6 +87,7 @@
       flex-direction: row;
       justify-content: space-around;
       align-items: center;
+      // height: 140px;
       width: 100%;
 
       padding: 0 8px;
@@ -33,16 +99,71 @@
         object-fit: cover;
       }
 
+
+
       &-characteristics {
-        align-items: center;
-        margin: 0 auto;
+        // align-items: end;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: end;
+        width: 150px;
+        margin: 0 10px 0 auto;
+
+        &--heading{
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          height: 40px;
+          margin-top: 15px;
+          text-align: center;
+
+          &-name{
+            font-size: 1.2em;
+            font-weight: bold;
+            margin: auto 0;
+          }
+        }
+
+        &--row{
+          display: flex;
+          flex-direction: row;
+          justify-content: space-between;
+          align-items: center;
+          width: 115px;
+
+        }
+        &--str{
+          color: #ff0000;
+          margin-right: auto;
+        }
+        &--dex{
+          color: #00b13b;
+          margin-left: auto;
+        }
+        &--int{
+          color: #0000ff;
+          margin-right: auto;
+        }
+        &--inc{
+          color: #dad606;
+          margin-left: auto;
+        }
+
         & > * {
+          display: block;
           margin: 4px auto;
           text-align: center;
         }
 
         &--button {
-          margin: 8px auto;
+
+          margin: 8px 0 8px auto;
+          &-container {
+            width: 100%;
+            padding: 0;
+            margin-left: auto;
+          }
         }
       }
     }
