@@ -26,25 +26,29 @@
       &--row{
           display: flex;
           flex-direction: row;
-          justify-content: space-between;
+          justify-content: center;
           align-items: center;
           width: 100%;
         }
         &--str{
           color: #ff0000;
-          margin-right: auto;
+          // margin-right: auto;
+          width: 50%;
         }
         &--dex{
           color: #00b13b;
-          margin-left: auto;
+          // margin-left: auto;
+          width: 50%
         }
         &--int{
           color: #0000ff;
-          margin-right: auto;
+          // margin-right: auto;
+          width: 50%
         }
         &--inc{
           color: #dad606;
-          margin-left: auto;
+          // margin-left: auto;
+          width: 50%
         }
 
       & > * {
