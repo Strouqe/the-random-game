@@ -28,6 +28,7 @@ import { PlayersOnlineComponent } from './components/players-online/players-onli
 import { UserCharactersComponent } from './components/user-characters/user-characters.component';
 import { UserLoginComponent } from './components/user-login/user-login.component';
 import { LogoutConfirmComponent } from './components/logout-confirm/logout-confirm.component';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
 
 @NgModule({
   declarations: [
@@ -58,6 +59,7 @@ import { LogoutConfirmComponent } from './components/logout-confirm/logout-confi
     MatDialogModule,
     MatDividerModule,
     MatButtonModule,
+    MatButtonToggleModule,
     MatFormFieldModule,
     MatToolbarModule,
     MatInputModule,

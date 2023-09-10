@@ -1,7 +1,19 @@
 <div *ngIf="user">
-  <h4 class="user-characters__header">
-    {{ user.characters.length == 0 ? "You dont have any characters" : "My characters (" + user.characters.length + "/6):" }}
-  </h4>
+  <h3 class="user-characters__header">
+    {{
+      user.characters.length == 0
+        ? "You dont have any characters"
+        : "Sort Characters(" + user.characters.length + "/6) by:"
+    }}
+
+    <mat-button-toggle-group *ngIf="user.characters.length != 0" name="sortProperty" [(value)]="selectedSortVal" aria-label="Sort Property" (click)="handleOnClick()">
+      <mat-button-toggle value="strength" style="color: #ff0000">S</mat-button-toggle>
+      <mat-button-toggle value="dexterity" style="color: #00b13b">D</mat-button-toggle>
+      <mat-button-toggle value="intellect" style="color: #0000ff">I</mat-button-toggle>
+      <mat-button-toggle value="gold" style="color: #dad606">G</mat-button-toggle>
+    </mat-button-toggle-group>
+  </h3>
+
   <mat-card
     *ngFor="let character of user.characters"
     class="user-characters__character"
@@ -15,12 +27,20 @@
       <h4 matLine>{{ character.name }}</h4>
       <div>
         <div class="user-characters__character-characteristics--row">
-          <span class="user-characters__character-characteristics--str">Str: {{ character.characteristics.strength }} </span>
-          <span class="user-characters__character-characteristics--dex">Dex: {{ character.characteristics.dexterity }} </span>
+          <span class="user-characters__character-characteristics--str"
+            >Str: {{ character.characteristics.strength }}
+          </span>
+          <span class="user-characters__character-characteristics--dex"
+            >Dex: {{ character.characteristics.dexterity }}
+          </span>
         </div>
         <div class="user-characters__character-characteristics--row">
-          <span class="user-characters__character-characteristics--int">Int: {{ character.characteristics.intellect }}</span>
-          <span class="user-characters__character-characteristics--inc">Gold: {{ character.income }}</span>
+          <span class="user-characters__character-characteristics--int"
+            >Int: {{ character.characteristics.intellect }}</span
+          >
+          <span class="user-characters__character-characteristics--inc"
+            >Gold: {{ character.income }}</span
+          >
         </div>
       </div>
       <!-- <p>
