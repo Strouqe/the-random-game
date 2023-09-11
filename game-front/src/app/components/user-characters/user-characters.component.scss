@@ -8,8 +8,9 @@
     align-items: center;
 
     width: 320px;
-    padding: 0 8px;
-    margin: 10px 0;
+    height: 113px;
+    padding: 0;
+    margin: 4px 0;
 
     &-image {
       width: 100px;
@@ -22,6 +23,7 @@
     &-characteristics {
       align-items: center;
       margin: 0 auto;
+      min-width: 60%;
 
       &--row{
           display: flex;
