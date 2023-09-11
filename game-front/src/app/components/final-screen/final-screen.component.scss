@@ -12,6 +12,14 @@
     text-align: center;
   }
 
+  &__image{
+    width: 100px;
+    height: 100px;
+    margin: 0 auto;
+
+    object-fit: cover;
+  }
+
   &__score{
     margin: 0 auto;
     text-align: center;
@@ -23,3 +31,4 @@
     margin: 10px auto;
   }
 }
+
