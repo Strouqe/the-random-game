@@ -4,7 +4,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 700px;
+  height: 100%;
   width: 100%;
 
   text-align: center;
@@ -21,6 +21,7 @@
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     grid-gap: 10px;
+    margin: 20px;
   }
 
   &__character {
