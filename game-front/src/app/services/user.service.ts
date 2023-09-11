@@ -231,8 +231,8 @@ export class UserService {
   }
 
   trigerPause(): void {
-    this.trigerPauseEvent.emit();
     this.pause = true;
+    this.trigerPauseEvent.emit();
   }
 
   trigerStart(): void {
