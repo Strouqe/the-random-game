@@ -70,6 +70,7 @@ export class MissionResultComponent implements OnInit {
       data: {
         user: this.user,
       },
+      autoFocus: false,
     });
   }
 

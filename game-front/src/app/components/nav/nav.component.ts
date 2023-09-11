@@ -69,6 +69,7 @@ export class NavComponent implements OnInit, OnDestroy {
       enterAnimationDuration,
       exitAnimationDuration,
       data: {},
+      autoFocus: false
     });
   }
 

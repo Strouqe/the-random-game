@@ -1,6 +1,14 @@
-import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
+import {
+  CdkDragDrop,
+  moveItemInArray,
+  transferArrayItem,
+} from '@angular/cdk/drag-drop';
 import { Component, Inject } from '@angular/core';
-import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
+import {
+  MAT_DIALOG_DATA,
+  MatDialog,
+  MatDialogRef,
+} from '@angular/material/dialog';
 import { Character, Characteristics } from 'src/app/models/character.model';
 import { Mission } from 'src/app/models/mission.model';
 import { User } from 'src/app/models/user.model';
@@ -100,6 +108,7 @@ export class MissionSelectComponent {
         mission: this.data.mission,
         charectersLeft: this.characters,
         party: this.party,
+        autoFocus: false,
       },
     });
   }
