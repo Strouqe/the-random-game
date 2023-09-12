@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Subject, Subscription } from 'rxjs';
+import { BehaviorSubject, Subject, Subscription } from 'rxjs';
 import { webSocket } from 'rxjs/webSocket';
 import { environment } from '../environments/environment';
 import { Character } from '../models/character.model';
@@ -35,7 +35,7 @@ export class ServerDataService {
     this.charactersChanged = new Subject<Character[]>();
     this.missionsChanged = new Subject<Mission[]>();
     this.playersChanged = new Subject<User[]>();
-    this.dbDataChanged = new Subject<DbEntry[]>(); //behaviorSubject?
+    this.dbDataChanged = new BehaviorSubject<DbEntry[]>([]); //behaviorSubject?
 
     this.wsSubscription = this.wsService
       .connect()

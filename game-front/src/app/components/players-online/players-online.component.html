@@ -7,8 +7,9 @@
       >
         <div class="players-online__scrolling-text__player--name">{{ player.name }}</div>
         <div class="players-online__scrolling-text__player--info">
-          <div>Missions completed: {{ player.missionsCompleated.length }}</div>
-          <div>Time played: {{ player.timePlayed }}</div>
+          <div>Place in the leaderboard {{dbData.indexOf(player) + 1}}</div>
+          <!-- <div>Missions completed: {{ player.missionsCompleated.length }}</div>
+          <div>Time played: {{ player.timePlayed }}</div> -->
         </div>
       </div>
     </div>
