@@ -14,6 +14,7 @@ import { Mission } from 'src/app/models/mission.model';
 import { User } from 'src/app/models/user.model';
 import { UserService } from 'src/app/services/user.service';
 import { MissionResultComponent } from '../mission-result/mission-result.component';
+import { max } from 'rxjs';
 
 @Component({
   selector: 'app-mission-select',
@@ -29,6 +30,7 @@ export class MissionSelectComponent {
     dexterity: 0,
     intellect: 0,
   };
+  successProbability: number = 0;
 
   missionStarted: boolean;
 
@@ -78,6 +80,7 @@ export class MissionSelectComponent {
       );
     }
     this.partyStats = this.getPartyStats();
+    this.successProbability = this.calculateTotalProbability();
   }
 
   // sum party charecteristics
@@ -95,13 +98,38 @@ export class MissionSelectComponent {
     return stats;
   }
 
+  calculateProbability(myNumber: number, minRange: number, maxRange: number): number {
+    if ( myNumber > maxRange) {
+      return 1;
+    }
+    if ( myNumber < minRange) {
+      return 0;
+    }
+    const totalOutcomes = maxRange - minRange + 1;
+    const favorableOutcomes = myNumber - minRange;
+
+    const probability = favorableOutcomes / totalOutcomes;
+    ;
+    return probability;
+  }
+  calculateTotalProbability(): number {
+    let minRange = 10 * (this.data.mission.difficulty / 100) * 4;
+    let maxRange = 20 * (this.data.mission.difficulty / 100) * 4;
+    let partyStats = this.getPartyStats();
+    let totalProbability = this.calculateProbability(partyStats.strength, minRange, maxRange) * this.calculateProbability(partyStats.dexterity, minRange, maxRange) * this.calculateProbability(partyStats.intellect, minRange, maxRange);
+    console.log("totalProbability", totalProbability);
+    ;
+    return Math.round(totalProbability * 100);
+  }
+
+
   openMissionDialog(
     enterAnimationDuration: string,
     exitAnimationDuration: string
   ): void {
     this.user.characters = [...this.characters];
     this.dialog.open(MissionResultComponent, {
-      width: '40%',
+      width: '45%',
       enterAnimationDuration,
       exitAnimationDuration,
       data: {

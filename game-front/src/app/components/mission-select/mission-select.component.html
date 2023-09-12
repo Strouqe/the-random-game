@@ -132,11 +132,14 @@
         <p>Strength: {{ this.partyStats.strength }}</p>
         <p>Dexterity: {{ this.partyStats.dexterity }}</p>
         <p>Intellect: {{ this.partyStats.intellect }}</p>
+        <h4>
+          Win chance: {{ this.successProbability }}%
+        </h4>
       </div>
     </div>
 
     <div mat-dialog-content>Start the mission?</div>
-    <div mat-dialog-actions>
+    <div mat-dialog-actions class="dialog__buttons">
       <button mat-button mat-dialog-close (click)="resumeGeneration()">
         No
       </button>
@@ -147,9 +150,11 @@
         cdkFocusInitial
         [disabled]="party.length == 0"
         color="primary"
+        class="pulse"
+        [ngClass]="{ 'pulse': party.length != 0 }"
         (click)="onStartMission()"
       >
-        Ok
+        LET'S GO!
       </button>
     </div>
     <button
