@@ -6,7 +6,40 @@
   width: 100%;
   font-size: 20px;
 
+  &__help{
+    height: 38px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 10px;
+    margin: 0 auto 0 15px;
+    border-radius: 4px;
+    color: #fff;
+    background: rgba(101, 186, 240, 0.6);
+
+    cursor: pointer;
+    text-decoration: none;
+
+    &:hover{
+      background: rgba(101, 186, 240, 0.8);
+    }
+
+    &--text{
+     margin: auto 0;
+    }
+    &--icon{
+      width: 30px;
+      height: 30px;
+      margin-left: 5px;
+    }
+  }
+
+  &__user-info{
+    margin: 0 auto;
+  }
+
   &__button{
+    height: 40px;
     margin: 0 10px;
   }
 }
