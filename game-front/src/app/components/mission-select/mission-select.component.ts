@@ -98,27 +98,32 @@ export class MissionSelectComponent {
     return stats;
   }
 
-  calculateProbability(myNumber: number, minRange: number, maxRange: number): number {
-    if ( myNumber > maxRange) {
+  calculateProbability(
+    myNumber: number,
+    minRange: number,
+    maxRange: number
+  ): number {
+    if (myNumber > maxRange) {
       return 1;
     }
-    if ( myNumber < minRange) {
+    if (myNumber < minRange) {
       return 0;
     }
     const totalOutcomes = maxRange - minRange + 1;
     const favorableOutcomes = myNumber - minRange;
 
     const probability = favorableOutcomes / totalOutcomes;
-    ;
     return probability;
   }
   calculateTotalProbability(): number {
     let minRange = 10 * (this.data.mission.difficulty / 100) * 4;
     let maxRange = 20 * (this.data.mission.difficulty / 100) * 4;
     let partyStats = this.getPartyStats();
-    let totalProbability = this.calculateProbability(partyStats.strength, minRange, maxRange) * this.calculateProbability(partyStats.dexterity, minRange, maxRange) * this.calculateProbability(partyStats.intellect, minRange, maxRange);
-    console.log("totalProbability", totalProbability);
-    ;
+    let totalProbability =
+      this.calculateProbability(partyStats.strength, minRange, maxRange) *
+      this.calculateProbability(partyStats.dexterity, minRange, maxRange) *
+      this.calculateProbability(partyStats.intellect, minRange, maxRange);
+    console.log('totalProbability', totalProbability);
     return Math.round(totalProbability * 100);
   }
 
@@ -135,7 +140,6 @@ export class MissionSelectComponent {
     this.successProbability = this.calculateTotalProbability();
   }
 
-
   openMissionDialog(
     enterAnimationDuration: string,
     exitAnimationDuration: string
@@ -149,8 +153,8 @@ export class MissionSelectComponent {
         mission: this.data.mission,
         charectersLeft: this.characters,
         party: this.party,
-        autoFocus: false,
       },
+      autoFocus: false,
     });
   }
 }
