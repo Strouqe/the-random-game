@@ -1,16 +1,17 @@
 <div class="players-online">
+  <div class="players-online__overlay">
+    <div class="pulsing-dot"></div><div>Online Now</div>
+  </div>
   <div [@scroll]="animationState" (@scroll.done)="scrollDone()">
     <div class="players-online__scrolling-text">
       <div
         class="players-online__scrolling-text__player"
         *ngFor="let player of players"
       >
-        <div class="players-online__scrolling-text__player--name">{{ player.name }} has {{player.points}} points and</div>
-        <div class="players-online__scrolling-text__player--info">
-          <div>{{dbData.indexOf(player) + 1}} place in the leaderboard</div>
-          <!-- <div>Missions completed: {{ player.missionsCompleated.length }}</div>
-          <div>Time played: {{ player.timePlayed }}</div> -->
-        </div>
+        <div class="players-online__scrolling-text__player--name">{{ player.name }} <span style="color: gold;">{{player.points}}</span> Points <span style="font-weight: bold; color: #b3b3b3;">#{{dbData.indexOf(player) + 1}}</span></div>
+        <!-- <div class="players-online__scrolling-text__player--info">
+          <span>#{{dbData.indexOf(player) + 1}}</span>
+        </div> -->
       </div>
     </div>
   </div>
