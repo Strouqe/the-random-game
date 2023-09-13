@@ -7,12 +7,14 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { MatIconModule } from "@angular/material/icon";
 import { MatListModule } from '@angular/material/list';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -20,6 +22,7 @@ import { charactersComponent } from './components/characters/characters.componen
 import { FinalScreenComponent } from './components/final-screen/final-screen.component';
 import { HomeComponent } from './components/home/home.component';
 import { LeaderboardComponent } from './components/leaderboard/leaderboard.component';
+import { LogoutConfirmComponent } from './components/logout-confirm/logout-confirm.component';
 import { MissionResultComponent } from './components/mission-result/mission-result.component';
 import { MissionSelectComponent } from './components/mission-select/mission-select.component';
 import { MissionsComponent } from './components/missions/missions.component';
@@ -27,8 +30,6 @@ import { NavComponent } from './components/nav/nav.component';
 import { PlayersOnlineComponent } from './components/players-online/players-online.component';
 import { UserCharactersComponent } from './components/user-characters/user-characters.component';
 import { UserLoginComponent } from './components/user-login/user-login.component';
-import { LogoutConfirmComponent } from './components/logout-confirm/logout-confirm.component';
-import { MatButtonToggleModule } from '@angular/material/button-toggle';
 
 @NgModule({
   declarations: [
@@ -62,6 +63,7 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
     MatButtonToggleModule,
     MatFormFieldModule,
     MatToolbarModule,
+    MatIconModule ,
     MatInputModule,
     MatProgressSpinnerModule,
   ],

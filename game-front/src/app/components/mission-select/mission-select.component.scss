@@ -1,3 +1,5 @@
+// need to rewrite all of css here
+
 .dialog {
   position: relative;
   width: 100%;
@@ -101,16 +103,12 @@
 }
 
 .characters {
+  &__character:hover &__character-del,
+  &__character:hover &__character-add {
+    animation: pulse 2s infinite;
+    display: flex;
+  }
   &__character {
-    // display: flex;
-    // flex-direction: row;
-    // justify-content: space-around;
-    // align-items: center;
-
-    // width: 320px;
-    // padding: 0 8px;
-    // margin: 10px 0;
-
     scale: 0.9;
     display: flex;
     flex-direction: row;
@@ -120,6 +118,46 @@
 
     padding: 4px 8px;
     margin: auto;
+
+    &-add {
+      position: absolute;
+      display: none;
+      justify-content: center;
+      align-items: center;
+      top: 8px;
+      right: 8px;
+      height: 30px;
+      width: 30px;
+      // margin: 2px;
+      border-radius: 50%;
+      font-size: 44px;
+      background: #26db3e;
+      box-shadow: 0 0 0 2px #ccc;
+      color: #fff;
+      font-weight: bold;
+
+      cursor: pointer;
+    }
+    &-del {
+      position: absolute;
+      display: none;
+      justify-content: center;
+      align-items: center;
+      top: 8px;
+      right: 8px;
+      height: 30px;
+      width: 30px;
+      padding: 0;
+      // margin: 2px;
+      border-radius: 50%;
+      font-size: 40px;
+      background: #ec4c46;
+      box-shadow: 0 0 0 2px #ccc;
+      color: #fff;
+      // font-weight: bold;
+
+      cursor: pointer;
+    }
 
     &-image {
       width: 100px;
@@ -177,6 +215,7 @@
 
   &__list {
     &__item {
+      position: relative;
       scale: 0.9;
       display: flex;
       flex-direction: row;

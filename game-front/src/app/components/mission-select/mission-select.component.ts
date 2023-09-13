@@ -122,6 +122,15 @@ export class MissionSelectComponent {
     return Math.round(totalProbability * 100);
   }
 
+  addCharacterToParty(character: Character): void {
+    this.party.push(character);
+    this.characters = this.characters.filter((char) => char !== character);
+  }
+  returnCharacterToUser(character: Character): void {
+    this.characters.push(character);
+    this.party = this.party.filter((char) => char !== character);
+  }
+
 
   openMissionDialog(
     enterAnimationDuration: string,

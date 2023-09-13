@@ -30,6 +30,9 @@
             *ngFor="let character of characters"
             class="characters__character"
           >
+          <div class="characters__character-add" (click)="addCharacterToParty(character)">
+            <div>+</div>
+          </div>
           <img
           src="{{ character.image }}"
           alt="characters__character-image"
@@ -96,8 +99,11 @@
           <mat-card
             cdkDrag
             *ngFor="let character of party"
-            class="characters__list__item"
+            class="characters__character"
           >
+          <div class="characters__character-del" (click)="returnCharacterToUser(character)">
+            <div>&minus;</div>
+          </div>
             <img
               src="{{ character.image }}"
               alt="characters__character-image"
