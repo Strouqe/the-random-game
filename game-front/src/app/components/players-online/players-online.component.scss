@@ -31,8 +31,14 @@
     &__player{
       display: flex;
       flex-direction: column;
-      width: 230px;
+      width: 300px;
       margin: auto 0;
+      &--name{
+        width: 300px;
+      }
+      &--info{
+        width: 300px;
+      }
     }
   }
 }
