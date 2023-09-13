@@ -125,10 +125,14 @@ export class MissionSelectComponent {
   addCharacterToParty(character: Character): void {
     this.party.push(character);
     this.characters = this.characters.filter((char) => char !== character);
+    this.partyStats = this.getPartyStats();
+    this.successProbability = this.calculateTotalProbability();
   }
   returnCharacterToUser(character: Character): void {
     this.characters.push(character);
     this.party = this.party.filter((char) => char !== character);
+    this.partyStats = this.getPartyStats();
+    this.successProbability = this.calculateTotalProbability();
   }
 
 
