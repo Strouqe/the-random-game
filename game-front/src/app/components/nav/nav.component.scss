@@ -12,7 +12,7 @@
     justify-content: space-between;
     align-items: center;
     padding: 0 10px;
-    margin: 0 auto 0 15px;
+    margin: 0 0 0 15px;
     border-radius: 4px;
     color: #fff;
     background: rgba(101, 186, 240, 0.6);
@@ -36,6 +36,28 @@
 
   &__user-info{
     margin: 0 auto;
+
+    span{
+      margin: 0 15px;
+    }
+
+    &--name{
+      font-weight: bold;
+    }
+    &--balance{
+      span{
+        content: " ";
+        display: inline-block;
+        width: 10px;
+        height: 10px;
+
+        margin: 0;
+        border: 2px solid rgb(190, 162, 1);
+        border-radius: 50%;
+        background-color: gold;
+      }
+    }
+
   }
 
   &__button{
