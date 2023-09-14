@@ -4,27 +4,37 @@
       *ngFor="let character of characters"
       class="characters__character"
     >
-    <img
-    src="{{ character.image }}"
-    alt="characters__character-image"
-    class="characters__character-image"
-  />
-  <div matLine class="characters__character-characteristics">
-    <h4 matLine>{{ character.name }}</h4>
-    <div>
-      <div class="characters__character-characteristics--row">
-        <span class="characters__character-characteristics--str">Str: {{ character.characteristics.strength }} </span>
-        <span class="characters__character-characteristics--dex">Dex: {{ character.characteristics.dexterity }} </span>
-      </div>
-      <div class="characters__character-characteristics--row">
-        <span class="characters__character-characteristics--int">Int: {{ character.characteristics.intellect }}</span>
-        <span class="characters__character-characteristics--inc">Gold: {{ character.income }}</span>
-      </div>
-    </div>
-        <div class="characters__character__item-characteristics--button-container">
+      <img
+        src="{{ character.image }}"
+        alt="characters__character-image"
+        class="characters__character-image"
+      />
+      <div matLine class="characters__character-characteristics">
+        <h4 matLine>{{ character.name }}</h4>
+        <div>
+          <div class="characters__character-characteristics--row">
+            <span class="characters__character-characteristics--str"
+              >Str: {{ character.characteristics.strength }}
+            </span>
+            <span class="characters__character-characteristics--dex"
+              >Dex: {{ character.characteristics.dexterity }}
+            </span>
+          </div>
+          <div class="characters__character-characteristics--row">
+            <span class="characters__character-characteristics--int"
+              >Int: {{ character.characteristics.intellect }}</span
+            >
+            <span class="characters__character-characteristics--inc"
+              >Gold: {{ character.income }}</span
+            >
+          </div>
+        </div>
+        <div
+          class="characters__character-characteristics--button-container"
+        >
           Add for
           <button
-            class="characters__character__item-characteristics--button"
+            class="characters__character-characteristics--button"
             type="button"
             mat-raised-button
             color="primary"
