@@ -37,15 +37,15 @@
   &__user-info{
     margin: 0 auto;
 
-    span{
-      margin: 0 15px;
-    }
+    // span{
+    //   margin: 0 15px;
+    // }
 
     &--name{
       font-weight: bold;
     }
     &--balance{
-
+      margin-left: 15px;
       &-coin{
 
         content: " ";
@@ -62,7 +62,9 @@
         color: gold;
       }
     }
-
+    &--points {
+      margin-left: 15px;
+    }
   }
 
   &__button{
