@@ -45,16 +45,21 @@
       font-weight: bold;
     }
     &--balance{
-      span{
+
+      &-coin{
+
         content: " ";
         display: inline-block;
         width: 10px;
         height: 10px;
 
-        margin: 0;
         border: 2px solid rgb(190, 162, 1);
         border-radius: 50%;
         background-color: gold;
+      }
+      &-text{
+        margin: 0 !important;
+        color: gold;
       }
     }
 
