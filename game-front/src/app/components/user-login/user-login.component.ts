@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { EncryptStorage } from 'encrypt-storage';
@@ -12,14 +12,18 @@ import { WebsocketService } from 'src/app/services/websocket.service';
   styleUrls: ['./user-login.component.scss'],
 })
 export class UserLoginComponent implements OnInit {
+  @ViewChild('image') public img: ElementRef;
   userForm: FormGroup;
   encryptStorage: EncryptStorage;
+  backgroundLoaded: boolean;
   constructor(
     private userService: UserService,
     private dataService: ServerDataService,
     private router: Router,
     private wsService: WebsocketService
-  ) {}
+  ) {
+    this.backgroundLoaded = false;
+  }
 
   ngOnInit(): void {
     this.initForm();
@@ -30,7 +34,14 @@ export class UserLoginComponent implements OnInit {
       this.userService.trigerStart();
     }
   }
+  ngAfterViewInit() {
+    const image: HTMLImageElement = this.img.nativeElement;
 
+    image.onload = () => {
+      console.log('image loaded');
+      this.backgroundLoaded = true;
+    };
+  }
   onSubmit(): void {
     this.dataService
       .nameValidation(this.userForm.value.userName)
