@@ -1,15 +1,15 @@
 .user-characters {
   width: 320px;
 
-  &__cta{
+  &__cta {
     position: relative;
     width: 400px;
     height: 80px;
     margin-top: 35%;
-    background: #3F51B5;
+    background: #3f51b5;
     color: #fff;
 
-    &--text{
+    &--text {
       position: absolute;
       top: 50%;
       left: 65%;
@@ -21,22 +21,25 @@
     }
 
     &:after {
-      content: '';
+      content: "";
       position: absolute;
-      left: 0; bottom: 0; width: 0; height: 0;
+      left: 0;
+      bottom: 0;
+      width: 0;
+      height: 0;
       border-left: 40px solid #fff;
       border-top: 40px solid transparent;
       border-bottom: 40px solid transparent;
     }
 
     &:before {
-      content: '';
+      content: "";
       position: absolute;
       right: -40px;
       bottom: 0;
       width: 0;
       height: 0;
-      border-left: 40px solid #3F51B5;
+      border-left: 40px solid #3f51b5;
       border-top: 40px solid transparent;
       border-bottom: 40px solid transparent;
     }
@@ -49,7 +52,7 @@
     align-items: center;
 
     width: 320px;
-    height: 113px;
+    height: 118px;
     padding: 0;
     margin: 4px 0;
 
@@ -66,33 +69,33 @@
       margin: 0 auto;
       min-width: 60%;
 
-      &--row{
-          display: flex;
-          flex-direction: row;
-          justify-content: center;
-          align-items: center;
-          width: 100%;
-        }
-        &--str{
-          color: #ff00b3;
-          // margin-right: auto;
-          width: 50%;
-        }
-        &--dex{
-          color: #00b13b;
-          // margin-left: auto;
-          width: 50%
-        }
-        &--int{
-          color: #0000ff;
-          // margin-right: auto;
-          width: 50%
-        }
-        &--inc{
-          color: #dad606;
-          // margin-left: auto;
-          width: 50%
-        }
+      &--row {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+      }
+      &--str {
+        color: #ff00b3;
+        // margin-right: auto;
+        width: 50%;
+      }
+      &--dex {
+        color: #00b13b;
+        // margin-left: auto;
+        width: 50%;
+      }
+      &--int {
+        color: #0000ff;
+        // margin-right: auto;
+        width: 50%;
+      }
+      &--inc {
+        color: #dad606;
+        // margin-left: auto;
+        width: 50%;
+      }
 
       & > * {
         margin: 4px auto;
@@ -100,8 +103,13 @@
       }
 
       &--button {
-        width:25px;
-        padding: 0 !important;
+        margin: 8px 0 8px auto;
+        &-container {
+          width: 70%;
+          padding: 0;
+          margin-left: auto;
+          margin-right: 0 !important;
+        }
       }
     }
   }
@@ -119,11 +127,9 @@
     scale: 1;
   }
   50% {
-
     scale: 1.1;
   }
   100% {
-
     scale: 1;
   }
 }
