@@ -78,12 +78,13 @@ export class MissionsService {
     console.log('final point count after', this.user.points);
   }
 
-  private charecterStatPenalty(party: Character[], mission: Mission) {
+  private charecterStatPenalty(party: Character[], mission: Mission): void {
     party.forEach((character: Character) => {
       let statPenalty = 0;
       if (character.price - mission.difficulty > 0) {
-        statPenalty = ((character.price - mission.difficulty) / 100) * 2;
+        statPenalty = ((character.level * 100 - mission.difficulty) / 100) * 2;
       }
+      character.price = character.price - character.level * 10;
       character.characteristics.strength -= 2 + statPenalty;
       character.characteristics.dexterity -= 2 + statPenalty;
       character.characteristics.intellect -= 2 + statPenalty;

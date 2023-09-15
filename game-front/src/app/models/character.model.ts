@@ -6,7 +6,8 @@ export class Character {
     public income: number,
     public image: string,
     public fatigue: number,
-    public characteristics: Characteristics
+    public characteristics: Characteristics,
+    public level: number,
   ){}
 }
 export interface Characteristics {

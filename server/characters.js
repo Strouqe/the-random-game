@@ -3,7 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.Character = void 0;
 const names_js_1 = require("./names.js");
 class Character {
-    constructor(id, name, price, income, image, fatigue, characteristics) {
+    constructor(id, name, price, income, image, fatigue, characteristics, level) {
         this.id = id;
         this.name = name;
         this.price = price;
@@ -11,6 +11,7 @@ class Character {
         this.image = image;
         this.fatigue = fatigue;
         this.characteristics = characteristics;
+        this.level = level;
     }
 }
 exports.Character = Character;
@@ -60,16 +61,6 @@ function generateCharacteristics(level, specialization) {
     }
     return { intellect, strength, dexterity };
 }
-//initial logic
-// function generateCharacteristics(level: number): Characteristics {
-//   let specialization = getSpecialization(Specialization);
-//   let intellect =
-//   Math.floor((Math.floor(Math.random() * 10) * level + 10 * level) *(specialization === 1 ? 1.5 : 1));
-//   let strength =
-//   Math.floor((Math.floor(Math.random() * 10) * level + 10 * level) *(specialization === 2 ? 1.5 : 1));
-//   let dexterity = Math.floor((Math.floor(Math.random() * 10) * level + 10 * level) *(specialization === 3 ? 1.5 : 1));
-//   return { intellect, strength, dexterity };
-// }
 function createCharacters() {
     let characters = [];
     for (let i = 0; i < 6; i++) {
@@ -78,7 +69,7 @@ function createCharacters() {
         let name = (0, names_js_1.generateName)();
         let specialization = getSpecialization(Specialization);
         let characteristics = generateCharacteristics(level, specialization);
-        characters.push(new Character(id, name, 100 * level, 10 * level, `https://robohash.org/${name}.png`, 0, characteristics));
+        characters.push(new Character(id, name, 100 * level, 10 * level, `https://robohash.org/${name}.png`, 0, characteristics, level));
     }
     return characters;
 }

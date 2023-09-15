@@ -76,8 +76,8 @@ export class MissionResultComponent implements OnInit {
 
   getPenalty(character: Character, mission: Mission) {
     let statPenalty = 2;
-    if (character.price - mission.difficulty > 0) {
-      statPenalty += ((character.price - mission.difficulty) / 100) * 2;
+    if (character.level * 100 - mission.difficulty > 0) {
+      statPenalty += ((character.level * 100 - mission.difficulty) / 100) * 2;
     }
     return statPenalty;
   }

@@ -8,7 +8,8 @@ export class Character {
     public income: number,
     public image: string,
     public fatigue: number,
-    public characteristics: Characteristics
+    public characteristics: Characteristics,
+    public level: number
   ) {}
 }
 export interface Characteristics {
@@ -67,17 +68,6 @@ function generateCharacteristics(level, specialization) {
   return { intellect, strength, dexterity };
 }
 
-//initial logic
-// function generateCharacteristics(level: number): Characteristics {
-//   let specialization = getSpecialization(Specialization);
-//   let intellect =
-//   Math.floor((Math.floor(Math.random() * 10) * level + 10 * level) *(specialization === 1 ? 1.5 : 1));
-//   let strength =
-//   Math.floor((Math.floor(Math.random() * 10) * level + 10 * level) *(specialization === 2 ? 1.5 : 1));
-//   let dexterity = Math.floor((Math.floor(Math.random() * 10) * level + 10 * level) *(specialization === 3 ? 1.5 : 1));
-//   return { intellect, strength, dexterity };
-// }
-
 export default function createCharacters(): Character[] {
   let characters = [];
   for (let i = 0; i < 6; i++) {
@@ -94,7 +84,8 @@ export default function createCharacters(): Character[] {
         10 * level,
         `https://robohash.org/${name}.png`,
         0,
-        characteristics
+        characteristics,
+        level
       )
     );
   }
