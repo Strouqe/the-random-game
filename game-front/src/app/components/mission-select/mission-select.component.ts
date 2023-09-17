@@ -14,7 +14,6 @@ import { Mission } from 'src/app/models/mission.model';
 import { User } from 'src/app/models/user.model';
 import { UserService } from 'src/app/services/user.service';
 import { MissionResultComponent } from '../mission-result/mission-result.component';
-import { max } from 'rxjs';
 
 @Component({
   selector: 'app-mission-select',
@@ -83,7 +82,6 @@ export class MissionSelectComponent {
     this.successProbability = this.calculateTotalProbability();
   }
 
-  // sum party charecteristics
   getPartyStats(): Characteristics {
     const stats: Characteristics = {
       strength: 0,
