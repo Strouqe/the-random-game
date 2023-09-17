@@ -1,9 +1,35 @@
-// need to rewrite all of css here
-
-.dialog {
+.mission-select {
   position: relative;
   width: 100%;
   margin: 0 auto;
+
+  &__container {
+    min-height: 85%;
+    height: 535px;
+    width: 40%;
+    padding: 10px;
+    margin: 0 auto;
+    vertical-align: top;
+
+    border: 1px solid #ccc;
+    border-radius: 4px;
+
+    &__heading {
+      width: 40%;
+      margin: 30px auto;
+    }
+
+    &__list {
+      display: flex !important;
+      flex-wrap: wrap;
+
+      min-height: 300px;
+      min-width: 100%;
+
+      border-radius: 4px;
+      overflow: hidden;
+    }
+  }
 
   &__buttons {
     display: flex;
@@ -19,6 +45,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    height: 905px;
 
     &__box-titles {
       display: flex;
@@ -62,213 +89,119 @@
     }
   }
 
-  &__container {
-    min-height: 85%;
-    width: 40%;
-    padding: 10px;
-    margin: 0 auto;
-    vertical-align: top;
-
-    border: 1px solid #ccc;
-    border-radius: 4px;
-
-    &__heading {
-      width: 40%;
-      margin: 30px auto;
-    }
-
-    &__list {
-      display: flex !important;
-      flex-wrap: wrap;
-
-      min-height: 300px;
-      min-width: 100%;
-
-      border-radius: 4px;
-      overflow: hidden;
-    }
-  }
-
   &__character-select {
     display: flex;
-
     width: 100%;
   }
+
   &__close {
     position: absolute;
     top: 0;
     right: 0;
     margin: 10px;
   }
-}
 
-.characters {
-  &__character:hover &__character-del,
-  &__character:hover &__character-add {
-    animation: pulse 2s infinite;
-    display: flex;
-  }
-  &__character {
-    scale: 0.9;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    align-items: center;
-    width: 45%;
-    height: 140px;
-
-    padding: 4px 8px;
-    margin: auto;
-
-    &-add {
-      position: absolute;
-      display: none;
-      justify-content: center;
-      align-items: center;
-      top: 8px;
-      right: 8px;
-      height: 30px;
-      width: 30px;
-      // margin: 2px;
-      border-radius: 50%;
-      font-size: 44px;
-      background: #26db3e;
-      box-shadow: 0 0 0 2px #ccc;
-      color: #fff;
-      font-weight: bold;
-
-      cursor: pointer;
-    }
-    &-del {
-      position: absolute;
-      display: none;
-      justify-content: center;
-      align-items: center;
-      top: 8px;
-      right: 8px;
-      height: 30px;
-      width: 30px;
-      padding: 0;
-      // margin: 2px;
-      border-radius: 50%;
-      font-size: 40px;
-      background: #ec4c46;
-      box-shadow: 0 0 0 2px #ccc;
-      color: #fff;
-      // font-weight: bold;
-
-      cursor: pointer;
+  &__characters{
+    &__character:hover &__character-del,
+    &__character:hover &__character-add {
+      animation: pulse 2s infinite;
+      display: flex;
     }
 
-    &-image {
-      width: 100px;
-      height: 100px;
-      margin: 0 auto 0 8px;
-
-      object-fit: cover;
-    }
-
-    &-characteristics {
-      align-items: center;
-      margin: 0 auto;
-
-      min-width: 60%;
-
-      &--row {
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-        align-items: center;
-        width: 100%;
-      }
-      &--str {
-        color: #ff00b3;
-        // margin-right: auto;
-        width: 50%;
-      }
-      &--dex {
-        color: #00b13b;
-        // margin-left: auto;
-        width: 50%;
-      }
-      &--int {
-        color: #0000ff;
-        // margin-right: auto;
-        width: 50%;
-      }
-      &--inc {
-        color: #dad606;
-        // margin-left: auto;
-        width: 50%;
-      }
-
-      & > * {
-        margin: 4px auto;
-        text-align: center;
-      }
-
-      // &--button {
-      //   width:25px;
-      //   padding: 0 !important;
-      // }
-    }
-  }
-
-  &__list {
-    &__item {
-      position: relative;
+    &__character {
       scale: 0.9;
       display: flex;
       flex-direction: row;
       justify-content: space-around;
       align-items: center;
       width: 45%;
+      height: 135px;
 
       padding: 4px 8px;
       margin: auto;
+
+      &-add {
+        position: absolute;
+        top: 8px;
+        right: 8px;
+
+        display: none;
+        justify-content: center;
+        align-items: center;
+        height: 30px;
+        width: 30px;
+        border-radius: 50%;
+        font-size: 44px;
+        background: #26db3e;
+        box-shadow: 0 0 0 2px #ccc;
+
+        color: #fff;
+        font-weight: bold;
+        cursor: pointer;
+      }
+      &-del {
+        position: absolute;
+        top: 8px;
+        right: 8px;
+
+        display: none;
+        justify-content: center;
+        align-items: center;
+        height: 30px;
+        width: 30px;
+        padding: 0;
+        border-radius: 50%;
+        box-shadow: 0 0 0 2px #ccc;
+
+        font-size: 40px;
+        background: #ec4c46;
+        color: #fff;
+        cursor: pointer;
+      }
 
       &-image {
         width: 100px;
         height: 100px;
         margin: 0 auto 0 8px;
+
         object-fit: cover;
       }
 
       &-characteristics {
         align-items: center;
+        min-width: 60%;
         margin: 0 auto;
 
         &--row {
           display: flex;
           flex-direction: row;
-          justify-content: space-between;
+          justify-content: center;
           align-items: center;
           width: 100%;
-          min-width: 130px;
         }
         &--str {
           color: #ff00b3;
-          margin-right: auto;
+          width: 50%;
         }
         &--dex {
           color: #00b13b;
-          margin-left: auto;
+          width: 50%;
         }
         &--int {
           color: #0000ff;
-          margin-right: auto;
+          width: 50%;
         }
         &--inc {
           color: #dad606;
-          margin-left: auto;
+          width: 50%;
         }
-
         & > * {
           margin: 4px auto;
           text-align: center;
         }
       }
     }
+
   }
 }
 
