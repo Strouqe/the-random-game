@@ -26,7 +26,6 @@ export class HomeComponent {
         this.user = user;
       }
     );
-
   }
   ngOnDestroy(): void {
     this.userService.clearTimePlayedInterval();

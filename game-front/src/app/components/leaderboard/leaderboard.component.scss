@@ -1,4 +1,4 @@
-.dialog {
+.leaderboard {
   position: relative;
   display: flex;
   flex-direction: column;
@@ -6,7 +6,6 @@
   align-items: center;
   height: 100%;
   width: 100%;
-
   text-align: center;
 
   &__list {
@@ -18,18 +17,15 @@
       justify-content: space-between;
       align-items: center;
       width: 90%;
-      // padding: 10px;
       margin: 0 auto;
       border-bottom: 1px solid rgba(0, 0, 0, 0.2);
 
       &--name {
-        // display: inline;
         margin: 0;
         margin-left: 10px;
       }
 
       &--points {
-        // display: inline;
         margin: 0;
         margin-left: auto;
       }
