@@ -5,14 +5,23 @@
   align-items: center;
   height: 170px;
   overflow: hidden;
+  border: 3px solid rgba(244, 67, 54, 0.425);
 
   &__text{
-
-
     text-align: center;
   }
+
   &__buttons{
-    // height: 20%;
+    display: flex;
+    flex-flow: row;
+    justify-content: space-evenly;
+    width: 50%;
     margin: 0 5px;
+
+    & > *{
+      // display: border-box;
+      width: 40%;
+      border: 2px solid rgba(244, 67, 54, 0.753);
+    }
   }
 }
