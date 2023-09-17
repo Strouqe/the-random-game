@@ -1,6 +1,13 @@
 .characters {
   width: 980px;
 
+  &__list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 8px;
+    min-height: 50%;
+  }
+
   &__spinner {
     display: flex;
     justify-content: space-evenly;
@@ -33,33 +40,29 @@
       align-items: center;
       min-width: 60%;
 
-      &--row{
-          display: flex;
-          flex-direction: row;
-          justify-content: center;
-          align-items: center;
-          width: 100%;
-        }
-        &--str{
-          color: #ff00b3;
-          // margin-right: auto;
-          width: 50%;
-        }
-        &--dex{
-          color: #00b13b;
-          // margin-left: auto;
-          width: 50%
-        }
-        &--int{
-          color: #0000ff;
-          // margin-right: auto;
-          width: 50%
-        }
-        &--inc{
-          color: #dad606;
-          // margin-left: auto;
-          width: 50%
-        }
+      &--row {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+      }
+      &--str {
+        color: #ff00b3;
+        width: 50%;
+      }
+      &--dex {
+        color: #00b13b;
+        width: 50%;
+      }
+      &--int {
+        color: #0000ff;
+        width: 50%;
+      }
+      &--inc {
+        color: #dad606;
+        width: 50%;
+      }
 
       & > * {
         margin: 4px auto;
@@ -67,7 +70,6 @@
       }
 
       &--button {
-
         margin: 4px 0 4px auto;
         &-container {
           width: 70%;
@@ -76,35 +78,6 @@
           margin-right: 0 !important;
         }
       }
-      // &--button {
-      //   width:25px;
-      //   padding: 0 !important;
-      // }
     }
   }
-
-
-  //clean up the redundant code in the __list or change html
-  &__list {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-gap: 8px;
-    min-height: 50%;
-
-    &__item {
-      scale: 0.9;
-      display: flex;
-      flex-direction: row;
-      justify-content: space-around;
-      align-items: center;
-      // height: 140px;
-      width: 100%;
-
-      padding: 0 8px;
-
-
-
-      }
-    }
-  }
-
+}

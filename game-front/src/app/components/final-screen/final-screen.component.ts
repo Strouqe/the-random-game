@@ -33,9 +33,12 @@ export class FinalScreenComponent {
     }
   ) {
     this.user = data.user;
+  }
+
+  ngOnInit(): void {
     this.userService.trigerPause();
-    dialogRef.afterClosed().subscribe(() => {
-      router.navigate(['/']);
+    this.dialogRef.afterClosed().subscribe(() => {
+      this.router.navigate(['/']);
     });
     this.wsService.sendToServer({ type: 'dbData request' });
     this.dataSubscription = this.dataService.dbDataChanged.subscribe(
@@ -59,11 +62,7 @@ export class FinalScreenComponent {
       type: 'end user session',
       data: JSON.stringify(this.data.user),
     };
-    this.wsService.sendToServer(this.message);
-  }
-
-  ngOnInit(): void {
-    // this.wsService.sendToServer({ type: 'data request' });
+    this.wsService.sendToServer({ type: 'data request' });
   }
   ngOnDestroy(): void {
     this.dataSubscription.unsubscribe();

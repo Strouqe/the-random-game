@@ -19,7 +19,7 @@ export class charactersComponent implements OnInit, OnDestroy {
 
   constructor(
     private dataService: ServerDataService,
-    private userService: UserService
+    private userService: UserService,
   ) {}
 
   ngOnInit(): void {
