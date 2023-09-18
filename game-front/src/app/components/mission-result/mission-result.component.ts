@@ -68,6 +68,6 @@ export class MissionResultComponent implements OnInit {
 		if (character.level * 100 - mission.difficulty > 0) {
 			statPenalty += ((character.level * 100 - mission.difficulty) / 100) * 2;
 		}
-		return (characteristic - statPenalty > 0) ? statPenalty : characteristic;
+		return characteristic != 0 ? statPenalty : characteristic;
 	}
 }
