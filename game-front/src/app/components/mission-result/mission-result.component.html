@@ -13,15 +13,15 @@
 						<h4 matLine>{{ character.name }}</h4>
 						<div class="dialog__character-characteristics--row">
 							<span class="dialog__character-characteristics--str">
-								Str: {{ character.characteristics.strength }} - <span class="dialog__character-characteristics--penalty">{{ getPenalty(character, this.data.mission) }}</span>
+								Str: {{ character.characteristics.strength }} - <span class="dialog__character-characteristics--penalty">{{ getPenalty(character, this.data.mission, character.characteristics.strength) }}</span>
 							</span>
 							<span class="dialog__character-characteristics--dex">
-								Dex: {{ character.characteristics.dexterity }} - <span class="dialog__character-characteristics--penalty">{{ getPenalty(character, this.data.mission) }}</span>
+								Dex: {{ character.characteristics.dexterity }} - <span class="dialog__character-characteristics--penalty">{{ getPenalty(character, this.data.mission, character.characteristics.dexterity) }}</span>
 							</span>
 						</div>
 						<div class="dialog__character-characteristics--row">
 							<span class="dialog__character-characteristics--int">
-								Int: {{ character.characteristics.intellect }} - <span class="dialog__character-characteristics--penalty">{{ getPenalty(character, this.data.mission) }}</span>
+								Int: {{ character.characteristics.intellect }} - <span class="dialog__character-characteristics--penalty">{{ getPenalty(character, this.data.mission, character.characteristics.intellect) }}</span>
 							</span>
 							<span class="dialog__character-characteristics--inc">Gold: {{ character.income }}</span>
 						</div>
@@ -46,15 +46,15 @@
 						<h4 matLine>{{ character.name }}</h4>
 						<div class="dialog__character-characteristics--row">
 							<span class="dialog__character-characteristics--str">
-								Str: {{ character.characteristics.strength }} - <span class="dialog__character-characteristics--penalty">{{ getPenalty(character, this.data.mission) }}</span>
+								Str: {{ character.characteristics.strength }} - <span class="dialog__character-characteristics--penalty">{{ getPenalty(character, this.data.mission,  character.characteristics.strength) }}</span>
 							</span>
 							<span class="dialog__character-characteristics--dex">
-								Dex: {{ character.characteristics.dexterity }} - <span class="dialog__character-characteristics--penalty">{{ getPenalty(character, this.data.mission) }}</span>
+								Dex: {{ character.characteristics.dexterity }} - <span class="dialog__character-characteristics--penalty">{{ getPenalty(character, this.data.mission, character.characteristics.dexterity) }}</span>
 							</span>
 						</div>
 						<div class="dialog__character-characteristics--row">
 							<span class="dialog__character-characteristics--int">
-								Int: {{ character.characteristics.intellect }} - <span class="dialog__character-characteristics--penalty">{{ getPenalty(character, this.data.mission) }}</span></span>
+								Int: {{ character.characteristics.intellect }} - <span class="dialog__character-characteristics--penalty">{{ getPenalty(character, this.data.mission, character.characteristics.intellect) }}</span></span>
 							<span class="dialog__character-characteristics--inc">Gold: {{ character.income }}</span>
 						</div>
 					</div>

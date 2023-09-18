@@ -85,9 +85,9 @@ export class MissionsService {
         statPenalty = ((character.level * 100 - mission.difficulty) / 100) * 2;
       }
       character.price = character.price - character.level * 10;
-      character.characteristics.strength -= 2 + statPenalty;
-      character.characteristics.dexterity -= 2 + statPenalty;
-      character.characteristics.intellect -= 2 + statPenalty;
+      (character.characteristics.strength -= 2 + statPenalty) > 0 ? character.characteristics.strength -= 2 + statPenalty : 0;
+      (character.characteristics.dexterity -= 2 + statPenalty) > 0 ? character.characteristics.dexterity -= 2 + statPenalty : 0;
+      (character.characteristics.intellect -= 2 + statPenalty) > 0 ? character.characteristics.intellect -= 2 + statPenalty : 0;
     });
   }
 }
