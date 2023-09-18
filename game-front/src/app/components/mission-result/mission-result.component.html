@@ -2,9 +2,6 @@
 	<button class="dialog__close" mat-button mat-dialog-close>X</button>
 	<h1 mat-dialog-title>{{ this.data.mission.name }}</h1>
 	<div class="dialog__results">
-		<h1>
-			{{ result ? "You have passed the mission!" : "You have failed the mission" }}
-		</h1>
 		<h1>Congratulations!</h1>
 		<h3>You have passed the mission!</h3>
 		<h4>You got {{ points }} points!</h4>
@@ -48,17 +45,16 @@
 					<div matLine class="dialog__character-characteristics">
 						<h4 matLine>{{ character.name }}</h4>
 						<div class="dialog__character-characteristics--row">
-							<span class="dialog__character-characteristics--str"
-								>Str: {{ character.characteristics.strength }} - <span class="dialog__character-characteristics--penalty">{{ getPenalty(character, this.data.mission) }}</span></span
-							>
-							<span class="dialog__character-characteristics--dex"
-								>Dex: {{ character.characteristics.dexterity }} - <span class="dialog__character-characteristics--penalty">{{ getPenalty(character, this.data.mission) }}</span></span
-							>
+							<span class="dialog__character-characteristics--str">
+								Str: {{ character.characteristics.strength }} - <span class="dialog__character-characteristics--penalty">{{ getPenalty(character, this.data.mission) }}</span>
+							</span>
+							<span class="dialog__character-characteristics--dex">
+								Dex: {{ character.characteristics.dexterity }} - <span class="dialog__character-characteristics--penalty">{{ getPenalty(character, this.data.mission) }}</span>
+							</span>
 						</div>
 						<div class="dialog__character-characteristics--row">
-							<span class="dialog__character-characteristics--int"
-								>Int: {{ character.characteristics.intellect }} - <span class="dialog__character-characteristics--penalty">{{ getPenalty(character, this.data.mission) }}</span></span
-							>
+							<span class="dialog__character-characteristics--int">
+								Int: {{ character.characteristics.intellect }} - <span class="dialog__character-characteristics--penalty">{{ getPenalty(character, this.data.mission) }}</span></span>
 							<span class="dialog__character-characteristics--inc">Gold: {{ character.income }}</span>
 						</div>
 					</div>
