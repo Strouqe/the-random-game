@@ -36,6 +36,10 @@
 		width: 300px;
 		padding: 4px 8px;
 		margin: auto;
+    @media only screen and (max-width: 1470px) {
+      width: 270px;
+      font-size: 13px;
+    }
 
 		&-image {
 			width: 100px;
@@ -43,6 +47,10 @@
 			margin: 0 auto 0 8px;
 
 			object-fit: cover;
+      @media only screen and (max-width: 1470px) {
+        width: 80px;
+        height: 80px;
+      }
 		}
 
 		&-characteristics {
