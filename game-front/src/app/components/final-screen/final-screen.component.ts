@@ -60,7 +60,7 @@ export class FinalScreenComponent {
 			type: "end user session",
 			data: JSON.stringify(this.data.user),
 		};
-		this.wsService.sendToServer({ type: "data request" });
+		this.wsService.sendToServer(this.message);
 	}
   
 	ngOnDestroy(): void {
