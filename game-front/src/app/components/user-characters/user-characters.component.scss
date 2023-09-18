@@ -78,25 +78,20 @@
       }
       &--str {
         color: #ff00b3;
-        // margin-right: auto;
         width: 50%;
       }
       &--dex {
         color: #00b13b;
-        // margin-left: auto;
         width: 50%;
       }
       &--int {
         color: #0000ff;
-        // margin-right: auto;
         width: 50%;
       }
       &--inc {
         color: #dad606;
-        // margin-left: auto;
         width: 50%;
       }
-
       & > * {
         margin: 4px auto;
         text-align: center;
@@ -119,9 +114,7 @@
   box-shadow: 0 0 0 rgba(63, 81, 181, 0.2);
   animation: pulse 3s infinite;
 }
-// .pulse:hover {
-//   animation: none;
-// }
+
 @keyframes pulse {
   0% {
     scale: 1;

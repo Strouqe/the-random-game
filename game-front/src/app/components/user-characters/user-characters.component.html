@@ -5,7 +5,6 @@
         ? "You dont have any characters"
         : "Sort Characters(" + user.characters.length + "/6) by:"
     }}
-
     <mat-button-toggle-group
       *ngIf="user.characters.length != 0"
       name="sortProperty"
@@ -27,7 +26,7 @@
       >
     </mat-button-toggle-group>
   </h3>
-  <div class="user-characters__cta  pulse" *ngIf="user.characters.length == 0">
+  <div class="user-characters__cta pulse" *ngIf="user.characters.length == 0">
     <div class="user-characters__cta--text">Get a character in the shop</div>
   </div>
   <mat-card
@@ -59,12 +58,6 @@
           >
         </div>
       </div>
-      <!-- <p>
-        <span>Str:{{ character.characteristics.strength }} </span>
-        <span>Dex: {{ character.characteristics.dexterity }} </span>
-        <span>Int: {{ character.characteristics.intellect }}</span>
-      </p>
-      <p>Income: {{ character.income }}</p> -->
       <div class="user-characters__character-characteristics--button-container">
         Delete for
         <button
