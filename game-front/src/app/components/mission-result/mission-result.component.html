@@ -1,75 +1,70 @@
 <div class="dialog" *ngIf="result">
-  <button class="dialog__close" mat-button mat-dialog-close>X</button>
-  <h1 mat-dialog-title>{{ this.data.mission.name }}</h1>
-  <div class="dialog__results">
-    <h1>
-      {{
-        result ? "You have passed the mission!" : "You have failed the mission"
-      }}
-    </h1>
-    <h1>Congratulations!</h1>
-    <h3>You have passed the mission!</h3>
-    <h4>You got {{ points }} points!</h4>
-    <div class="dialog__characters">
-      <div
-          class="dialog__character__container"
-          *ngFor="let character of this.data.party"
-        >
-          <mat-card class="dialog__character">
-            <img
-              src="{{ character.image }}"
-              alt="dialog__character-image"
-              class="dialog__character-image"
-            />
-            <div matLine class="dialog__character-characteristics">
-              <h4 matLine>{{ character.name }}</h4>
-              <div class="dialog__character-characteristics--row">
-                <span class="dialog__character-characteristics--str">Str: {{ character.characteristics.strength }} - <span class="dialog__character-characteristics--penalty">{{ getPenalty(character, this.data.mission) }}</span></span>
-                <span class="dialog__character-characteristics--dex">Dex: {{ character.characteristics.dexterity }} - <span class="dialog__character-characteristics--penalty">{{ getPenalty(character, this.data.mission) }}</span></span>
-              </div>
-              <div class="dialog__character-characteristics--row">
-                <span class="dialog__character-characteristics--int">Int: {{ character.characteristics.intellect }} - <span class="dialog__character-characteristics--penalty">{{ getPenalty(character, this.data.mission) }}</span></span>
-                <span class="dialog__character-characteristics--inc">Gold: {{ character.income }}</span>
-              </div>
-            </div>
-          </mat-card>
-
-        </div>
-    </div>
-    <p>Your reward is {{ data.mission.reward }} Gold</p>
-  </div>
+	<button class="dialog__close" mat-button mat-dialog-close>X</button>
+	<h1 mat-dialog-title>{{ this.data.mission.name }}</h1>
+	<div class="dialog__results">
+		<h1>
+			{{ result ? "You have passed the mission!" : "You have failed the mission" }}
+		</h1>
+		<h1>Congratulations!</h1>
+		<h3>You have passed the mission!</h3>
+		<h4>You got {{ points }} points!</h4>
+		<div class="dialog__characters">
+			<div class="dialog__character__container" *ngFor="let character of this.data.party">
+				<mat-card class="dialog__character">
+					<img src="{{ character.image }}" alt="dialog__character-image" class="dialog__character-image" />
+					<div matLine class="dialog__character-characteristics">
+						<h4 matLine>{{ character.name }}</h4>
+						<div class="dialog__character-characteristics--row">
+							<span class="dialog__character-characteristics--str">
+								Str: {{ character.characteristics.strength }} - <span class="dialog__character-characteristics--penalty">{{ getPenalty(character, this.data.mission) }}</span>
+							</span>
+							<span class="dialog__character-characteristics--dex">
+								Dex: {{ character.characteristics.dexterity }} - <span class="dialog__character-characteristics--penalty">{{ getPenalty(character, this.data.mission) }}</span>
+							</span>
+						</div>
+						<div class="dialog__character-characteristics--row">
+							<span class="dialog__character-characteristics--int">
+								Int: {{ character.characteristics.intellect }} - <span class="dialog__character-characteristics--penalty">{{ getPenalty(character, this.data.mission) }}</span>
+							</span>
+							<span class="dialog__character-characteristics--inc">Gold: {{ character.income }}</span>
+						</div>
+					</div>
+				</mat-card>
+			</div>
+		</div>
+		<p>Your reward is {{ data.mission.reward }} Gold</p>
+	</div>
 </div>
 <div class="dialog" *ngIf="!result">
-  <h1 mat-dialog-title>{{ this.data.mission.name }}</h1>
-  <div class="dialog__results">
-    <button class="dialog__close" mat-button mat-dialog-close>X</button>
-    <h1>Defeat!</h1>
-    <h3>Unfortunately you have failed!</h3>
-    <div class="dialog__characters">
-      <div
-        class="dialog__character__container"
-        *ngFor="let character of this.data.party"
-      >
-        <mat-card class="dialog__character">
-          <img
-          src="{{ character.image }}"
-          alt="dialog__character-image"
-          class="dialog__character-image"
-        />
-        <div matLine class="dialog__character-characteristics">
-          <h4 matLine>{{ character.name }}</h4>
-          <div class="dialog__character-characteristics--row">
-            <span class="dialog__character-characteristics--str">Str: {{ character.characteristics.strength }} - <span class="dialog__character-characteristics--penalty">{{ getPenalty(character, this.data.mission) }}</span></span>
-            <span class="dialog__character-characteristics--dex">Dex: {{ character.characteristics.dexterity }} - <span class="dialog__character-characteristics--penalty">{{ getPenalty(character, this.data.mission) }}</span></span>
-          </div>
-          <div class="dialog__character-characteristics--row">
-            <span class="dialog__character-characteristics--int">Int: {{ character.characteristics.intellect }} - <span class="dialog__character-characteristics--penalty">{{ getPenalty(character, this.data.mission) }}</span></span>
-            <span class="dialog__character-characteristics--inc">Gold: {{ character.income }}</span>
-          </div>
-        </div>
-        </mat-card>
-      </div>
-    </div>
-    <p>Better luck next time!</p>
-  </div>
+	<h1 mat-dialog-title>{{ this.data.mission.name }}</h1>
+	<div class="dialog__results">
+		<button class="dialog__close" mat-button mat-dialog-close>X</button>
+		<h1>Defeat!</h1>
+		<h3>Unfortunately you have failed!</h3>
+		<div class="dialog__characters">
+			<div class="dialog__character__container" *ngFor="let character of this.data.party">
+				<mat-card class="dialog__character">
+					<img src="{{ character.image }}" alt="dialog__character-image" class="dialog__character-image" />
+					<div matLine class="dialog__character-characteristics">
+						<h4 matLine>{{ character.name }}</h4>
+						<div class="dialog__character-characteristics--row">
+							<span class="dialog__character-characteristics--str"
+								>Str: {{ character.characteristics.strength }} - <span class="dialog__character-characteristics--penalty">{{ getPenalty(character, this.data.mission) }}</span></span
+							>
+							<span class="dialog__character-characteristics--dex"
+								>Dex: {{ character.characteristics.dexterity }} - <span class="dialog__character-characteristics--penalty">{{ getPenalty(character, this.data.mission) }}</span></span
+							>
+						</div>
+						<div class="dialog__character-characteristics--row">
+							<span class="dialog__character-characteristics--int"
+								>Int: {{ character.characteristics.intellect }} - <span class="dialog__character-characteristics--penalty">{{ getPenalty(character, this.data.mission) }}</span></span
+							>
+							<span class="dialog__character-characteristics--inc">Gold: {{ character.income }}</span>
+						</div>
+					</div>
+				</mat-card>
+			</div>
+		</div>
+		<p>Better luck next time!</p>
+	</div>
 </div>

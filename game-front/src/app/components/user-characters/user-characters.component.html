@@ -1,76 +1,36 @@
 <div *ngIf="user">
-  <h3 class="user-characters__header">
-    {{
-      user.characters.length == 0
-        ? "You dont have any characters"
-        : "Sort Characters(" + user.characters.length + "/6) by:"
-    }}
-    <mat-button-toggle-group
-      *ngIf="user.characters.length != 0"
-      name="sortProperty"
-      [(value)]="selectedSortVal"
-      aria-label="Sort Property"
-      (click)="handleOnClick()"
-    >
-      <mat-button-toggle value="strength" style="color: #ff00b3"
-        >S</mat-button-toggle
-      >
-      <mat-button-toggle value="dexterity" style="color: #00b13b"
-        >D</mat-button-toggle
-      >
-      <mat-button-toggle value="intellect" style="color: #0000ff"
-        >I</mat-button-toggle
-      >
-      <mat-button-toggle value="gold" style="color: #dad606"
-        >G</mat-button-toggle
-      >
-    </mat-button-toggle-group>
-  </h3>
-  <div class="user-characters__cta pulse" *ngIf="user.characters.length == 0">
-    <div class="user-characters__cta--text">Get a character in the shop</div>
-  </div>
-  <mat-card
-    *ngFor="let character of user.characters"
-    class="user-characters__character"
-  >
-    <img
-      src="{{ character.image }}"
-      alt="user-characters__character-image"
-      class="user-characters__character-image"
-    />
-    <div matLine class="user-characters__character-characteristics">
-      <h4 matLine>{{ character.name }}</h4>
-      <div>
-        <div class="user-characters__character-characteristics--row">
-          <span class="user-characters__character-characteristics--str"
-            >Str: {{ character.characteristics.strength }}
-          </span>
-          <span class="user-characters__character-characteristics--dex"
-            >Dex: {{ character.characteristics.dexterity }}
-          </span>
-        </div>
-        <div class="user-characters__character-characteristics--row">
-          <span class="user-characters__character-characteristics--int"
-            >Int: {{ character.characteristics.intellect }}</span
-          >
-          <span class="user-characters__character-characteristics--inc"
-            >Gold: {{ character.income }}</span
-          >
-        </div>
-      </div>
-      <div class="user-characters__character-characteristics--button-container">
-        Delete for
-        <button
-          class="user-characters__character-characteristics--button"
-          type="button"
-          mat-raised-button
-          color="warn"
-          [disabled]="user.currencyBalance < character.price"
-          (click)="onDeleteCharacter(character)"
-        >
-          {{ character.price }}
-        </button>
-      </div>
-    </div>
-  </mat-card>
+	<h3 class="user-characters__header">
+		{{ user.characters.length == 0 ? "You dont have any characters" : "Sort Characters(" + user.characters.length + "/6) by:" }}
+		<mat-button-toggle-group *ngIf="user.characters.length != 0" name="sortProperty" [(value)]="selectedSortVal" aria-label="Sort Property" (click)="handleOnClick()">
+			<mat-button-toggle value="strength" style="color: #ff00b3">S</mat-button-toggle>
+			<mat-button-toggle value="dexterity" style="color: #00b13b">D</mat-button-toggle>
+			<mat-button-toggle value="intellect" style="color: #0000ff">I</mat-button-toggle>
+			<mat-button-toggle value="gold" style="color: #dad606">G</mat-button-toggle>
+		</mat-button-toggle-group>
+	</h3>
+	<div class="user-characters__cta pulse" *ngIf="user.characters.length == 0">
+		<div class="user-characters__cta--text">Get a character in the shop</div>
+	</div>
+	<mat-card *ngFor="let character of user.characters" class="user-characters__character">
+		<img src="{{ character.image }}" alt="user-characters__character-image" class="user-characters__character-image" />
+		<div matLine class="user-characters__character-characteristics">
+			<h4 matLine>{{ character.name }}</h4>
+			<div>
+				<div class="user-characters__character-characteristics--row">
+					<span class="user-characters__character-characteristics--str">Str: {{ character.characteristics.strength }} </span>
+					<span class="user-characters__character-characteristics--dex">Dex: {{ character.characteristics.dexterity }} </span>
+				</div>
+				<div class="user-characters__character-characteristics--row">
+					<span class="user-characters__character-characteristics--int">Int: {{ character.characteristics.intellect }}</span>
+					<span class="user-characters__character-characteristics--inc">Gold: {{ character.income }}</span>
+				</div>
+			</div>
+			<div class="user-characters__character-characteristics--button-container">
+				Delete for
+				<button class="user-characters__character-characteristics--button" type="button" mat-raised-button color="warn" [disabled]="user.currencyBalance < character.price" (click)="onDeleteCharacter(character)">
+					{{ character.price }}
+				</button>
+			</div>
+		</div>
+	</mat-card>
 </div>

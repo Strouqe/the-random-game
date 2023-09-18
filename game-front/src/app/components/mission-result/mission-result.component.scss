@@ -1,88 +1,88 @@
 .dialog {
-  position: relative;
+	position: relative;
 
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  height: 100%;
-  width: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	height: 100%;
+	width: 100%;
 
-  text-align: center;
+	text-align: center;
 
-  &__close {
-    position: absolute;
-    top: 0;
-    right: 0;
+	&__close {
+		position: absolute;
+		top: 0;
+		right: 0;
 
-    margin: 10px;
+		margin: 10px;
 
-    cursor: pointer;
-  }
+		cursor: pointer;
+	}
 
-  &__characters {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-gap: 10px;
+	&__characters {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		grid-gap: 10px;
 
-    margin: 20px;
-  }
+		margin: 20px;
+	}
 
-  &__character {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    align-items: center;
-    width: 300px;
-    padding: 4px 8px;
-    margin: auto;
+	&__character {
+		display: flex;
+		flex-direction: row;
+		justify-content: space-around;
+		align-items: center;
+		width: 300px;
+		padding: 4px 8px;
+		margin: auto;
 
-    &-image {
-      width: 100px;
-      height: 100px;
-      margin: 0 auto 0 8px;
+		&-image {
+			width: 100px;
+			height: 100px;
+			margin: 0 auto 0 8px;
 
-      object-fit: cover;
-    }
+			object-fit: cover;
+		}
 
-    &-characteristics {
-      align-items: center;
-      min-width: 65%;
-      margin: 0 auto;
+		&-characteristics {
+			align-items: center;
+			min-width: 65%;
+			margin: 0 auto;
 
-      &--row {
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-        align-items: center;
+			&--row {
+				display: flex;
+				flex-direction: row;
+				justify-content: center;
+				align-items: center;
 
-        width: 100%;
-      }
+				width: 100%;
+			}
 
-      &--penalty {
-        color: #ff0000;
-        font-weight: bold;
-      }
-      &--str {
-        color: #ff00b3;
-        width: 50%;
-      }
-      &--dex {
-        color: #00b13b;
-        width: 50%;
-      }
-      &--int {
-        color: #0000ff;
-        width: 50%;
-      }
-      &--inc {
-        color: #dad606;
-        width: 50%;
-      }
-      & > * {
-        margin: 4px auto;
-        text-align: center;
-      }
-    }
-  }
+			&--penalty {
+				color: #ff0000;
+				font-weight: bold;
+			}
+			&--str {
+				color: #ff00b3;
+				width: 50%;
+			}
+			&--dex {
+				color: #00b13b;
+				width: 50%;
+			}
+			&--int {
+				color: #0000ff;
+				width: 50%;
+			}
+			&--inc {
+				color: #dad606;
+				width: 50%;
+			}
+			& > * {
+				margin: 4px auto;
+				text-align: center;
+			}
+		}
+	}
 }

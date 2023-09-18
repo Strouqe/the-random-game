@@ -1,31 +1,31 @@
 <div class="home">
-  <app-nav></app-nav>
-  <div class="home__board">
-    <app-user-characters></app-user-characters>
-    <div class="home__generated">
-      <div class="home__generated__characters">
-        <mat-expansion-panel [expanded]="true">
-          <mat-expansion-panel-header>
-            <mat-panel-title><h2>Character Shop</h2></mat-panel-title>
-          </mat-expansion-panel-header>
-          <app-characters></app-characters>
-        </mat-expansion-panel>
-      </div>
-      <div class="home__generated__missions">
-        <mat-expansion-panel [expanded]="true">
-          <mat-expansion-panel-header>
-            <mat-panel-title><h2>Available Missions</h2></mat-panel-title>
-          </mat-expansion-panel-header>
-          <app-missions></app-missions>
-        </mat-expansion-panel>
-      </div>
-    </div>
-  </div>
-  <app-players-online display="none"></app-players-online>
+	<app-nav></app-nav>
+	<div class="home__board">
+		<app-user-characters></app-user-characters>
+		<div class="home__generated">
+			<div class="home__generated__characters">
+				<mat-expansion-panel [expanded]="true">
+					<mat-expansion-panel-header>
+						<mat-panel-title><h2>Character Shop</h2></mat-panel-title>
+					</mat-expansion-panel-header>
+					<app-characters></app-characters>
+				</mat-expansion-panel>
+			</div>
+			<div class="home__generated__missions">
+				<mat-expansion-panel [expanded]="true">
+					<mat-expansion-panel-header>
+						<mat-panel-title><h2>Available Missions</h2></mat-panel-title>
+					</mat-expansion-panel-header>
+					<app-missions></app-missions>
+				</mat-expansion-panel>
+			</div>
+		</div>
+	</div>
+	<app-players-online display="none"></app-players-online>
 </div>
 <div *ngIf="user && user.missionsCompleated.length === 10">
-  <!-- pyro animation -->
-  <div class="firework"></div>
-  <div class="firework"></div>
-  <div class="firework"></div>
+	<!-- pyro animation -->
+	<div class="firework"></div>
+	<div class="firework"></div>
+	<div class="firework"></div>
 </div>

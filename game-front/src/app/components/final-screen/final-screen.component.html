@@ -1,26 +1,11 @@
 <div class="final-screen">
-  <div class="final-screen__header">
-    <h2>Congratulations! You have completed the game</h2>
-  </div>
-<img src="assets/images/cup.svg" alt="cup" class="final-screen__image">
-  <div class="final-screen__score">
-    <h3 *ngIf="userEntry">
-      You'r number {{dbData.indexOf(userEntry) + 1}} in the leaderboard
-    </h3>
-    <h4>
-      You'r final score is {{user.points}}
-    </h4>
-  </div>
-  <button
-  mat-button
-  mat-dialog-close
-  mat-raised-button
-  cdkFocusInitial
-  class="final-screen__button"
-  color="primary"
-  (click)="onRestart()"
->
-  Try Again
-</button>
+	<div class="final-screen__header">
+		<h2>Congratulations! You have completed the game</h2>
+	</div>
+	<img src="assets/images/cup.svg" alt="cup" class="final-screen__image" />
+	<div class="final-screen__score">
+		<h3 *ngIf="userEntry">You'r number {{ dbData.indexOf(userEntry) + 1 }} in the leaderboard</h3>
+		<h4>You'r final score is {{ user.points }}</h4>
+	</div>
+	<button mat-button mat-dialog-close mat-raised-button cdkFocusInitial class="final-screen__button" color="primary" (click)="onRestart()">Try Again</button>
 </div>
-
