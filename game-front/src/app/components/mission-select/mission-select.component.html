@@ -1,189 +1,90 @@
 <div class="mission-select">
-  <div class="mission-select__mission-info">
-    <h1 mat-dialog-title>{{ this.data.mission.name }}</h1>
-    <div class="mission-select__character-select">
-      <div class="mission-select__container">
-        <h2 class="mission-select__container__heading">Available Characters</h2>
-        <div
-          cdkDropList
-          #characterList="cdkDropList"
-          [cdkDropListData]="characters"
-          [cdkDropListConnectedTo]="[partyList]"
-          class="mission-select__container__list"
-          (cdkDropListDropped)="drop($event)"
-        >
-          <mat-card
-            cdkDrag
-            *ngFor="let character of characters"
-            class="mission-select__characters__character"
-          >
-            <div
-              class="mission-select__characters__character-add"
-              (click)="addCharacterToParty(character)"
-            >
-              <div>+</div>
-            </div>
-            <img
-              src="{{ character.image }}"
-              alt="mission-select__characters__character-image"
-              class="mission-select__characters__character-image"
-            />
-            <div
-              matLine
-              class="mission-select__characters__character-characteristics"
-            >
-              <h4 matLine>{{ character.name }}</h4>
-              <div>
-                <div
-                  class="mission-select__characters__character-characteristics--row"
-                >
-                  <span
-                    class="mission-select__characters__character-characteristics--str"
-                    >Str: {{ character.characteristics.strength }}
-                  </span>
-                  <span
-                    class="mission-select__characters__character-characteristics--dex"
-                    >Dex: {{ character.characteristics.dexterity }}
-                  </span>
-                </div>
-                <div
-                  class="mission-select__characters__character-characteristics--row"
-                >
-                  <span
-                    class="mission-select__characters__character-characteristics--int"
-                    >Int: {{ character.characteristics.intellect }}</span
-                  >
-                  <span
-                    class="mission-select__characters__character-characteristics--inc"
-                    >Gold: {{ character.income }}</span
-                  >
-                </div>
-              </div>
-            </div>
-          </mat-card>
-        </div>
-      </div>
-      <div class="mission-select__container">
-        <div class="mission-select__mission-info__box-titles--requirements">
-          <h2>Required sum of Characteristics:</h2>
-          <div>
-            <p>
-              Strength: {{ 10 * (this.data.mission.difficulty / 100) * 4 }} -
-              {{ 20 * (this.data.mission.difficulty / 100) * 4 }}
-            </p>
-            <p>
-              Dexterity: {{ 10 * (this.data.mission.difficulty / 100) * 4 }} -
-              {{ 20 * (this.data.mission.difficulty / 100) * 4 }}
-            </p>
-            <p>
-              Intellect: {{ 10 * (this.data.mission.difficulty / 100) * 4 }} -
-              {{ 20 * (this.data.mission.difficulty / 100) * 4 }}
-            </p>
-          </div>
-        </div>
-        <!-- <div class="mission-select__mission-info__box-titles--description">
+	<div class="mission-select__mission-info">
+		<h1 mat-dialog-title>{{ this.data.mission.name }}</h1>
+		<div class="mission-select__character-select">
+			<div class="mission-select__container">
+				<h2 class="mission-select__container__heading">Available Characters</h2>
+				<div cdkDropList #characterList="cdkDropList" [cdkDropListData]="characters" [cdkDropListConnectedTo]="[partyList]" class="mission-select__container__list" (cdkDropListDropped)="drop($event)">
+					<mat-card cdkDrag *ngFor="let character of characters" class="mission-select__characters__character">
+						<div class="mission-select__characters__character-add" (click)="addCharacterToParty(character)">
+							<div>+</div>
+						</div>
+						<img src="{{ character.image }}" alt="mission-select__characters__character-image" class="mission-select__characters__character-image" />
+						<div matLine class="mission-select__characters__character-characteristics">
+							<h4 matLine>{{ character.name }}</h4>
+							<div>
+								<div class="mission-select__characters__character-characteristics--row">
+									<span class="mission-select__characters__character-characteristics--str">Str: {{ character.characteristics.strength }} </span>
+									<span class="mission-select__characters__character-characteristics--dex">Dex: {{ character.characteristics.dexterity }} </span>
+								</div>
+								<div class="mission-select__characters__character-characteristics--row">
+									<span class="mission-select__characters__character-characteristics--int">Int: {{ character.characteristics.intellect }}</span>
+									<span class="mission-select__characters__character-characteristics--inc">Gold: {{ character.income }}</span>
+								</div>
+							</div>
+						</div>
+					</mat-card>
+				</div>
+			</div>
+			<div class="mission-select__container">
+				<div class="mission-select__mission-info__box-titles--requirements">
+					<h2>Required sum of Characteristics:</h2>
+					<div>
+						<p>
+							Strength: {{ 10 * (this.data.mission.difficulty / 100) * 4 }} -
+							{{ 20 * (this.data.mission.difficulty / 100) * 4 }}
+						</p>
+						<p>
+							Dexterity: {{ 10 * (this.data.mission.difficulty / 100) * 4 }} -
+							{{ 20 * (this.data.mission.difficulty / 100) * 4 }}
+						</p>
+						<p>
+							Intellect: {{ 10 * (this.data.mission.difficulty / 100) * 4 }} -
+							{{ 20 * (this.data.mission.difficulty / 100) * 4 }}
+						</p>
+					</div>
+				</div>
+				<!-- <div class="mission-select__mission-info__box-titles--description">
           Choose {{ this.data.mission.partySize }} characters and drop them here
         </div> -->
-        <div
-          cdkDropList
-          #partyList="cdkDropList"
-          [cdkDropListData]="party"
-          [cdkDropListConnectedTo]="[characterList]"
-          class="mission-select__container__list"
-          (cdkDropListDropped)="drop($event)"
-        >
-          <mat-card
-            cdkDrag
-            *ngFor="let character of party"
-            class="mission-select__characters__character"
-          >
-            <div
-              class="mission-select__characters__character-del"
-              (click)="returnCharacterToUser(character)"
-            >
-              <div>&minus;</div>
-            </div>
-            <img
-              src="{{ character.image }}"
-              alt="mission-select__characters__character-image"
-              class="mission-select__characters__character-image"
-            />
-            <div
-              matLine
-              class="mission-select__characters__character-characteristics"
-            >
-              <h4 matLine>{{ character.name }}</h4>
-              <div>
-                <div
-                  class="mission-select__characters__character-characteristics--row"
-                >
-                  <span
-                    class="mission-select__characters__character-characteristics--str"
-                    >Str: {{ character.characteristics.strength }}
-                  </span>
-                  <span
-                    class="mission-select__characters__character-characteristics--dex"
-                    >Dex: {{ character.characteristics.dexterity }}
-                  </span>
-                </div>
-                <div
-                  class="mission-select__characters__character-characteristics--row"
-                >
-                  <span
-                    class="mission-select__characters__character-characteristics--int"
-                    >Int: {{ character.characteristics.intellect }}</span
-                  >
-                  <span
-                    class="mission-select__characters__character-characteristics--inc"
-                    >Gold: {{ character.income }}</span
-                  >
-                </div>
-              </div>
-            </div>
-          </mat-card>
-        </div>
-      </div>
-    </div>
-    <div class="mission-select__mission-info__box-titles--party-stats">
-      <h4>Sum of your party characteristics:</h4>
-      <div>
-        <p>Strength: {{ this.partyStats.strength }}</p>
-        <p>Dexterity: {{ this.partyStats.dexterity }}</p>
-        <p>Intellect: {{ this.partyStats.intellect }}</p>
-        <h4>Win chance: {{ this.successProbability }}%</h4>
-      </div>
-    </div>
-    <div mat-dialog-content>Start the mission?</div>
-    <div mat-dialog-actions class="mission-select__buttons">
-      <button
-        mat-button
-        mat-dialog-close
-        (click)="resumeGeneration()"
-        style="border: 1px solid #3f51b5; width: 110px"
-      >
-        No
-      </button>
-      <button
-        mat-button
-        mat-dialog-close
-        mat-raised-button
-        cdkFocusInitial
-        [disabled]="party.length == 0"
-        color="primary"
-        class="pulse"
-        [ngClass]="{ pulse: party.length != 0 }"
-        (click)="onStartMission()"
-      >
-        LET'S GO!
-      </button>
-    </div>
-    <button
-      class="mission-select__close"
-      mat-button
-      mat-dialog-close
-      (click)="resumeGeneration()"
-    >
-      X
-    </button>
-  </div>
+				<div cdkDropList #partyList="cdkDropList" [cdkDropListData]="party" [cdkDropListConnectedTo]="[characterList]" class="mission-select__container__list" (cdkDropListDropped)="drop($event)">
+					<mat-card cdkDrag *ngFor="let character of party" class="mission-select__characters__character">
+						<div class="mission-select__characters__character-del" (click)="returnCharacterToUser(character)">
+							<div>&minus;</div>
+						</div>
+						<img src="{{ character.image }}" alt="mission-select__characters__character-image" class="mission-select__characters__character-image" />
+						<div matLine class="mission-select__characters__character-characteristics">
+							<h4 matLine>{{ character.name }}</h4>
+							<div>
+								<div class="mission-select__characters__character-characteristics--row">
+									<span class="mission-select__characters__character-characteristics--str">Str: {{ character.characteristics.strength }} </span>
+									<span class="mission-select__characters__character-characteristics--dex">Dex: {{ character.characteristics.dexterity }} </span>
+								</div>
+								<div class="mission-select__characters__character-characteristics--row">
+									<span class="mission-select__characters__character-characteristics--int">Int: {{ character.characteristics.intellect }}</span>
+									<span class="mission-select__characters__character-characteristics--inc">Gold: {{ character.income }}</span>
+								</div>
+							</div>
+						</div>
+					</mat-card>
+				</div>
+			</div>
+		</div>
+		<div class="mission-select__mission-info__box-titles--party-stats">
+			<h4>Sum of your party characteristics:</h4>
+			<div>
+				<p>Strength: {{ this.partyStats.strength }}</p>
+				<p>Dexterity: {{ this.partyStats.dexterity }}</p>
+				<p>Intellect: {{ this.partyStats.intellect }}</p>
+				<h4>Win chance: {{ this.successProbability }}%</h4>
+			</div>
+		</div>
+
+		<div mat-dialog-content class="mission-select__buttons--text">Start the mission?</div>
+		<div mat-dialog-actions class="mission-select__buttons">
+			<button mat-button mat-dialog-close (click)="resumeGeneration()" style="border: 1px solid #3f51b5; width: 110px">No</button>
+			<button mat-button mat-dialog-close mat-raised-button cdkFocusInitial [disabled]="party.length == 0" color="primary" class="pulse" [ngClass]="{ pulse: party.length != 0 }" (click)="onStartMission()">LET'S GO!</button>
+		</div>
+		<button class="mission-select__close" mat-button mat-dialog-close (click)="resumeGeneration()">X</button>
+	</div>
 </div>

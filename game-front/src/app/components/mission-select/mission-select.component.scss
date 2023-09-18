@@ -1,11 +1,16 @@
 .mission-select {
   position: relative;
   width: 100%;
+  max-height: 95vh;
   margin: 0 auto;
+
+  @media only screen and (max-width: 1400px) {
+    font-size: 12px;
+  }
 
   &__container {
     min-height: 85%;
-    height: 535px;
+    max-height: 90%;
     width: 40%;
     padding: 10px;
     margin: 0 auto;
@@ -21,11 +26,11 @@
     &__list {
       display: flex !important;
       flex-wrap: wrap;
-      min-height: 300px;
+      // min-height: 300px;
       min-width: 100%;
       border-radius: 4px;
 
-      overflow: hidden;
+      // overflow: hidden;
     }
   }
 
@@ -43,7 +48,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 905px;
+
 
     &__box-titles {
       display: flex;
@@ -77,8 +82,8 @@
         display: flex;
         justify-content: space-around;
         align-items: center;
-        width: 25%;
-        margin: 10px 13% 10px auto;
+        width: 30%;
+        margin: 0 13% 0 auto;
         line-height: 0.6;
       }
     }
@@ -104,16 +109,20 @@
     }
 
     &__character {
-      scale: 0.9;
+      // scale: 0.8;
       display: flex;
       flex-direction: row;
       justify-content: space-around;
       align-items: center;
-      width: 45%;
-      height: 135px;
-      padding: 4px 8px;
-      margin: auto;
+      width: 43%;
+      // height: 135px;
+      padding: 10px 8px;
+      margin: 5px auto;
 
+      font-size: 12px;
+      @media only screen and (max-width: 1400px) {
+        // font-size: 12px;
+      }
       &-add {
         position: absolute;
         top: 8px;
@@ -122,8 +131,8 @@
         display: none;
         justify-content: center;
         align-items: center;
-        height: 30px;
-        width: 30px;
+        height: 25px;
+        width: 25px;
         border-radius: 50%;
         font-size: 44px;
         background: #26db3e;
@@ -141,8 +150,8 @@
         display: none;
         justify-content: center;
         align-items: center;
-        height: 30px;
-        width: 30px;
+        height: 25px;
+        width: 25px;
         padding: 0;
         border-radius: 50%;
         box-shadow: 0 0 0 2px #ccc;
@@ -154,11 +163,15 @@
       }
 
       &-image {
-        width: 100px;
-        height: 100px;
+        width: 80px;
+        height: 80px;
         margin: 0 auto 0 8px;
 
         object-fit: cover;
+        @media only screen and (max-width: 1400px) {
+          width: 60px;
+          height: 60px;
+        }
       }
 
       &-characteristics {
