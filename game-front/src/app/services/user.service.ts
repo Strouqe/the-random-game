@@ -136,7 +136,7 @@ export class UserService {
     if(this.encryptStorage.getItem('user')){
       return this.encryptStorage.getItem('user').currencyBalance - (this.encryptStorage.getItem('user').currencyIncome / 4)
     } else {
-      return 1200;
+      return 1000;
     }
   }
 
