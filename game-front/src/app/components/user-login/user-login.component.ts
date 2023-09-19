@@ -42,6 +42,7 @@ export class UserLoginComponent implements OnInit {
       this.backgroundLoaded = true;
     };
   }
+  
   onSubmit(): void {
     this.dataService
       .nameValidation(this.userForm.value.userName)
