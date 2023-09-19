@@ -67,7 +67,9 @@ export class UserLoginComponent implements OnInit {
     this.userForm = new FormGroup({
       userName: new FormControl(null, [
         Validators.minLength(4),
+        Validators.maxLength(10),
         Validators.required,
+        Validators.pattern(/^(\s+\S+\s*)*(?!\s).*$/)
       ]),
     });
   }
