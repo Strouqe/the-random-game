@@ -61,7 +61,6 @@ export class ServerDataService {
             dbData.sort((a, b) => {
               return b.points - a.points;
             });
-            console.log('dbData', dbData);
             this.dbDataChanged.next(dbData);
         }
       });
