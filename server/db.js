@@ -3,7 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.returnEntries = exports.addEntry = void 0;
+exports.deleteEntry = exports.returnEntries = exports.addEntry = void 0;
 const sqlite3_1 = __importDefault(require("sqlite3"));
 let sql;
 let db = new sqlite3_1.default.Database("./test.db", sqlite3_1.default.OPEN_READWRITE, (err) => {
@@ -33,3 +33,11 @@ function returnEntries() {
     return data;
 }
 exports.returnEntries = returnEntries;
+function deleteEntry(id) {
+    sql = `DELETE FROM users WHERE id=?`;
+    db.run(sql, id, (err) => {
+        if (err)
+            return console.error(err.message);
+    });
+}
+exports.deleteEntry = deleteEntry;

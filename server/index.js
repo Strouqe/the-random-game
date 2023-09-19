@@ -63,7 +63,7 @@ function getData() {
 }
 wss.on("connection", (ws) => {
     ws.on("message", (data) => {
-        const message = JSON.parse(data.toString());
+        const message = JSON.parse(data.toString()) && JSON.parse(data.toString());
         switch (message.type) {
             case "name validation":
                 if (connectedUsers.some((user) => user.name === message.data)) {

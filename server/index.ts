@@ -45,7 +45,7 @@ function getData(): string {
 
 wss.on("connection", (ws: WebSocket) => {
   ws.on("message", (data: any) => {
-    const message = JSON.parse(data.toString());
+    const message = JSON.parse(data.toString()) && JSON.parse(data.toString());
     switch (message.type) {
       case "name validation":
         if (

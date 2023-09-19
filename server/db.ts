@@ -33,5 +33,12 @@ export function returnEntries(): string {
   return data;
 }
 
+export function deleteEntry(id: number) {
+  sql = `DELETE FROM users WHERE id=?`;
+  db.run(sql, id, (err: any) => {
+    if (err) return console.error(err.message);
+  });
+}
+
 
 
