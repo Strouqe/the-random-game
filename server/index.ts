@@ -3,8 +3,17 @@ import WebSocket from "ws";
 import createCharacters from "./characters.js";
 import * as db from "./db.js";
 import createMissions, { startMission } from "./missions.js";
+import { Entry } from "./models/dbmodel.js";
+
 
 const app = express();
+app.use(express.json())
+
+//use dotenv
+import dotenv from "dotenv";
+dotenv.config();
+
+const dbControllers = require("./controllers/dbControllers.js") 
 
 const port = process.env.PORT || 10000;
 
@@ -86,12 +95,21 @@ wss.on("connection", (ws: WebSocket) => {
         ws.send(getData());
         break;
       case "dbData request":
-        let dbData = db.returnEntries()
-        let dbDataResponce = JSON.stringify({
-          type: "dbData responce",
-          data: dbData,
-        });
-        ws.send(dbDataResponce)
+        Entry.returnEntries().then((res) => {
+          let dbDataResponce = JSON.stringify({
+            type: "dbData responce",
+            data: res,
+            });
+          ws.send(dbDataResponce);
+        })
+        // dbControllers.returnEntries();
+        // let dbData = db.returnEntries()
+        // let dbDataResponce = JSON.stringify({
+        //   type: "dbData responce",
+        //   data: sqlData,
+        // });
+        // console.log("sqlData", sqlData);
+        // ws.send(dbDataResponce)
         break
       case "mission result":
         let result = startMission(message.data.difficulty, message.data.party, message.data.specialization, message.data.requirements);
@@ -103,6 +121,8 @@ wss.on("connection", (ws: WebSocket) => {
         break;
       case "end user session":
         let entry = JSON.parse(message.data)
+        new Entry(entry.name, entry.currencyBalance, entry.timePlayed, entry.points)
+        // dbControllers.addEntry(entry.name, entry.currencyBalance, entry.timePlayed, entry.points) 
        db.addEntry(
                 entry.name,
                 entry.currencyBalance,

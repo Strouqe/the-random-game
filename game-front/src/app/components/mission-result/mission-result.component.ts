@@ -44,7 +44,7 @@ export class MissionResultComponent implements OnInit {
 		});
 		this.dialogRef.afterClosed().subscribe(() => {
 			// check if the user has compleated 6 missions
-			if (this.userService.getUser().missionsCompleated.length >= 6) {
+			if (this.userService.getUser().missionsCompleated.length >= 2) {
 				this.missionService.finalPointCount();
 				this.openMissionDialog("500ms", "500ms");
 			}

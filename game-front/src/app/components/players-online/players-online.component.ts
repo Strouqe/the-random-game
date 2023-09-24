@@ -73,10 +73,10 @@ export class PlayersOnlineComponent implements OnInit, OnDestroy {
 
 //Нужно перенести на бэк или в сервис
   addPlayersToDbData(): void {
-    this.dbData = this.dbData.concat(this.players);
-    this.dbData.sort((a, b) => {
-      return b.points - a.points;
-    });
+    // this.dbData = this.dbData.concat(this.players);
+    // this.dbData.sort((a, b) => {
+    //   return b.points - a.points;
+    // });
   }
 
 
