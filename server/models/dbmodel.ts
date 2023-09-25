@@ -5,19 +5,16 @@ export class Entry {
 	balance: number;
 	timePlayed: number;
 	points: number;
-  entries: any;
+	entries: any;
 	constructor(name, balance, timePlayed, points) {
 		this.name = name;
 		this.balance = balance;
 		this.timePlayed = timePlayed;
 		this.points = points;
-    this.save();
+		this.save();
 	}
 
-
 	async save() {
-		// db.addEntry(this.name, this.balance, this.timePlayed, this.points);
-
 		let sql = `
     INSERT INTO user_sessions(name, balance, timePlayed, points) 
     VALUES(
@@ -26,19 +23,14 @@ export class Entry {
       '${this.timePlayed}', 
       '${this.points}'
     )`;
-
-    const [newEntry, _] = await db.execute(sql);
-    return newEntry;
+		const [newEntry, _] = await db.execute(sql);
+		return newEntry;
 	}
- 
-  
-	static async returnEntries() {
-    let sql = `SELECT * FROM user_sessions`;
 
-    const [entries, _] = await db.execute(sql);
-    console.log('db responce',entries);
-    return JSON.stringify(entries);
-  }
+	static async returnEntries() {
+		let sql = `SELECT * FROM user_sessions`;
+		const [entries, _] = await db.execute(sql);
+		return JSON.stringify(entries);
+	}
 }
 
-// module.exports = Entry;

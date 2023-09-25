@@ -102,14 +102,6 @@ wss.on("connection", (ws: WebSocket) => {
             });
           ws.send(dbDataResponce);
         })
-        // dbControllers.returnEntries();
-        // let dbData = db.returnEntries()
-        // let dbDataResponce = JSON.stringify({
-        //   type: "dbData responce",
-        //   data: sqlData,
-        // });
-        // console.log("sqlData", sqlData);
-        // ws.send(dbDataResponce)
         break
       case "mission result":
         let result = startMission(message.data.difficulty, message.data.party, message.data.specialization, message.data.requirements);
@@ -122,13 +114,6 @@ wss.on("connection", (ws: WebSocket) => {
       case "end user session":
         let entry = JSON.parse(message.data)
         new Entry(entry.name, entry.currencyBalance, entry.timePlayed, entry.points)
-        // dbControllers.addEntry(entry.name, entry.currencyBalance, entry.timePlayed, entry.points) 
-      //  db.addEntry(
-      //           entry.name,
-      //           entry.currencyBalance,
-      //           entry.timePlayed,
-      //           entry.points,
-      //       );
         break
     }
   });

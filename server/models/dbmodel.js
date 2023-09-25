@@ -21,7 +21,6 @@ class Entry {
     }
     save() {
         return __awaiter(this, void 0, void 0, function* () {
-            // db.addEntry(this.name, this.balance, this.timePlayed, this.points);
             let sql = `
     INSERT INTO user_sessions(name, balance, timePlayed, points) 
     VALUES(
@@ -38,10 +37,8 @@ class Entry {
         return __awaiter(this, void 0, void 0, function* () {
             let sql = `SELECT * FROM user_sessions`;
             const [entries, _] = yield db.execute(sql);
-            console.log('db responce', entries);
             return JSON.stringify(entries);
         });
     }
 }
 exports.Entry = Entry;
-// module.exports = Entry;

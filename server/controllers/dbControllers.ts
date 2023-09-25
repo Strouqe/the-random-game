@@ -1,5 +1,5 @@
+// Not used
 import { Entry } from "../models/dbmodel.js";
-
 
 exports.returnEntries = async (req, res, next) => {
   // res.send("returnEntries")
