@@ -31,7 +31,13 @@ const ws_1 = __importDefault(require("ws"));
 const characters_js_1 = __importDefault(require("./characters.js"));
 const db = __importStar(require("./db.js"));
 const missions_js_1 = __importStar(require("./missions.js"));
+const dbmodel_js_1 = require("./models/dbmodel.js");
 const app = (0, express_1.default)();
+app.use(express_1.default.json());
+//use dotenv
+const dotenv_1 = __importDefault(require("dotenv"));
+dotenv_1.default.config();
+const dbControllers = require("./controllers/dbControllers.js");
 const port = process.env.PORT || 10000;
 const server = app.listen(port, () => {
     console.log(`Server started on port ${port}`);
@@ -101,12 +107,13 @@ wss.on("connection", (ws) => {
                 ws.send(getData());
                 break;
             case "dbData request":
-                let dbData = db.returnEntries();
-                let dbDataResponce = JSON.stringify({
-                    type: "dbData responce",
-                    data: dbData,
+                dbmodel_js_1.Entry.returnEntries().then((res) => {
+                    let dbDataResponce = JSON.stringify({
+                        type: "dbData responce",
+                        data: res,
+                    });
+                    ws.send(dbDataResponce);
                 });
-                ws.send(dbDataResponce);
                 break;
             case "mission result":
                 let result = (0, missions_js_1.startMission)(message.data.difficulty, message.data.party, message.data.specialization, message.data.requirements);
@@ -118,7 +125,7 @@ wss.on("connection", (ws) => {
                 break;
             case "end user session":
                 let entry = JSON.parse(message.data);
-                db.addEntry(entry.name, entry.currencyBalance, entry.timePlayed, entry.points);
+                new dbmodel_js_1.Entry(entry.name, entry.currencyBalance, entry.timePlayed, entry.points);
                 break;
         }
     });

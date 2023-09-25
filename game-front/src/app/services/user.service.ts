@@ -69,6 +69,7 @@ export class UserService {
 			this.encryptStorage.setItem("user", JSON.stringify(this.user));
 		}
 	}
+
 	setUserFromMemory(): void {
 		let user = this.encryptStorage.getItem("user");
 		this.user = user;
@@ -118,6 +119,7 @@ export class UserService {
 		this.userChanged.next(this.user);
 		this.setUserStorage();
 	}
+
 	getCount(): number {
 		if (this.encryptStorage.getItem("user")) {
 			return this.encryptStorage.getItem("user").currencyBalance - this.encryptStorage.getItem("user").currencyIncome / 4;
@@ -146,6 +148,66 @@ export class UserService {
 
 		this.patchCounterState = new BehaviorSubject<Partial<CounterStateModel>>(this.isTicking$);
 
+		this.setupCounterCommands$();
+		this.setupCounterState$();
+		this.setupIsTicking$();
+		this.setupCommandFromTick$();
+
+		if (!this.isReset) {
+			this.incomeGeneratorSubscription = this.commandFromTick$.pipe(startWith(this.initialCounterState)).subscribe((state) => {
+				if (state.count) {
+					this.user.currencyBalance = state.count;
+					this.userChanged.next(this.user);
+					this.setUserStorage();
+				}
+			});
+		} else {
+			this.resetUserState();
+		}
+
+		this.setTimePlayedInterval();
+	}
+
+	trigerPause(): void {
+		this.pause = true;
+		this.trigerPauseEvent.emit();
+	}
+
+	trigerStart(): void {
+		this.trigerStartEvent.emit();
+	}
+	trigerUpdateState(): void {
+		this.trigerUpdateCountStateEvent.emit();
+	}
+
+	clearTimePlayedInterval(): void {
+		clearInterval(this.timePlayed);
+		this.isReset = true;
+	}
+
+	clearUser(): void {
+		this.trigerPauseEvent.emit();
+		this.pause = false;
+		this.setUser("");
+		// this.user = sampleUser;
+		// this.userChanged.next(this.user);
+		this.trigerUpdateState();
+	}
+
+	getUserIncome(): number {
+		return this.user.characters.reduce((acc, character) => {
+			return acc + character.income;
+		}, 0);
+	}
+
+	private resetUserState(): void {
+		this.user.currencyBalance = 1000;
+		this.userChanged.next(this.user);
+		this.setUserStorage();
+		this.isReset = false;
+	}
+
+	private setupCounterCommands$(): void {
 		this.counterCommands$ = merge(
 			this.trigerStartEvent.pipe(mapTo({ isTicking: true })),
 			this.trigerPauseEvent.pipe(mapTo({ isTicking: false })),
@@ -156,7 +218,9 @@ export class UserService {
 			),
 			this.patchCounterState.asObservable(),
 		);
+	}
 
+	private setupCounterState$(): void {
 		this.counterState$ = this.counterCommands$.pipe(
 			startWith(this.initialCounterState),
 			scan(
@@ -167,12 +231,16 @@ export class UserService {
 			),
 			shareReplay(1),
 		);
+	}
 
+	private setupIsTicking$(): void {
 		this.isTicking$ = this.counterState$.pipe(
 			map((state) => state.isTicking),
 			distinctUntilChanged(),
 		);
+	}
 
+	private setupCommandFromTick$(): void {
 		this.commandFromTick$ = this.isTicking$.pipe(
 			switchMap((isTicking) => (isTicking ? timer(0, 15000) : NEVER)),
 			!this.pause &&
@@ -193,64 +261,16 @@ export class UserService {
 				}
 			}),
 		);
-
-		if (!this.isReset) {
-			this.incomeGeneratorSubscription = this.commandFromTick$.pipe(startWith(this.initialCounterState)).subscribe((state) => {
-				if (state.count) {
-					this.user.currencyBalance = state.count;
-					this.userChanged.next(this.user);
-					this.setUserStorage();
-				}
-			});
-		} else {
-
-			this.user.currencyBalance = 1000;
-			this.userChanged.next(this.user);
-			this.setUserStorage();
-			this.isReset = false;
-		}
-
-
-		this.setTimePlayedInterval();
 	}
-	setTimePlayedInterval(): void {
+
+	private setTimePlayedInterval(): void {
 		this.timePlayed = setInterval(() => {
 			this.user.timePlayed += 15;
 			this.userChanged.next(this.user);
 			this.setUserStorage();
 		}, 15000);
 	}
-	clearTimePlayedInterval(): void {
-		clearInterval(this.timePlayed);
-		this.isReset = true;
-	}
 
-	trigerPause(): void {
-		this.pause = true;
-		this.trigerPauseEvent.emit();
-	}
-
-	trigerStart(): void {
-		this.trigerStartEvent.emit();
-	}
-	trigerUpdateState(): void {
-		this.trigerUpdateCountStateEvent.emit();
-	}
-
-	clearUser(): void {
-		this.trigerPauseEvent.emit();
-		this.pause = false;
-		this.setUser("");
-		// this.user = sampleUser;
-		// this.userChanged.next(this.user);
-		this.trigerUpdateState();
-	}
-
-	private getUserIncome(): number {
-		return this.user.characters.reduce((acc, character) => {
-			return acc + character.income;
-		}, 0);
-	}
 	private ifPause(data: any): any {
 		if (!this.pause) {
 			return data;

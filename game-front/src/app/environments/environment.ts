@@ -1,6 +1,6 @@
 export const environment = {
     production: false,
-    URL: 'wss://rndm-srvr.onrender.com',
+    URL: 'ws://localhost:10000',
     SECRET: 'why do dogs smell so bad',
     SALT: 10
 }

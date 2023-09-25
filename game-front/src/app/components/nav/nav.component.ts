@@ -19,7 +19,6 @@ export class NavComponent implements OnInit, OnDestroy {
   message = {};
 
   constructor(
-    private router: Router,
     public dialog: MatDialog,
     private userService: UserService,
     private wsService: WebsocketService
