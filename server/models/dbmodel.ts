@@ -33,4 +33,3 @@ export class Entry {
 		return JSON.stringify(entries);
 	}
 }
-

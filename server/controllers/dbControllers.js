@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-// Not used
+// This file is not used at the moment
 const dbmodel_js_1 = require("../models/dbmodel.js");
 exports.returnEntries = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     // res.send("returnEntries")

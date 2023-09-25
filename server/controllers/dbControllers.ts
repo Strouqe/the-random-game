@@ -1,4 +1,4 @@
-// Not used
+// This file is not used at the moment
 import { Entry } from "../models/dbmodel.js";
 
 exports.returnEntries = async (req, res, next) => {
