@@ -123,12 +123,12 @@ wss.on("connection", (ws: WebSocket) => {
         let entry = JSON.parse(message.data)
         new Entry(entry.name, entry.currencyBalance, entry.timePlayed, entry.points)
         // dbControllers.addEntry(entry.name, entry.currencyBalance, entry.timePlayed, entry.points) 
-       db.addEntry(
-                entry.name,
-                entry.currencyBalance,
-                entry.timePlayed,
-                entry.points,
-            );
+      //  db.addEntry(
+      //           entry.name,
+      //           entry.currencyBalance,
+      //           entry.timePlayed,
+      //           entry.points,
+      //       );
         break
     }
   });
